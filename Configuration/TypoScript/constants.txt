@@ -1,0 +1,31 @@
+plugin.tx_workshops {
+	view {
+		# cat=workshops/view; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:workshops/Resources/Private/Templates/
+		
+		# cat=workshops/view; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:workshops/Resources/Private/Partials/
+		
+		# cat=workshops/view; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:workshops/Resources/Private/Layouts/
+	}
+
+	persistence {
+		# cat=workshops/persistence; type=integer; label=Storage PID of records
+		storagePid =
+	}	
+}
+
+
+module.tx_workshops {
+	view {
+		# cat=module.tx_workshops/file; type=string; label=Path to template root (BE)
+		templateRootPath = EXT:workshops/Resources/Private/Templates/
+		# cat=module.tx_workshops/file; type=string; label=Path to template partials (BE)
+		partialRootPath = EXT:workshops/Resources/Private/Partials/
+		# cat=module.tx_workshops/file; type=string; label=Path to template layouts (BE)
+		layoutRootPath = EXT:workshops/Resources/Private/Layouts/
+		# cat=module.tx_workshops/file; type=string; label=Path to mailer templates (BE)
+		mailerRootPath = EXT:workshops/Resources/Private/Mailer/
+	}
+}

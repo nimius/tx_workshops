@@ -1,0 +1,89 @@
+{namespace w=NIMIUS\Workshops\ViewHelpers}
+
+<f:layout name="Backend"/>
+ 
+<f:section name="docheader-buttons-left">
+	<w:be.tableLink
+		table="tx_workshops_domain_model_workshop"
+		uid="{pageUid}"
+		key="new"
+		class="btn btn-default btn-sm">
+		<w:be.icon identifier="actions-document-new" />
+	</w:be.tableLink>
+</f:section>
+
+<f:section name="content">
+	<h1>
+		<f:translate key="template.backend.workshops.index.title.workshopsAdministration" />
+	</h1>
+	
+	<f:if condition="{workshops}">
+		<f:then>
+			<div class="panel panel-space panel-default recordlist">
+				<div class="panel-heading">
+					<f:translate key="model.workshop" />
+				</div>
+				
+				<div class="collapse in" data-state="expanded">
+					<div class="table-fit">
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th nowrap="nowrap" class="col-icon">
+									</th>
+									<th nowrap="nowrap">
+										<f:translate key="model.workshop.property.identifier" />
+									</th>
+									<th nowrap="nowrap">
+										<f:translate key="model.workshop.property.name" />
+									</th>
+									<th nowrap="nowrap">
+										<f:translate key="template.backend.workshops.index.label.nextDate" />
+									</th>
+									<th nowrap="nowrap" class="col-control"></th>
+								</tr>
+							</thead>
+							<tbody>
+								<f:for each="{workshops}" as="data">
+									<tr>
+										<td nowrap="nowrap" class="col-icon"></td>
+										<td nowrap="nowrap">
+											<f:link.action action="show" arguments="{workshop: data.workshop}">
+												{data.workshop.identifier}
+											</f:link.action>
+										</td>
+										<td nowrap="nowrap">
+											<f:link.action action="show" arguments="{workshop: data.workshop}">{data.workshop.name}</f:link.action>
+										</td>
+										<td>
+											<f:if condition="{data.nextDate}">
+												<f:link.action controller="Backend\Registrations" action="show" arguments="{date: data.nextDate.uid}">
+												<f:render partial="Backend/Date/Date" arguments="{date: data.nextDate}" />
+												</f:link.action>
+											</f:if>
+										</td>
+										<td nowrap="nowrap" class="col-control">
+											<w:be.tableLink
+												table="tx_workshops_domain_model_workshop"
+												uid="{data.workshop.uid}"
+												class="btn btn-default btn-sm">
+												<w:be.icon identifier="actions-document-open" />
+											</w:be.tableLink>
+										</td>
+									</tr>
+								</f:for>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</f:then>
+		<f:else>
+			<div class="typo3-message message-notice">
+				<div class="message-body">
+					<f:translate key="template.backend.workshops.index.text.noWorkshopsFound" />
+				</div>
+			</div>
+		</f:else>
+	</f:if>
+</f:section>

@@ -1,0 +1,5 @@
+config.tx_extbase.persistence.classes {
+    NIMIUS\Workshops\Domain\Model\Category.mapping.tableName = sys_category
+    NIMIUS\Workshops\Domain\Model\FrontendUser.mapping.tableName = fe_users
+    NIMIUS\Workshops\Domain\Model\Language.mapping.tableName = sys_language
+}

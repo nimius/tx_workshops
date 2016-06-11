@@ -1,0 +1,68 @@
+/**
+ * Plugin configuration
+ */
+plugin.tx_workshops {
+	view {
+		templateRootPath = {$plugin.tx_workshops.view.templateRootPath}
+		partialRootPath = {$plugin.tx_workshops.view.partialRootPath}
+		layoutRootPath = {$plugin.tx_workshops.view.layoutRootPath}
+	}
+
+	persistence {
+		storagePid = {$plugin.tx_workshops.persistence.storagePid}
+	}
+	
+	features.rewrittenPropertyManager = 1
+	
+	settings {
+		loginPid =
+		singnupPid =
+		dateTimeFormat = d-m-Y h:i
+		
+		registration {
+			useScheduler = 0
+			
+			mailFromName =
+			mailFromAddress =
+			
+			confirmationEmail {
+				attendee = 1
+				attendee.subject = 
+				
+				instructor = 0
+				instructor.subject = 
+			}
+			
+			validation {
+				// As various functions rely on a valid email address (e.g. delivering a 
+				// confirmation email), the email address must be present and valid.
+				// You should know what you do if you drop this.
+				email {
+					10.validator = NotEmpty
+					20.validator = EmailAddress
+				}
+			}
+		}
+		
+		form.appendToLabelIfRequiredField = 
+	}
+}
+
+
+/**
+ * Backend module configuration
+ */
+module.tx_workshops < plugin.tx_workshops
+module.tx_workshops {
+	view {
+		templateRootPath = {$module.tx_workshops.view.templateRootPath}
+		partialRootPath =  {$module.tx_workshops.view.partialRootPath}
+		layoutRootPath =   {$module.tx_workshops.view.layoutRootPath}
+		
+		// Separating the mailer templates for integrators to have BE module templates untouched
+		mailerRootPath = {$module.tx_workshops.view.mailerRootPath}
+	}
+}
+// Referencing settings as they are also used in backend context
+module.tx_workshops.settings =< plugin.tx_workshops.settings
+

@@ -1,0 +1,119 @@
+{namespace w=NIMIUS\Workshops\ViewHelpers}
+
+<f:layout name="Default" />
+
+<!--
+	Available in this view:
+	
+	- date				The date provided 
+	- frontendUser		Currently logged in user
+	- workshop			Current workshop for the current date
+	- registration		Registration object
+-->
+
+<f:section name="content">
+	<h2>At a glance:</h2>
+	<table>
+		<tr>
+			<th>Workshop</th>
+			<td>{workshop.name}</td>
+		</tr>
+		<tr>
+			<th>Begin / end</th>
+			<td>
+				<f:format.date format="d.m.Y H:i">{date.beginAt}</f:format.date>
+				-
+				<f:format.date format="d.m.Y H:i">{date.endAt}</f:format.date>
+			</td>
+		</tr>
+	</table>
+	
+	<f:form controller="Registrations" action="create" object="{registration}" objectName="registration">
+		<f:form.hidden property="workshopDate" />
+		<p>
+			<w:form.label for="registration-company" property="company">
+				<f:translate key="model.registration.property.company" />
+			</w:form.label>
+			<f:form.textfield id="registration-company" property="company" />
+			<f:render partial="Shared/ErrorsPerProperty" arguments="{property: 'registration.company'}" />
+		</p>
+		<p>
+			<w:form.label for="registration-firstName" property="firstName">
+				<f:translate key="model.registration.property.firstName" />
+			</w:form.label>
+			<f:form.textfield id="registration-firstName" property="firstName" />
+			<f:render partial="Shared/ErrorsPerProperty" arguments="{property: 'registration.firstName'}" />
+		</p>
+		<p>
+			<w:form.label for="registration-lastName" property="lastName">
+				<f:translate key="model.registration.property.lastName" />
+			</w:form.label>
+			<f:form.textfield id="registration-lastName" property="lastName" />
+			<f:render partial="Shared/ErrorsPerProperty" arguments="{property: 'registration.lastName'}" />
+		</p>
+		<p>
+			<w:form.label for="registration-address" property="address">
+				<f:translate key="model.registration.property.address" />
+			</w:form.label>
+			<f:form.textarea id="registration-address" property="address" />
+			<f:render partial="Shared/ErrorsPerProperty" arguments="{property: 'registration.address'}" />
+		</p>
+		<p>
+			<w:form.label for="registration-zip" property="zip">
+				<f:translate key="model.registration.property.zip" />
+			</w:form.label>
+			<f:form.textfield id="registration-zip" property="zip" />
+			<f:render partial="Shared/ErrorsPerProperty" arguments="{property: 'registration.zip'}" />
+		</p>
+		<p>
+			<w:form.label for="registration-city" property="city">
+				<f:translate key="model.registration.property.city" />
+			</w:form.label>
+			<f:form.textfield id="registration-city" property="city" />
+			<f:render partial="Shared/ErrorsPerProperty" arguments="{property: 'registration.city'}" />
+		</p>
+		<p>
+			<w:form.label for="registration-country" property="country">
+				<f:translate key="model.registration.property.country" />
+			</w:form.label>
+			<f:form.textfield id="registration-country" property="country" />
+			<f:render partial="Shared/ErrorsPerProperty" arguments="{property: 'registration.country'}" />
+		</p>
+		
+		<p>
+			<w:form.label for="registration-email" property="email">
+				<f:translate key="model.registration.property.email" />
+			</w:form.label>
+			<f:form.textfield id="registration-email" property="email" />
+			<f:render partial="Shared/ErrorsPerProperty" arguments="{property: 'registration.email'}" />
+		</p>
+		
+		<p>
+			<w:form.label for="registration-telephone" property="telephone">
+				<f:translate key="model.registration.property.telephone" />
+			</w:form.label>
+			<f:form.textfield id="registration-telephone" property="telephone" />
+			<f:render partial="Shared/ErrorsPerProperty" arguments="{property: 'registration.telephone'}" />
+		</p>
+		
+		<p>
+			<w:form.label for="registration-notes" property="notes">
+				<f:translate key="model.registration.property.notes" />
+			</w:form.label>
+			<f:form.textarea id="registration-notes" property="notes" />
+			<f:render partial="Shared/ErrorsPerProperty" arguments="{property: 'registration.notes'}" />
+		</p>
+		
+		<p>
+			<w:form.label for="registration-additionalFields-membershipCode" property="additionalFields.membershipCode">
+				Membership code
+			</w:form.label>
+			<f:form.textfield id="registration-additionalFields-membershipCode" property="additionalFields.membershipCode" />
+			<f:render partial="Shared/ErrorsPerProperty" arguments="{property: 'registration.additionalFields.membershipCode'}" />
+		</p>
+		
+		<p>
+			<f:form.submit value="register" />
+		</p>
+	</f:form>
+</f:section>

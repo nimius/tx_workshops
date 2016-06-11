@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+		<main>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshopsSingleView.sheets.main</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.displayMode>
+						<TCEforms>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshopsSingleView.settings.displayMode</label>
+							<onChange>reload</onChange>
+							<config>
+								<type>select</type>
+								<items>
+									<numIndex index="0" type="array">
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshopsSingleView.settings.displayMode.givenRecord</numIndex>
+										<numIndex index="1">givenRecord</numIndex>
+									</numIndex>
+									<numIndex index="1" type="array">
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshopsSingleView.settings.displayMode.selectedRecord</numIndex>
+										<numIndex index="1">selectedRecord</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.displayMode>
+					
+					<settings.workshop>
+						<TCEforms>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshopsSingleView.settings.workshop</label>
+							<displayCond>FIELD:settings.displayMode:=:selectedRecord</displayCond>
+							<config>
+								<type>select</type>
+								<foreign_table>tx_workshops_domain_model_workshop</foreign_table>
+							</config>
+						</TCEforms>
+					</settings.workshop>
+
+					<settings.filterByEnd>
+						<TCEforms>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xfl:plugin.workshopsSingleView.settings.filterByEnd</label>
+							<config>
+								<type>check</type>
+								<items>
+									<numIndex index="0">
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xfl:plugin.workshopsSingleView.settings.filterByEnd</numIndex>
+									</numIndex>
+								</items>
+							</config>
+						</TCEforms>
+					</settings.filterByEnd>
+				</el>
+			</ROOT>
+		</main>
+	</sheets>
+</T3DataStructure>

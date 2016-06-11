@@ -1,0 +1,18 @@
+<ul>
+	<f:for each="{categories}" as="entry">
+		<li>
+			<f:if condition="{entry.category} == {activeCategory}">
+				<f:then>
+					{entry.category.title}
+				</f:then>
+				<f:else>
+					<f:link.action pluginName="Workshops" controller="Workshops" action="index" arguments="{category: entry.category}">{entry.category.title}</f:link.action>
+				</f:else>
+			</f:if>
+
+			<f:if condition="{entry.children}">
+				<f:render partial="categories" arguments="{categories: entry.children, activeCategory: activeCategory}" />
+			</f:if>
+		</li>
+	</f:for>
+</ul>

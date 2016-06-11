@@ -1,0 +1,8 @@
+<div>
+	<f:render partial="categories" arguments="{categories: categories, activeCategory: activeCategory}" />
+	
+	<f:if condition="{activeCategory}">
+		<hr />
+		<f:link.action action="index">Show all</f:link.action>
+	</f:if>
+</div>

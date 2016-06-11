@@ -1,0 +1,12 @@
+<f:if condition="{date.hasMultipleDates}">
+	<f:then>
+		<f:for each="{date.dates}" as="subdate">
+			<f:render partial="Backend/Date/Date" arguments="{date: subdate}" /><br />
+		</f:for>
+	</f:then>
+	<f:else>
+		<f:format.date format="{settings.dateTimeFormat}">{date.beginAt}</f:format.date>
+		until
+		<f:format.date format="{settings.dateTimeFormat}">{date.endAt}</f:format.date>
+	</f:else>
+</f:if>

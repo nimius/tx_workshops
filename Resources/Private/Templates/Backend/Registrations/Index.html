@@ -1,0 +1,96 @@
+{namespace w=NIMIUS\Workshops\ViewHelpers}
+
+<f:layout name="Backend"/>
+ 
+<f:section name="docheader-buttons-left">
+	<f:link.action controller="Backend\Workshops" action="show" arguments="{workshop: workshop}" class="btn btn-default btn-sm">
+		<w:be.icon identifier="actions-move-left" />
+	</f:link.action>
+	
+	<w:be.tableLink
+		table="tx_workshops_domain_model_registration"
+		uid="{pageUid}"
+		key="new"
+		defaultValues="{workshopDate: date}"
+		class="btn btn-default btn-sm">
+		<w:be.icon identifier="actions-document-new" />
+	</w:be.tableLink>
+</f:section>
+
+<f:section name="content">
+	<h1>
+		{workshop.name} - 
+		<f:format.date>{date.beginAt}</f:format.date>
+	</h1>
+	
+	<f:if condition="{registrations}">
+		<f:then>
+			<div class="panel panel-space panel-default recordlist">
+				<div class="panel-heading">
+					<f:translate key="model.registration._plural" />
+				</div>
+				
+				<div class="collapse in" data-state="expanded">
+					<div class="table-fit">
+						<table class="table table-striped table-hover">
+							<thead>
+								<tr>
+									<th nowrap="nowrap" class="col-icon"></th>
+									<td nowrap="nowrap">
+										<f:translate key="model.registration.property.lastName" />
+									</td>
+									<td nowrap="nowrap">
+										<f:translate key="model.registration.property.firstName" />
+									</td>
+									<td nowrap="nowrap">
+										<f:translate key="model.registration.property.city" />
+									</td>
+									<td nowrap="nowrap">
+										&nbsp;
+									</td>
+								</tr>
+							</thead>
+							<tbody>
+								<f:for each="{registrations}" as="registration">
+									<tr>
+										<td class="col-icon"></td>
+										<td>
+											<f:link.action action="show" arguments="{registration: registration}">
+												{registration.lastName}
+											</f:link.action>
+										</td>
+										<td>
+											<f:link.action action="show" arguments="{registration: registration}">
+												{registration.firstName}
+											</f:link.action>
+										</td>
+										<td>
+											<f:link.action action="show" arguments="{registration: registration}">
+												{registration.city}
+											</f:link.action>
+										</td>
+										<td nowrap="nowrap" class="col-control">
+											<w:be.tableLink
+												table="tx_workshops_domain_model_registration"
+												uid="{registration.uid}"
+												class="btn btn-default btn-sm">
+												<w:be.icon identifier="actions-document-open" />
+											</w:be.tableLink>
+										</td>
+									</tr>
+								</f:for>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</f:then>
+		<f:else>
+			<div class="typo3-message message-notice">
+				<div class="message-body">
+					<f:translate key="template.backend.registrations.index.text.noRegistrations" />
+				</div>
+			</div>
+		</f:else>
+	</f:if>
+</f:section>

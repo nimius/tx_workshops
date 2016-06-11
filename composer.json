@@ -1,0 +1,21 @@
+{
+  "name": "nimius/workshops",
+  "type": "typo3-cms-extension",
+  "description": "Flexible workshop and courses management",
+  "keywords": [
+    "TYPO3", "extension", "workshops", "courses", "seminars"
+  ],
+  "homepage": "https://github.com/nimius/tx_workshops",
+  "authors": [
+    {
+      "name": "NIMIUS",
+      "role": "Developer",
+      "homepage": "http://nimius.net"
+    }
+  ],
+  "license": "GPL-2.0+",
+  "replace": {
+    "workshops": "self.version",
+    "typo3-ter/workshops": "self.version"
+  }
+}
