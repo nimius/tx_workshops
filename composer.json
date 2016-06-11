@@ -13,7 +13,17 @@
       "homepage": "http://nimius.net"
     }
   ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://composer.typo3.org"
+    }
+  ],
   "license": "GPL-2.0+",
+  "require": {
+    "typo3/cms-core": ">=7.6.0,<8.3",
+    "typo3-ter/static-info-tables": ">=6.3"
+  },
   "replace": {
     "workshops": "self.version",
     "typo3-ter/workshops": "self.version"
