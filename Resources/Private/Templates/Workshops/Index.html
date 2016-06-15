@@ -20,6 +20,7 @@
 					<th>Identifier</th>
 					<th>Name</th>
 					<th>Abstract</th>
+					<th>Price</th>
 					<th></th>
 				</tr>
 				</thead>
@@ -30,6 +31,11 @@
 						<td>{workshop.identifier}</td>
 						<td>{workshop.name}</td>
 						<td>{workshop.abstract}</td>
+						<td>
+							<f:if condition="{workshop.price}">
+								{workshop.price}
+							</f:if>
+						</td>
 						<td>
 							<w:link workshop="{workshop}">Details</w:link>
 						</td>

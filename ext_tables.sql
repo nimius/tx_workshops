@@ -8,6 +8,7 @@ CREATE TABLE tx_workshops_domain_model_workshop (
     name varchar(255) default NULL,
     abstract text,
     description text,
+    price decimal(5,2) unsigned NULL default NULL,
 
     dates int(11) unsigned default '0' NOT NULL,
     categories int(11) unsigned default '0' NOT NULL,

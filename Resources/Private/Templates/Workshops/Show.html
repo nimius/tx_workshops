@@ -20,6 +20,11 @@
 
 	{workshop.description}
 
+	<f:if condition="{workshop.price}">
+		<p>
+			Price: {workshop.price}
+		</p>
+	</f:if>
 
 	<f:if condition="{workshop.files}">
 		<ul>

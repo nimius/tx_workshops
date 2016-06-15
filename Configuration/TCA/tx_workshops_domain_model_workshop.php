@@ -177,6 +177,14 @@ $TCA['tx_workshops_domain_model_workshop'] = [
                 ],
             ],
         ],
+		'price' => [
+			'label' => $lll . 'property.price',
+			'config' => [
+				'type' => 'input',
+				'eval' => 'double2,null',
+				'size' => 8,
+            ],
+        ],
 		'dates' => [
 			'label' => $lll . 'property.dates',
 			'displayCond' => 'FIELD:type:=:' . Workshop::TYPE_DEFAULT,
@@ -260,7 +268,7 @@ $TCA['tx_workshops_domain_model_workshop'] = [
 			'showitem' => '
 				--div--;' . $lll . 'div.general,
 				hidden, sys_language_uid, l10n_parent,
-                type, identifier, name, internal_url, abstract, description,
+                type, identifier, name, internal_url, abstract, description, price,
 				--div--;' . $lll . 'div.relations,
 				categories, images, files, related_workshops,
 				--div--;' . $lll . 'div.dates,
@@ -271,7 +279,7 @@ $TCA['tx_workshops_domain_model_workshop'] = [
 			'showitem' => '
 				--div--;' . $lll . 'div.general,
 				hidden, sys_language_uid, l10n_parent,
-                type, identifier, name, abstract,
+                type, identifier, name, abstract, price,
 				external_url,
 				--div--;' . $lll . 'div.relations,
 				categories, images, 

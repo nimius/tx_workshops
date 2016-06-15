@@ -324,6 +324,9 @@
 			<trans-unit id="model.workshop.property.images">
 				<source>Images</source>
 			</trans-unit>
+			<trans-unit id="model.workshop.property.price">
+				<source>Price</source>
+			</trans-unit>
 			<trans-unit id="model.workshop.div.general">
 				<source>General</source>
 			</trans-unit>
