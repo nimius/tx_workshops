@@ -78,8 +78,8 @@ CREATE TABLE tx_workshops_domain_model_location (
     zip varchar(10) default NULL,
     city varchar(255) default NULL,
     country int(11) unsigned default '0' NOT NULL,
-    latitude DECIMAL(10,8) signed NULL,
-    longitude DECIMAL(11, 8) signed NULL,
+    latitude decimal(10,8) signed NULL default NULL,
+    longitude decimal(11,8) signed NULL default NULL,
 
     PRIMARY KEY (uid),
     KEY parent (pid)
