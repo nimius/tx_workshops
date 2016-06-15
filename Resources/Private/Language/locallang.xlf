@@ -355,6 +355,10 @@
 			<trans-unit id="model.instructor.property.profilePid">
 				<source>Profile page</source>
 			</trans-unit>
+            
+			<trans-unit id="model.category.property.detailPid">
+				<source>Detail page for workshops from this category</source>
+			</trans-unit>
 			
 			
 			<!--

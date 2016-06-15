@@ -128,3 +128,9 @@ CREATE TABLE tx_workshops_domain_model_registration (
     KEY frontend_user (frontend_user),
     KEY workshop_date (workshop_date)
 );
+
+CREATE TABLE sys_category (
+    tx_workshops_detail_pid int(11) unsigned default '0' NOT NULL,
+    
+    KEY tx_workshops_detail_pid(tx_workshops_detail_pid)
+);
