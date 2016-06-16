@@ -49,6 +49,26 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     const STATE_UPCOMING = 'upcoming';
 
     /**
+     * @var integer
+     */
+    const PAYMENT_TYPE_FREE = 0;
+
+    /**
+     * @var integer
+     */
+    const PAYMENT_TYPE_PREPAY = 1;
+
+    /**
+     * @var integer
+     */
+    const PAYMENT_TYPE_BOX_OFFICE = 2;
+
+    /**
+     * @var integer
+     */
+    const PAYMENT_TYPE_EXTERNAL = 3;
+
+    /**
      * @var \NIMIUS\Workshops\Domain\Model\Workshop
      * @lazy
      */
@@ -129,6 +149,20 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $notes;
 
+    /**
+     * @var integer
+     */
+    protected $paymentType;
+
+    /**
+     * @var float
+     */
+    protected $price;
+
+    /**
+     * @var string
+     */
+    protected $externalPaymentUrl;
 
 
     /**
@@ -438,14 +472,16 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return bool
      */
-    public function getHasBegun() {
+    public function getHasBegun()
+    {
         return $this->beginAt < time();
     }
 
     /**
      * @return bool
      */
-    public function getHasEnded() {
+    public function getHasEnded()
+    {
         return $this->endAt < time();
     }
 
@@ -457,7 +493,8 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return string
      */
-    public function getState() {
+    public function getState()
+    {
         if ($this->getHasEnded()) {
             return self::STATE_ENDED;
         } elseif ($this->getHasBegun()) {
@@ -472,12 +509,62 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      *
      * @return array
      */
-    public function getDatesSorted() {
+    public function getDatesSorted()
+    {
         $dates = $this->dates->toArray();
         usort($dates, function($a, $b) {
             return $a->getEndAt() - $b->getEndAt();
         });
         return $dates;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getPaymentType()
+    {
+        return $this->paymentType;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getPaymentTypeIsPrepay()
+    {
+        return ($this->paymentType == self::PAYMENT_TYPE_PREPAY);
+        
+    }
+
+    /**
+     * @return bool
+     */
+    public function getPaymentTypeIsBoxOffice()
+    {
+        return ($this->paymentType == self::PAYMENT_TYPE_BOX_OFFICE);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getPaymentTypeIsExternal()
+    {
+        return ($this->paymentType == self::PAYMENT_TYPE_EXTERNAL);
+    }
+
+    /**
+     * @return float|NULL
+     */
+    public function getPrice()
+    {
+        return $this->price;
+    }
+
+    /**
+     * @return string
+     */
+    public function getExternalPaymentUrl()
+    {
+        return $this->externalPaymentUrl;
     }
 
 }

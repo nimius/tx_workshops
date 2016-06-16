@@ -8,7 +8,6 @@ CREATE TABLE tx_workshops_domain_model_workshop (
     name varchar(255) default NULL,
     abstract text,
     description text,
-    price decimal(5,2) unsigned NULL default NULL,
 
     dates int(11) unsigned default '0' NOT NULL,
     categories int(11) unsigned default '0' NOT NULL,
@@ -48,11 +47,14 @@ CREATE TABLE tx_workshops_domain_model_date (
     hidden tinyint(1) unsigned default '0' NOT NULL,
 
     type tinyint(1) unsigned default '0' NOT NULL,
+    payment_type tinyint(1) unsigned default '0' NOT NULL,
     dates int(11) unsigned default '0' NOT NULL,
     workshop int(11) unsigned default '0' NOT NULL,
     location int(11) unsigned default '0' NOT NULL,
     instructor int(11) unsigned default '0' NOT NULL,
     registrations int(11) unsigned default '0' NOT NULL,
+    price decimal(5,2) unsigned NULL default NULL,
+    external_payment_url varchar(255) default NULL,
 
     begin_at int(11) unsigned default '0' NOT NULL,
     end_at int(11) unsigned default '0' NOT NULL,

@@ -71,11 +71,6 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $abstract;
 
     /**
-     * @var float
-     */
-    protected $price;
-
-    /**
      * @var string
      */
     protected $description;
@@ -192,14 +187,6 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getAbstract()
     {
         return $this->abstract;
-    }
-
-    /**
-     * @return float|NULL
-     */
-    public function getPrice()
-    {
-        return $this->price;
     }
     
     /**
