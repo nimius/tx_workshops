@@ -60,6 +60,12 @@
 			<trans-unit id="plugin.workshops.settings.upcomingDays">
 				<target>Kommende Daten auf die folgende Anzahl Tage beschränken</target>
 			</trans-unit>
+			<trans-unit id="plugin.workshops.settings.hideAlreadyStartedDates">
+				<target>Daten ausblenden, deren Startdatum in der Vergangenheit liegt</target>
+			</trans-unit>
+			<trans-unit id="plugin.workshops.settings.hidePastDates">
+				<target>Daten ausblenden, deren Enddatum in der Vergangenheit liegt</target>
+			</trans-unit>
 			
 			<!--
 				Plugin "Workshops single view"

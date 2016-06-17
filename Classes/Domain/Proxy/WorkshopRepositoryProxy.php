@@ -60,6 +60,10 @@ class WorkshopRepositoryProxy
 
 
     /**
+     * Initialize proxy properties by given settings.
+     *
+     * Settings are coming from e.g. TypoScript or FlexForm.
+     *
      * @param array $settings
      * @return void
      */

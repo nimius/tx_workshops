@@ -228,7 +228,7 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     /**
      * Helper to create a proxy object.
      *
-     * @return Proxy
+     * @return WorkshopRepositoryProxy
      */
     protected function createProxy() {
         return $this->objectManager->get(WorkshopRepositoryProxy::class);

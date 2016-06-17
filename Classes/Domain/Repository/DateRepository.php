@@ -15,12 +15,14 @@ namespace NIMIUS\Workshops\Domain\Repository;
  */
 
 use NIMIUS\Workshops\Domain\Model\Workshop;
+use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
+use NIMIUS\Workshops\Persistence\Repository;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * Date repository.
  */
-class DateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class DateRepository extends Repository
 {
 
     /**
@@ -32,34 +34,37 @@ class DateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
 
     /**
-     * Gets all upcoming dates for a given workshop.
+     * Find all dates matching the given proxy.
      *
-     * @param \NIMIUS\Workshops\Domain\Model\Workshop $workshop
-     * @param integer                                 $timestamp
-     * @param bool                                    $filterByEnd
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
+     * @param \NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy $proxy
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResult
      */
-    public function findAllUpcomingForWorkshop(Workshop $workshop, $timestamp = NULL, $filterByEnd = FALSE)
+    public function findByProxy(DateRepositoryProxy $proxy)
     {
-        if (!$timestamp) {
-            $timestamp = time();
+        $constraints = [];
+
+        if ($proxy->getPid()) {
+            $this->setStoragePageId($proxy->getPid());
         }
 
         $query = $this->createQuery();
-        $query->getQuerySettings()->setRespectStoragePage(FALSE);
+        $beginOfToday = strtotime('today midnight');
 
-        $constraints = [
-            $query->equals('workshop', $workshop),
-        ];
-
-        if ($filterByEnd) {
-            $constraints[] = $query->greaterThanOrEqual('endAt', $timestamp);
-        } else {
-            $constraints[] = $query->greaterThanOrEqual('beginAt', $timestamp);
+        if ($proxy->getHidePastDates()) {
+            $constraints[] = $query->greaterThanOrEqual('endAt', $beginOfToday);
+        }
+        if ($proxy->getHideAlreadyStartedDates()) {
+            $constraints[] = $query->greaterThanOrEqual('beginAt', $beginOfToday);
+        }
+        if ($proxy->getWithinDaysFromNow()) {
+            $withinDays = $beginOfToday + (int)$proxy->getWithinDaysFromNow() * 60 * 60 * 24;
+            $constraints[] = $query->lessThanOrEqual('beginAt', $withinDays);
         }
 
-        return $query->matching($query->logicalAnd($constraints))->execute();
+        if (!empty($constraints)) {
+            $query->matching($query->logicalAnd($constraints));
+        }
+        return $query->execute();
     }
 
     /**
@@ -98,22 +103,6 @@ class DateRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                     $query->greaterThanOrEqual('beginAt', time()),
                     $query->lessThanOrEqual('endAt', time())
                 )
-            )
-        )->execute();
-    }
-    
-    /**
-     * Gets all upcoming dates.
-     *
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
-     */
-    public function findAllUpcoming($tstamp)
-    {
-        $query = $this->createQuery();
-        $query->getQuerySettings()->setRespectStoragePage(FALSE);
-        return $query->matching(
-            $query->logicalAnd(
-                $query->greaterThanOrEqual('beginAt', $tstamp)
             )
         )->execute();
     }

@@ -16,6 +16,7 @@ namespace NIMIUS\Workshops\Tests\Functional\Domain\Repository;
 
 use NIMIUS\Workshops\Domain\Model\Date;
 use NIMIUS\Workshops\Domain\Model\Workshop;
+use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
 use NIMIUS\Workshops\Domain\Repository\DateRepository;
 use NIMIUS\Workshops\Domain\Repository\WorkshopRepository;
 
@@ -71,67 +72,127 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $this->persistenceManager = $this->objectManager->get(PersistenceManager::class);
         $this->workshopRepository = $this->objectManager->get(WorkshopRepository::class);
         $this->dateRepository = $this->objectManager->get(DateRepository::class);
-
-        $this->workshop = $this->objectManager->get(Workshop::class);
-        $this->workshopRepository->add($this->workshop);
-        $this->persistenceManager->persistAll();
     }
 
     /**
-     * Test if findAllUpcomingForWorkshop() does not return past single dates.
+     * Test if findByProxy respects storage pid given.
      *
      * @test
      */
-    public function findAllUpcomingForWorkshopDoesNotReturnPastSingleDates()
+    public function findByProxyRespectsStoragePid()
     {
-        $date = $this->objectManager->get(Date::class);
-        $date->setWorkshop($this->workshop);
-        $date->setBeginAt(time() - 100);
+        $date = $this->createDate();
+        $date->setPid(8);
         $this->dateRepository->add($date);
         $this->persistenceManager->persistAll();
-        $tstamp = time();
-
-        $upcomingDates = $this->dateRepository->findAllUpcomingForWorkshop($this->workshop, $tstamp)->toArray();
-        $this->assertTrue(count($upcomingDates) == 0);
-    }
-
-    /**
-     * Test if findAllUpcomingForWorkshop() does return future single dates.
-     *
-     * @test
-     */
-    public function findAllUpcomingForWorkshopReturnsFutureSingleDates()
-    {
-        $date = $this->objectManager->get(Date::class);
-        $date->setWorkshop($this->workshop);
-        $date->setBeginAt(time() + 100);
-        $this->dateRepository->add($date);
-        $this->persistenceManager->persistAll();
-        $tstamp = time();
-
-        $upcomingDates = $this->dateRepository->findAllUpcomingForWorkshop($this->workshop, $tstamp)->toArray();
-        $this->assertTrue(count($upcomingDates) == 1);
-    }
-
-    /**
-     * Test if findAllUpcomingForWorkshop() does not return past group/multiple dates.
-     *
-     * @test
-     */
-    public function findAllUpcomingForWorkshopDoesNotReturnPastGroupDates()
-    {
-        $dateGroup = $this->objectManager->get(Date::class);
-        $dateGroup->setWorkshop($this->workshop);
-        $dateGroup->setType(Date::TYPE_MULTIPLE);
-        $date = $this->objectManager->get(Date::class);
-        $date->setBeginAt(time() - 100);
-        $dateGroup->addDate($date);
-        $this->dateRepository->add($dateGroup);
-        $this->persistenceManager->persistAll();
-        $tstamp = time();
         
-        $upcomingDates = $this->dateRepository->findAllUpcomingForWorkshop($this->workshop, $tstamp)->toArray();
-        $this->assertTrue(count($upcomingDates) == 0);
+        $proxy = $this->createProxy();
+        $proxy->setPid(8);
+        
+        $dates = $this->dateRepository->findByProxy($proxy);
+        $this->assertTrue(count($dates) == 1);
+    }
+
+    /**
+     * Test if findByProxy() respects hidePastDates.
+     *
+     * @test
+     */
+    public function findByProxyRespectsHidePastDates()
+    {
+        $date = $this->createDate();
+        $date->setEndAt(strtotime('-2 days'));
+        $this->dateRepository->add($date);
+        $this->persistenceManager->persistAll();
+        
+        $proxy = $this->createProxy();
+        $proxy->setHidePastDates(TRUE);
+        $dates = $this->dateRepository->findByProxy($proxy);
+        $this->assertTrue(count($dates) == 0);
+        
+        $proxy->setHidePastDates(FALSE);
+        $dates = $this->dateRepository->findByProxy($proxy);
+        $this->assertTrue(count($dates) == 1);
+    }
+
+    /**
+     * Test if findByProxy() respects hideAlreadyStartedDates.
+     *
+     * @test
+     */
+    public function findByProxyRespectsHideAlreadyStartedDates()
+    {
+        $date = $this->createDate();
+        $date->setBeginAt(strtotime('-2 days'));
+        $this->dateRepository->add($date);
+        $this->persistenceManager->persistAll();
+        
+        $proxy = $this->createProxy();
+        $proxy->setHideAlreadyStartedDates(TRUE);
+        $dates = $this->dateRepository->findByProxy($proxy);
+        $this->assertTrue(count($dates) == 0);
+        
+        $proxy->setHideAlreadyStartedDates(FALSE);
+        $dates = $this->dateRepository->findByProxy($proxy);
+        $this->assertTrue(count($dates) == 1);
+    }
+
+    /**
+     * Test if findByProxy() respects withinDaysFromNow.
+     *
+     * @test
+     */
+    public function findByProxyRespectsWithinDaysFromNow()
+    {
+        $date = $this->createDate();
+        $date->setBeginAt(strtotime('+2 days'));
+        $this->dateRepository->add($date);
+        
+        $date = $this->createDate();
+        $date->setBeginAt(strtotime('+8 days'));
+        $this->dateRepository->add($date);
+
+        $date = $this->createDate();
+        $date->setBeginAt(strtotime('+1 year'));
+        $this->dateRepository->add($date);
+
+        $this->persistenceManager->persistAll();
+        
+        $proxy = $this->createProxy();
+        $proxy->setWithinDaysFromNow(4);
+        $dates = $this->dateRepository->findByProxy($proxy);
+        $this->assertTrue(count($dates) == 1);
+        
+        $proxy->setWithinDaysFromNow(NULL);
+        $dates = $this->dateRepository->findByProxy($proxy);
+        $this->assertTrue(count($dates) == 3);
+    }
+
+    /**
+     * Helper to create a proxy object.
+     *
+     * @return DateRepositoryProxy
+     */
+    protected function createProxy() {
+        return $this->objectManager->get(DateRepositoryProxy::class);
+    }
+
+    /**
+     * Helper to create a workshop object.
+     *
+     * @return Workshop
+     */
+    protected function createWorkshop() {
+        return $this->objectManager->get(Workshop::class);
+    }
+
+    /**
+     * Helper to create a date object.
+     *
+     * @return Category
+     */
+    protected function createDate() {
+        return $this->objectManager->get(Date::class);
     }
 
 }

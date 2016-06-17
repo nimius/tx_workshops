@@ -4,10 +4,10 @@
 		<langDisable>1</langDisable>
 	</meta>
 	<sheets>
-		<main>
+		<workshops>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshopsSingleView.sheets.main</sheetTitle>
+					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.sheets.workshops</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
@@ -41,22 +41,48 @@
 							</config>
 						</TCEforms>
 					</settings.workshop>
-
-					<settings.filterByEnd>
-						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xfl:plugin.workshopsSingleView.settings.filterByEnd</label>
-							<config>
-								<type>check</type>
-								<items>
-									<numIndex index="0">
-										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xfl:plugin.workshopsSingleView.settings.filterByEnd</numIndex>
-									</numIndex>
-								</items>
-							</config>
-						</TCEforms>
-					</settings.filterByEnd>
 				</el>
 			</ROOT>
-		</main>
+		</workshops>
+        
+		<dates>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.sheets.dates</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.hideAlreadyStartedDates>
+						<TCEforms>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.hideAlreadyStartedDates</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.hideAlreadyStartedDates>
+
+					<settings.hidePastDates>
+						<TCEforms>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.hidePastDates</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.hidePastDates>
+                    
+					<settings.upcomingDays>
+						<TCEforms>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.upcomingDays</label>
+							<config>
+								<type>input</type>
+								<eval>trim,num</eval>
+								<default></default>
+								<size>4</size>
+							</config>
+						</TCEforms>
+					</settings.upcomingDays>
+				</el>
+			</ROOT>
+		</dates>
 	</sheets>
 </T3DataStructure>

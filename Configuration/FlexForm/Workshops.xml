@@ -151,6 +151,24 @@
 				</TCEforms>
 				<type>array</type>
 				<el>
+					<settings.hideAlreadyStartedDates>
+						<TCEforms>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.hideAlreadyStartedDates</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.hideAlreadyStartedDates>
+
+					<settings.hidePastDates>
+						<TCEforms>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.hidePastDates</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.hidePastDates>
+                    
 					<settings.upcomingDays>
 						<TCEforms>
 							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.upcomingDays</label>

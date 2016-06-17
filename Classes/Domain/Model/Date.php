@@ -303,6 +303,14 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * @param integer $endAt
+     */
+    public function setEndAt($endAt)
+    {
+        $this->endAt = $endAt;
+    }
+
+    /**
      * @return bool
      */
     public function getEndsOnSameDay()

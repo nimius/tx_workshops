@@ -15,13 +15,13 @@ namespace NIMIUS\Workshops\Domain\Repository;
  */
 
 use NIMIUS\Workshops\Domain\Proxy\WorkshopRepositoryProxy;
-use TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings;
+use NIMIUS\Workshops\Persistence\Repository;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
  * Workshop repository.
  */
-class WorkshopRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class WorkshopRepository extends Repository
 {
 
     /**
@@ -87,22 +87,6 @@ class WorkshopRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     {
         $this->setStoragePageId($pid);
         return parent::findAll();
-    }
-
-
-    /**
-     * Helper method to set storage page id for query constraints.
-     *
-     * @param integer $pid
-     */
-    protected function setStoragePageId($pid)
-    {
-        if ($pid) {
-            /** @var $querySettings \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings */
-            $querySettings = $this->objectManager->get(Typo3QuerySettings::class);
-            $querySettings->setStoragePageIds([$pid]);
-            $this->setDefaultQuerySettings($querySettings);
-        }
     }
 
 }

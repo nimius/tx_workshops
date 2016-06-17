@@ -95,13 +95,16 @@
 			<trans-unit id="plugin.workshops.settings.upcomingDays">
 				<source>Restrict upcoming workshop dates to be within the following amount of days</source>
 			</trans-unit>
+			<trans-unit id="plugin.workshops.settings.hideAlreadyStartedDates">
+				<source>Hide dates having a begin date in the past</source>
+			</trans-unit>
+			<trans-unit id="plugin.workshops.settings.hidePastDates">
+				<source>Hide dates having an end date in the past</source>
+			</trans-unit>
 			
 			<!--
 				Plugin "Workshops single view"
 			-->
-			<trans-unit id="plugin.workshopsSingleView.sheets.main">
-				<source>Main</source>
-			</trans-unit>
 			<trans-unit id="plugin.workshopsSingleView.settings.displayMode">
 				<source>Display mode</source>
 			</trans-unit>
