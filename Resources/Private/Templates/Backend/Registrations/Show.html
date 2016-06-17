@@ -1,10 +1,11 @@
+{namespace c=TYPO3\CMS\Core\ViewHelpers}
 {namespace w=NIMIUS\Workshops\ViewHelpers}
 
 <f:layout name="Backend"/>
  
 <f:section name="docheader-buttons-left">
 	<f:link.action controller="Backend\Registrations" action="index" arguments="{date: date}" class="btn btn-default btn-sm">
-		<w:be.icon identifier="actions-move-left" />
+		<c:icon identifier="actions-move-left" />
 	</f:link.action>
 </f:section>
 
