@@ -21,7 +21,6 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
  */
 class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
 {
-
     /**
      * @var TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
      */
@@ -46,8 +45,11 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
      * @param array $typolinkConfiguration
      * @return string
      */
-    public function render(Workshop $workshop, array $localSettings = [], $typolinkConfiguration = [])
+    public function render(Workshop $workshop = NULL, array $localSettings = [], $typolinkConfiguration = [])
     {
+        if (!$workshop) {
+            return;
+        }
         $this->workshop = $workshop;
         $this->settings = $this->prepareSettings($localSettings);
         unset($workshop, $localSettings);
@@ -137,5 +139,4 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
         $configuration['parameter'] = $this->workshop->getExternalUrl();
         $this->tag->addAttribute('target', '_blank');
     }
-
 }
