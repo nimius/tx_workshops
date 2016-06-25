@@ -62,6 +62,9 @@
 			<trans-unit id="plugin.workshops.settings.categoryOperator.or">
 				<source>Show workshops having at least one selected category (OR)</source>
 			</trans-unit>
+			<trans-unit id="plugin.workshops.settings.recordLimit">
+				<source>Result limit</source>
+			</trans-unit>
 			<trans-unit id="plugin.workshops.settings.detailPage">
 				<source>Workshop detail page</source>
 			</trans-unit>

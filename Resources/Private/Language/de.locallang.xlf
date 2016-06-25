@@ -27,6 +27,9 @@
 			<trans-unit id="plugin.workshops.settings.categoryOperator.or">
 				<target>Zeige Workshops mit mindestens einer Kategorie (ODER)</target>
 			</trans-unit>
+			<trans-unit id="plugin.workshops.settings.recordLimit">
+				<source>Limitierung der Resultate</source>
+			</trans-unit>
 			<trans-unit id="plugin.workshops.settings.detailPage">
 				<target>Workshops Detailseite</target>
 			</trans-unit>

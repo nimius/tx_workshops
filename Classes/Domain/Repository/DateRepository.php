@@ -73,6 +73,9 @@ class DateRepository extends Repository
         if (!empty($constraints)) {
             $query->matching($query->logicalAnd($constraints));
         }
+        if ((int)$proxy->getRecordLimit() > 0) {
+            $query->setLimit($proxy->getRecordLimit());
+        }
         return $query->execute();
     }
 

@@ -24,6 +24,23 @@ use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
 class DatesController extends AbstractController
 {
     /**
+     * @var \NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy
+     * @inject
+     */
+    protected $proxy;
+
+
+    /**
+     * Action initializer.
+     *
+     * @return void
+     */
+    public function initializeAction()
+    {
+        $this->proxy->initializeFromSettings($this->settings);
+    }
+
+    /**
      * Index action.
      *
      * Displays all upcoming dates over all workshops.
@@ -36,16 +53,24 @@ class DatesController extends AbstractController
      */
     public function indexAction(Location $location = NULL, Category $category = NULL)
     {
-        $proxy = $this->objectManager->get(DateRepositoryProxy::class);
-        $proxy->initializeFromSettings($this->settings);
         if ($location) {
-            $proxy->setLocation($location);
+            $this->proxy->setLocation($location);
         }
         if ($category) {
-            $proxy->setCategory($category);
+            $this->proxy->setCategory($category);
         }
-        $this->view->assignMultiple([
-            'upcomingDates' => $this->dateRepository->findByProxy($proxy)
-        ]);
+        $this->view->assign('upcomingDates', $this->dateRepository->findByProxy($this->proxy));
+    }
+
+    /**
+     * Upcoming teaser action.
+     *
+     * Displays a short teaser list of the next upcoming dates.
+     *
+     * @return void
+     */
+    public function upcomingAction()
+    {
+        $this->view->assign('upcomingDates', $this->dateRepository->findByProxy($this->proxy));
     }
 }

@@ -25,7 +25,7 @@ $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamel
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NIMIUS.' . $_EXTKEY,
     'Workshops',
-    'Workshops system'
+    'Workshops system - default plugin'
 );
 $pluginSignature = strtolower($extensionName) . '_workshops';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
@@ -59,6 +59,20 @@ $pluginSignature = strtolower($extensionName) . '_dates';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
     $pluginSignature,
     'FILE:EXT:' . $_EXTKEY.'/Configuration/FlexForm/Dates.xml'
+);
+
+/**
+ * Register 'UpcomingDatesTeaser' plugin.
+ */
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    'NIMIUS.' . $_EXTKEY,
+    'UpcomingDatesTeaser',
+    'Workshops system - upcoming dates teaser'
+);
+$pluginSignature = strtolower($extensionName) . '_upcomingdatesteaser';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+    $pluginSignature,
+    'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/UpcomingDatesTeaser.xml'
 );
 
 /**

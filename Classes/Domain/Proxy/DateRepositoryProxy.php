@@ -24,7 +24,7 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
 class DateRepositoryProxy
 {
     /**
-     * @var integer Storage page id
+     * @var integer Storage page id.
      */
     protected $pid;
 
@@ -58,6 +58,11 @@ class DateRepositoryProxy
      */
     protected $category;
 
+    /**
+     * @var integer
+     */
+    protected $recordLimit;
+
 
     /**
      * Initialize proxy properties by given settings.
@@ -78,6 +83,9 @@ class DateRepositoryProxy
         if ((bool)$settings['hideAlreadyStartedDates']) {
             $this->setHideAlreadyStartedDates(TRUE);
         }
+        if ((int)$settings['recordLimit'] > 0) {
+            $this->setRecordLimit($settings['recordLimit']);
+        }
     }
 
     /**
@@ -94,7 +102,7 @@ class DateRepositoryProxy
      */
     public function setPid($pid)
     {
-        $this->pid = $pid;
+        $this->pid = (int)$pid;
     }
 
     /**
@@ -111,7 +119,7 @@ class DateRepositoryProxy
      */
     public function setWithinDaysFromNow($withinDaysFromNow)
     {
-        $this->withinDaysFromNow = $withinDaysFromNow;
+        $this->withinDaysFromNow = (int)$withinDaysFromNow;
     }
 
     /**
@@ -128,7 +136,7 @@ class DateRepositoryProxy
      */
     public function setHidePastDates($hidePastDates)
     {
-        $this->hidePastDates = $hidePastDates;
+        $this->hidePastDates = (bool)$hidePastDates;
     }
 
     /**
@@ -145,7 +153,7 @@ class DateRepositoryProxy
      */
     public function setHideAlreadyStartedDates($hideAlreadyStartedDates)
     {
-        $this->hideAlreadyStartedDates = $hideAlreadyStartedDates;
+        $this->hideAlreadyStartedDates = (bool)$hideAlreadyStartedDates;
     }
 
     /**
@@ -197,5 +205,22 @@ class DateRepositoryProxy
     public function setCategory($category)
     {
         $this->category = $category;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRecordLimit()
+    {
+        return $this->recordLimit;
+    }
+
+    /**
+     * @param integer $recordLimit
+     * @return void
+     */
+    public function setRecordLimit($recordLimit)
+    {
+        $this->recordLimit = (int)$recordLimit;
     }
 }
