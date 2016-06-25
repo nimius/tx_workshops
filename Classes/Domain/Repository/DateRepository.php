@@ -60,6 +60,9 @@ class DateRepository extends Repository
             $withinDays = $beginOfToday + (int)$proxy->getWithinDaysFromNow() * 60 * 60 * 24;
             $constraints[] = $query->lessThanOrEqual('beginAt', $withinDays);
         }
+        if ($proxy->getWorkshop()) {
+            $constraints[] = $query->equals('workshop', $proxy->getWorkshop());
+        }
 
         if (!empty($constraints)) {
             $query->matching($query->logicalAnd($constraints));

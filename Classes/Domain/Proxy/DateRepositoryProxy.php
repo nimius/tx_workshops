@@ -14,6 +14,8 @@ namespace NIMIUS\Workshops\Domain\Proxy;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\Domain\Model\Workshop;
+
 /**
  * Date repository proxy class.
  *
@@ -21,7 +23,6 @@ namespace NIMIUS\Workshops\Domain\Proxy;
  */
 class DateRepositoryProxy
 {
-
     /**
      * @var integer Storage page id
      */
@@ -41,6 +42,11 @@ class DateRepositoryProxy
      * @var bool Hide dates where workshops already started regarding time.
      */
     protected $hideAlreadyStartedDates;
+
+    /**
+     * @var \NIMIUS\Workshops\Domain\Model\Workshop Workshop to filter dates for.
+     */
+    protected $workshop;
 
 
     /**
@@ -132,4 +138,20 @@ class DateRepositoryProxy
         $this->hideAlreadyStartedDates = $hideAlreadyStartedDates;
     }
 
+    /**
+     * @return NULL|\NIMIUS\Workshops\Domain\Model\Workshop
+     */
+    public function getWorkshop()
+    {
+        return $this->workshop;
+    }
+
+    /**
+     * @param NULL|\NIMIUS\Workshops\Domain\Model\Workshop $workshop
+     * @return void
+     */
+    public function setWorkshop($workshop)
+    {
+        $this->workshop = $workshop;
+    }
 }
