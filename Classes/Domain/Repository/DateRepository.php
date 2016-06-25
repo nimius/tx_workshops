@@ -63,6 +63,9 @@ class DateRepository extends Repository
         if ($proxy->getWorkshop()) {
             $constraints[] = $query->equals('workshop', $proxy->getWorkshop());
         }
+        if ($proxy->getLocation()) {
+            $constraints[] = $query->equals('location', $proxy->getLocation());
+        }
 
         if (!empty($constraints)) {
             $query->matching($query->logicalAnd($constraints));

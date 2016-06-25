@@ -9,13 +9,18 @@
 -->
 
 <f:section name="content">
+	<w:widget.locations />
+	
 	<f:if condition="{upcomingDates}">
 		<f:then>
 			<f:for each="{upcomingDates}" as="date">
 				<p>
-					{date.workshop}<br />
+					{date.workshop.name}<br />
 					From <f:format.date format="d.m.Y H:i">{date.beginAt}</f:format.date>
 					to <f:format.date format="d.m.Y H:i">{date.endAt}</f:format.date><br />
+					<f:if condition="{date.location}">
+					at {date.location.name}<br />
+					</f:if>
 					<w:link workshop="{date.workshop}">More information</w:link>
 				</p>
 			</f:for>
