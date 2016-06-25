@@ -53,7 +53,7 @@ CREATE TABLE tx_workshops_domain_model_date (
     location int(11) unsigned default '0' NOT NULL,
     instructor int(11) unsigned default '0' NOT NULL,
     registrations int(11) unsigned default '0' NOT NULL,
-    price decimal(5,2) unsigned NULL default NULL,
+    price decimal(7,2) unsigned NULL default NULL,
     external_payment_url varchar(255) default NULL,
 
     begin_at int(11) unsigned default '0' NOT NULL,
