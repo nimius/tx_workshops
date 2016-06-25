@@ -16,10 +16,11 @@ namespace NIMIUS\Workshops\ViewHelpers\Widget;
 
 /**
  * Categories widget view helper.
+ *
+ * Displays a list of categories to filter workshops.
  */
 class CategoriesViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper
 {
-
     /**
      * @var \NIMIUS\Workshops\ViewHelpers\Widget\Controller\CategoriesController
      * @inject
@@ -29,10 +30,12 @@ class CategoriesViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetVi
 
     /**
      * Main method of this view helper.
+     *
+     * @param string $pluginName The plugin name to work with
+     * @return string
      */
-    public function render()
+    public function render($pluginName = 'Workshops')
     {
         return $this->initiateSubRequest();
     }
-
 }

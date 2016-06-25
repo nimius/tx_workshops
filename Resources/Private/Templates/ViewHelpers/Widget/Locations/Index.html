@@ -1,3 +1,11 @@
+<!--
+	Available in this view:
+	
+	- locations
+	- activeLocation
+	- pluginName
+-->
+
 <f:if condition="{locations}">
 	<ul>
 		<f:for each="{locations}" as="location">
@@ -8,7 +16,7 @@
 					</f:then>
 					<f:else>
 						<f:link.action
-							pluginName="Dates"
+							pluginName="{pluginName}"
 							controller="Dates"
 							action="index"
 							arguments="{location: location}">
@@ -22,6 +30,6 @@
 	
 	<f:if condition="{activeLocation}">
 		<hr />
-		<f:link.action action="index">Show all</f:link.action>
+		<f:link.action pluginName="{pluginName}" action="index">Show all</f:link.action>
 	</f:if>
 </f:if>

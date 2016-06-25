@@ -35,14 +35,14 @@ class LocationsController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCon
      */
     public function indexAction()
     {
-        $pluginArguments = GeneralUtility::_GP('tx_workshops_dates');
+        $pluginArguments = GeneralUtility::_GP('tx_workshops_' . strtolower($this->widgetConfiguration['pluginName']));
         if ((int)$pluginArguments['location']) {
             $activeLocation = $this->locationRepository->findByUid((int)$pluginArguments['location']);
         }
-        $locations = $this->locationRepository->findAll();
         $this->view->assignMultiple([
-            'locations' => $locations,
-            'activeLocation' => $activeLocation
+            'locations' => $this->locationRepository->findAll(),
+            'activeLocation' => $activeLocation,
+            'pluginName' => $this->widgetConfiguration['pluginName']
         ]);
     }
 }

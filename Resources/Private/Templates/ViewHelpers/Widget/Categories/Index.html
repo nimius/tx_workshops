@@ -1,8 +1,8 @@
 <div>
-	<f:render partial="Categories" arguments="{categories: categories, activeCategory: activeCategory}" />
+	<f:render partial="Categories" arguments="{_all}" />
 	
 	<f:if condition="{activeCategory}">
 		<hr />
-		<f:link.action action="index">Show all</f:link.action>
+		<f:link.action pluginName="{pluginName}" action="index">Show all</f:link.action>
 	</f:if>
 </div>

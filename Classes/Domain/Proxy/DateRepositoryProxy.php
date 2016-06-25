@@ -53,6 +53,11 @@ class DateRepositoryProxy
      */
     protected $location;
 
+    /**
+     * @var \NIMIUS\Workshops\Domain\Model\Categiry Category to filter dates (via workshops) for.
+     */
+    protected $category;
+
 
     /**
      * Initialize proxy properties by given settings.
@@ -175,5 +180,22 @@ class DateRepositoryProxy
     public function setLocation($location)
     {
         $this->location = $location;
+    }
+
+    /**
+     * @return NULL|\NIMIUS\Workshops\Domain\Model\Category
+     */
+    public function getCategory()
+    {
+        return $this->category;
+    }
+
+    /**
+     * @param NULL|\NIMIUS\Workshops\Domain\Model\Category $category
+     * @return void
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
     }
 }

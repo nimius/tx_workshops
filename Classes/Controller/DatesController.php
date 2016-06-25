@@ -14,6 +14,7 @@ namespace NIMIUS\Workshops\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\Domain\Model\Category;
 use NIMIUS\Workshops\Domain\Model\Location;
 use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
 
@@ -27,15 +28,21 @@ class DatesController extends AbstractController
      *
      * Displays all upcoming dates over all workshops.
      *
-     * @param 
+     * @param \NIMIUS\Workshops\Domain\Model\Location $location
+     * @ignorevalidation $location
+     * @param \NIMIUS\Workshops\Domain\Model\Category $category
+     * @ignorevalidation $category
      * @return void
      */
-    public function indexAction(Location $location = NULL)
+    public function indexAction(Location $location = NULL, Category $category = NULL)
     {
         $proxy = $this->objectManager->get(DateRepositoryProxy::class);
         $proxy->initializeFromSettings($this->settings);
         if ($location) {
             $proxy->setLocation($location);
+        }
+        if ($category) {
+            $proxy->setCategory($category);
         }
         $this->view->assignMultiple([
             'upcomingDates' => $this->dateRepository->findByProxy($proxy)
