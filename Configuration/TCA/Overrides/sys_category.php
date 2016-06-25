@@ -41,13 +41,18 @@ $xlf = 'LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:';
                 ],
             ]
         ],
+		'tx_workshops_images' => [
+			'label' => $xlf . 'model.category.property.images',
+			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+				'tx_workshops_images', 
+				[]
+            ),
+        ],
     ]
 );
 
-
+// Add workshops palette to TCA types.
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-    $tableName,
-    'tx_workshops_detail_pid',
-    '',
-    'after:description'
+	$tableName,
+	'--div--;Workshops, tx_workshops_images, tx_workshops_detail_pid'
 );

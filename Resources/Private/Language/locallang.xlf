@@ -383,6 +383,9 @@
 			<trans-unit id="model.category.property.detailPid">
 				<source>Detail page for workshops from this category</source>
 			</trans-unit>
+			<trans-unit id="model.category.property.images">
+				<source>Workshop category images</source>
+			</trans-unit>
 			
 			
 			<!--

@@ -133,6 +133,7 @@ CREATE TABLE tx_workshops_domain_model_registration (
 
 CREATE TABLE sys_category (
     tx_workshops_detail_pid int(11) unsigned default '0' NOT NULL,
-    
+    tx_workshops_images int(11) unsigned default '0' NOT NULL,
+
     KEY tx_workshops_detail_pid(tx_workshops_detail_pid)
 );
