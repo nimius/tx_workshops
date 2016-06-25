@@ -1,10 +1,20 @@
+{namespace w=NIMIUS\Workshops\ViewHelpers}
+
 <f:layout name="Default" />
 
+<!--
+	Available in this view:
+	
+	- location
+-->
+
 <f:section name="content">
-  <h1>{location.name}</h1>
-  
-  <address>
-	  {location.address}<br />
-	  {location.zip} {location.city}
-  </address>
+	<h1>{location.name}</h1>
+
+	<address>
+		{location.address}<br />
+		{location.zip} {location.city}
+	</address>
+
+	<w:map location="{location}" width="600" height="400"/>
 </f:section>
