@@ -70,7 +70,6 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Workshop
-     * @lazy
      */
     protected $workshop;
 
@@ -82,13 +81,11 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Location
-     * @lazy
      */
     protected $location;
 
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Instructor
-     * @lazy
      */
     protected $instructor;
     
