@@ -48,6 +48,20 @@ $pluginSignature = strtolower($extensionName) . '_workshopssingleview';
 );
 
 /**
+ * Register 'Dates' plugin.
+ */
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+    'NIMIUS.' . $_EXTKEY,
+    'Dates',
+    'Workshops system - dates plugin'
+);
+$pluginSignature = strtolower($extensionName) . '_dates';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
+    $pluginSignature,
+    'FILE:EXT:' . $_EXTKEY.'/Configuration/FlexForm/Dates.xml'
+);
+
+/**
  * Register backend module.
  */
 if (TYPO3_MODE == 'BE') {

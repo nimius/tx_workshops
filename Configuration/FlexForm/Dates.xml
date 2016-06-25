@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+	<meta>
+		<langDisable>1</langDisable>
+	</meta>
+	<sheets>
+        <workshops>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.sheets.workshops</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+        			<settings.detailPage>
+        				<TCEforms>
+                            <label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.detailPage</label>
+        					<config>
+        						<type>input</type>
+        						<eval>trim</eval>
+        						<size>10</size>
+        						<wizards type="array">
+        						    <_PADDING type="integer">2</_PADDING>
+        						    <link type="array">
+        						      <type>popup</type>
+        						      <title>Link</title>
+        						      <icon>link_popup.gif</icon>
+        							  <module type="array">
+        							  	<name>wizard_element_browser</name>
+        							  	<urlParameters type="array">
+        							  		<mode>wizard</mode>
+        							  	</urlParameters>
+        							  </module>
+        						      <JSopenParams>height=500,width=500,status=0,menubar=0,scrollbars=1</JSopenParams>
+        						    </link>
+        						  </wizards>     
+        					</config>
+        				</TCEforms>
+        			</settings.detailPage>
+                </el>
+            </ROOT>
+        </workshops>
+        
+		<dates>
+			<ROOT>
+				<TCEforms>
+					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.sheets.dates</sheetTitle>
+				</TCEforms>
+				<type>array</type>
+				<el>
+					<settings.hideAlreadyStartedDates>
+						<TCEforms>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.hideAlreadyStartedDates</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.hideAlreadyStartedDates>
+
+					<settings.hidePastDates>
+						<TCEforms>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.hidePastDates</label>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.hidePastDates>
+                    
+					<settings.upcomingDays>
+						<TCEforms>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.upcomingDays</label>
+							<config>
+								<type>input</type>
+								<eval>trim,num</eval>
+								<default></default>
+								<size>4</size>
+							</config>
+						</TCEforms>
+					</settings.upcomingDays>
+				</el>
+			</ROOT>
+		</dates>
+	</sheets>
+</T3DataStructure>

@@ -19,3 +19,7 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['workshop
 // Modify tt_content for 'WorkshopsSingleView' plugin.
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['workshops_workshopssingleview'] = 'pi_flexform';
 $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['workshops_workshopssingleview'] = 'select_key';
+
+// Modify tt_content for 'Dates' plugin.
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist']['workshops_dates'] = 'pi_flexform';
+$GLOBALS['TCA']['tt_content']['types']['list']['subtypes_excludelist']['workshops_dates'] = 'select_key';
