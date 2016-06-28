@@ -58,6 +58,7 @@ class DatesController extends AbstractController
     {
         $proxy = $this->objectManager->get(DateRepositoryProxy::class);
         $proxy->initializeFromSettings($this->settings);
+        $proxy->setHidePastDates(TRUE);
         $this->view->assign('upcomingDates', $this->dateRepository->findByProxy($proxy));
     }
 }
