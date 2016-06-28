@@ -47,10 +47,8 @@ class WorkshopsController extends AbstractController
 
         $proxy = $this->objectManager->get(WorkshopRepositoryProxy::class);
         $proxy->initializeFromSettings($this->settings);
-
         if ($category) {
-            // Override categories if one is given as argument
-            $proxy->setCategories([$category]);
+            $proxy->addCategory($category);
         }
 
         $this->view->assignMultiple([

@@ -66,8 +66,17 @@ class DateRepository extends Repository
         if ($proxy->getLocation()) {
             $constraints[] = $query->equals('location', $proxy->getLocation());
         }
-        if ($proxy->getCategory()) {
-            $constraints[] = $query->contains('workshop.categories', $proxy->getCategory());
+        if ($proxy->getCategories()) {
+            $categoriesConstraints = [];
+            foreach($proxy->getCategories() as $category) {
+                $categoriesConstraints[] = $query->contains('workshop.categories', $category);
+            }
+            if ($proxy->getCategoryOperator() == 'AND') {
+                $constraints[] = $query->logicalAnd($categoriesConstraints);
+            } else {
+                $constraints[] = $query->logicalOr($categoriesConstraints);
+            }
+            unset($categoriesConstraints);
         }
 
         if (!empty($constraints)) {

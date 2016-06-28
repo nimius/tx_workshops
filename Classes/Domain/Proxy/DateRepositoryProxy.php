@@ -21,28 +21,8 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
  *
  * Proxy object for filtering workshop dates in repositories.
  */
-class DateRepositoryProxy
+class DateRepositoryProxy extends AbstractRepositoryProxy
 {
-    /**
-     * @var integer Storage page id.
-     */
-    protected $pid;
-
-    /**
-     * @var integer Restrict dates to be within the following amount of days from now
-     */
-    protected $withinDaysFromNow;
-
-    /**
-     * @var bool Hide dates being in the past, regardless of time.
-     */
-    protected $hidePastDates;
-
-    /**
-     * @var bool Hide dates where workshops already started regarding time.
-     */
-    protected $hideAlreadyStartedDates;
-
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Workshop Workshop to filter dates for.
      */
@@ -52,11 +32,6 @@ class DateRepositoryProxy
      * @var \NIMIUS\Workshops\Domain\Model\Location Location to filter dates for.
      */
     protected $location;
-
-    /**
-     * @var \NIMIUS\Workshops\Domain\Model\Categiry Category to filter dates (via workshops) for.
-     */
-    protected $category;
 
     /**
      * @var integer
@@ -74,86 +49,10 @@ class DateRepositoryProxy
      */
     public function initializeFromSettings(array $settings)
     {
-        if ((int)$settings['upcomingDays'] > 0) {
-            $this->setWithinDaysFromNow((int)$settings['upcomingDays']);
-        }
-        if ((bool)$settings['hidePastDates']) {
-            $this->setHidePastDates(TRUE);
-        }
-        if ((bool)$settings['hideAlreadyStartedDates']) {
-            $this->setHideAlreadyStartedDates(TRUE);
-        }
+        parent::initializeFromSettings($settings);
         if ((int)$settings['recordLimit'] > 0) {
             $this->setRecordLimit($settings['recordLimit']);
         }
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getPid()
-    {
-        return $this->pid;
-    }
-
-    /**
-     * @param integer $pid
-     * @return void
-     */
-    public function setPid($pid)
-    {
-        $this->pid = (int)$pid;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getWithinDaysFromNow()
-    {
-        return $this->withinDaysFromNow;
-    }
-
-    /**
-     * @param integer $withinDaysFromNow
-     * @return void
-     */
-    public function setWithinDaysFromNow($withinDaysFromNow)
-    {
-        $this->withinDaysFromNow = (int)$withinDaysFromNow;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getHidePastDates()
-    {
-        return $this->hidePastDates;
-    }
-
-    /**
-     * @param bool $hidePastDates
-     * @return void
-     */
-    public function setHidePastDates($hidePastDates)
-    {
-        $this->hidePastDates = (bool)$hidePastDates;
-    }
-
-    /**
-     * @return bool
-     */
-    public function getHideAlreadyStartedDates()
-    {
-        return $this->hideAlreadyStartedDates;
-    }
-
-    /**
-     * @param bool $hideAlreadyStartedDates
-     * @return void
-     */
-    public function setHideAlreadyStartedDates($hideAlreadyStartedDates)
-    {
-        $this->hideAlreadyStartedDates = (bool)$hideAlreadyStartedDates;
     }
 
     /**
@@ -188,23 +87,6 @@ class DateRepositoryProxy
     public function setLocation($location)
     {
         $this->location = $location;
-    }
-
-    /**
-     * @return NULL|\NIMIUS\Workshops\Domain\Model\Category
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
-     * @param NULL|\NIMIUS\Workshops\Domain\Model\Category $category
-     * @return void
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
     }
 
     /**
