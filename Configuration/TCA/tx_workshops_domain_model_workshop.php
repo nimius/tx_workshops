@@ -164,6 +164,7 @@ $TCA['tx_workshops_domain_model_workshop'] = [
         ],
 		'description' => [
 			'label' => $lll . 'property.description',
+            'defaultExtras' => 'richtext:rte_transform[mode=ts_css]',
 			'config' => [
 				'type' => 'text',
 				'eval' => 'trim',
