@@ -6,12 +6,25 @@
 					{entry.category.title}
 				</f:then>
 				<f:else>
-					<f:link.action pluginName="{pluginName}" controller="Workshops" action="index" arguments="{category: entry.category}">{entry.category.title}</f:link.action>
+					<f:link.action
+						pluginName="{pluginName}"
+						controller="{controllerName}"
+						action="index"
+						arguments="{category: entry.category}">
+						{entry.category.title}
+					</f:link.action>
 				</f:else>
 			</f:if>
 
 			<f:if condition="{entry.children}">
-				<f:render partial="Categories" arguments="{categories: entry.children, activeCategory: activeCategory, pluginName: pluginName}" />
+				<f:render
+					partial="Categories"
+					arguments="{
+						categories: entry.children,
+						activeCategory: activeCategory,
+						pluginName: pluginName,
+						controllerName: controllerName
+					}"/>
 			</f:if>
 		</li>
 	</f:for>

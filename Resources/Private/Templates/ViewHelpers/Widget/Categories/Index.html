@@ -3,6 +3,11 @@
 	
 	<f:if condition="{activeCategory}">
 		<hr />
-		<f:link.action pluginName="{pluginName}" action="index">Show all</f:link.action>
+		<f:link.action
+			pluginName="{pluginName}"
+			controller="{controllerName}"
+			action="index">
+			Show all
+		</f:link.action>
 	</f:if>
 </div>

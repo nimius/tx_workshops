@@ -39,10 +39,14 @@ class LocationsController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCon
         if ((int)$pluginArguments['location']) {
             $activeLocation = $this->locationRepository->findByUid((int)$pluginArguments['location']);
         }
+        if (empty($this->widgetConfiguration['controllerName'])) {
+            $this->widgetConfiguration['controllerName'] = $this->widgetConfiguration['pluginName'];
+        }
         $this->view->assignMultiple([
             'locations' => $this->locationRepository->findAll(),
             'activeLocation' => $activeLocation,
-            'pluginName' => $this->widgetConfiguration['pluginName']
+            'pluginName' => $this->widgetConfiguration['pluginName'],
+            'controllerName' => $this->widgetConfiguration['controllerName']
         ]);
     }
 }

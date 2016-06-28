@@ -19,7 +19,7 @@
 					<f:else>
 						<f:link.action
 							pluginName="{pluginName}"
-							controller="Dates"
+							controller="{controllerName}"
 							action="index"
 							arguments="{location: location}">
 							{location.name}
@@ -32,6 +32,11 @@
 	
 	<f:if condition="{activeLocation}">
 		<hr />
-		<f:link.action pluginName="{pluginName}" action="index">Show all</f:link.action>
+		<f:link.action
+			pluginName="{pluginName}"
+			controller="{controllerName}"
+			action="index">
+			Show all
+		</f:link.action>
 	</f:if>
 </f:if>
