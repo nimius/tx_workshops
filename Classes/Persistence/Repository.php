@@ -25,19 +25,43 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
     /**
+     * Query initializer.
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\Query $query
+     * @param mixed $proxy
+     * @return void
+     */
+    protected function initializeQuery($query, $proxy)
+    {
+        if ($proxy->getPid()) {
+            $this->setStoragePageId($query, $proxy->getPid());
+        } elseif ($proxy->getIgnoreStoragePid()) {
+            $this->setRespectStoragePageId($query, FALSE);
+        }
+    }
+
+    /**
      * Helper method to set storage page id for query constraints.
      *
+     * @param \TYPO3\CMS\Extbase\Persistence\Query $query
      * @param integer $pid
      * @return void
      */
-    protected function setStoragePageId($pid)
+    protected function setStoragePageId($query, $pid)
     {
-        if ($pid) {
-            /** @var $querySettings \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings */
-            $querySettings = $this->objectManager->get(Typo3QuerySettings::class);
-            $querySettings->setStoragePageIds([$pid]);
-            $this->setDefaultQuerySettings($querySettings);
-        }
+        $query->getQuerySettings()->setStoragePageIds([$pid]);
+    }
+
+    /**
+     * Helper to set constraint about respecting the storage page id.
+     *
+     * @param \TYPO3\CMS\Extbase\Persistence\Query $query
+     * @param bool $respect
+     * @return void
+     */
+    protected function setRespectStoragePageId($query, $respect = FALSE)
+    {
+        $query->getQuerySettings()->setRespectStoragePage($respect);
     }
 
 }

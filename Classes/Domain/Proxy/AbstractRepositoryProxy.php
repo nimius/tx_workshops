@@ -24,6 +24,7 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
  */
 abstract class AbstractRepositoryProxy
 {
+
     /**
      * @var \NIMIUS\Workshops\Domain\Repository\CategoryRepository
      * @inject
@@ -34,6 +35,11 @@ abstract class AbstractRepositoryProxy
      * @var integer Storage page id.
      */
     protected $pid;
+
+    /**
+     * @var bool Set to ignore storage pid constraints.
+     */
+    protected $ignoreStoragePid = FALSE;
 
     /**
      * @var mixed A traversable object containing \NIMIUS\Workshops\Domain\Model\Category records.
@@ -266,4 +272,22 @@ abstract class AbstractRepositoryProxy
     {
         $this->hideAlreadyStartedDates = (bool)$hideAlreadyStartedDates;
     }
+
+    /**
+     * @return bool
+     */
+    public function getIgnoreStoragePid()
+    {
+        return $this->ignoreStoragePid;
+    }
+
+    /**
+     * @param bool $ignoreStoragePid
+     * @return void
+     */
+    public function setIgnoreStoragePid($ignoreStoragePid)
+    {
+        $this->ignoreStoragePid = (bool)$ignoreStoragePid;
+    }
+
 }

@@ -15,6 +15,8 @@ namespace NIMIUS\Workshops\Controller\Backend;
  */
 
 use NIMIUS\Workshops\Utility\ConfigurationUtility;
+use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
+use NIMIUS\Workshops\Domain\Proxy\WorkshopRepositoryProxy;
 
 /**
  * Backend controller.
@@ -33,8 +35,9 @@ class WorkshopsController extends AbstractController
 	{
 		$this->assignDefaults();
 		$data = [];
-		$workshops = $this->workshopRepository->findAll($this->pageUid);
-		$graceTime = 60 * 60 * 24 * 5;
+        $workshopProxy = $this->objectManager->get(WorkshopRepositoryProxy::class);
+        $workshopProxy->setPid($this->pageUid);
+		$workshops = $this->workshopRepository->findByProxy($workshopProxy);
 		foreach ($workshops as $workshop) {
 			$data[] = [
 				'workshop' => $workshop,
@@ -54,9 +57,12 @@ class WorkshopsController extends AbstractController
 	public function showAction(\NIMIUS\Workshops\Domain\Model\Workshop $workshop)
 	{
 		$this->assignDefaults();
+        $dateProxy = $this->objectManager->get(DateRepositoryProxy::class);
+        $dateProxy->setPid($this->pageUid);
+        $dateProxy->setWorkshop($workshop);
 		$this->view->assignMultiple([
 			'workshop' => $workshop,
-			'upcomingDates' => $this->dateRepository->findAllRelevantForWorkshop($workshop)
+			'upcomingDates' => $this->dateRepository->findByProxy($dateProxy)
         ]);
 	}
 

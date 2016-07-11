@@ -41,13 +41,10 @@ class DateRepository extends Repository
      */
     public function findByProxy(DateRepositoryProxy $proxy)
     {
-        $constraints = [];
-
-        if ($proxy->getPid()) {
-            $this->setStoragePageId($proxy->getPid());
-        }
-
         $query = $this->createQuery();
+        parent::initializeQuery($query, $proxy);
+
+        $constraints = [];
         $beginOfToday = strtotime('today midnight');
 
         if ($proxy->getHidePastDates()) {
@@ -105,27 +102,6 @@ class DateRepository extends Repository
                 $query->equals('workshop', $workshop)
             )
         )->setLimit(1)->execute()->getFirst();
-    }
-    
-    /**
-     * Gets all current and upcoming dates for a given workshop.
-     *
-     * @param \NIMIUS\Workshops\Domain\Model\Workshop $workshop
-     * @return \TYPO3\CMS\Extbase\Persistence\Generic\QueryResult
-     */
-    public function findAllRelevantForWorkshop(Workshop $workshop)
-    {
-        $query = $this->createQuery();
-        $query->getQuerySettings()->setRespectStoragePage(FALSE);
-        return $query->matching(
-            $query->equals('workshop', $workshop),
-            $query->logicalAnd(
-                $query->logicalOr(
-                    $query->greaterThanOrEqual('beginAt', time()),
-                    $query->lessThanOrEqual('endAt', time())
-                )
-            )
-        )->execute();
     }
 
 }
