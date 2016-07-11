@@ -1,0 +1,19 @@
+{namespace w=NIMIUS\Workshops\ViewHelpers}
+BEGIN:VCALENDAR
+VERSION:2.0
+METHOD:PUBLISH
+PRODID:{prodid -> w:format.iCalendar.string()}
+<f:for each="{upcomingDates}" as="date">
+BEGIN:VEVENT
+CLASS:PUBLIC
+UID:{date.uid}
+SUMMARY:{date.workshop.name -> w:format.iCalendar.string()}
+<f:if condition="{date.location}">
+LOCATION:{date.location.fullAddress -> w:format.iCalendar.string()}
+</f:if>
+DTSTART:{date.beginAt -> w:format.iCalendar.date()}
+DTEND:{date.endAt -> w:format.iCalendar.date()}
+DTSTAMP:{date.updatedAt -> w:format.iCalendar.date()}
+END:VEVENT
+</f:for>
+END:VCALENDAR

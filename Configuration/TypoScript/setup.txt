@@ -45,6 +45,13 @@ plugin.tx_workshops {
 		}
 		
 		form.appendToLabelIfRequiredField = 
+		
+		export {
+			iCalendar {
+				businessName = Business Name
+				productName = Product Name
+			}
+		}
 	}
 }
 

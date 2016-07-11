@@ -11,7 +11,7 @@ Workshops requires some basic TypoScript to work properly. Include the static ex
 
 ## Configuration
 
-### Features
+### Feature toggling
 In order to keep everything as minimalistic as possible, advanced features are disabled by default. Have a look at the extension configuration inside the extension manager to enable/disable features.
 
 ### Registration field validations
@@ -38,6 +38,44 @@ A list of validators together with valid options for them is available in the [A
 Delivering an email takes some time. In order to optimize frontend response times on e.g. registrations, emails can be delivered through a scheduler task / cron job in the background. For this, you have to set the according TypoScript configuration option. If this is an issue for you or for your hosting provider (sadly, this can be the case), you should configure workshops to deliver directly. Have a look at the TypoScript file inside Configuration/TypoScript, which lists all possible settings.
 
 Attention: Have a look at the issues, as there is currently a problem when delivering emails through cron when using multiple languages.
+
+### iCalendar export (ICS)
+To provide an ICS file containing workshop dates, set up a separate PAGE TLO responding to a certain `typeNum`, and call the export plugin there. An example:
+
+	icsExport = PAGE
+	icsExport {
+		config {
+			disableAllHeaderCode = 1
+			xhtml_cleaning = none
+			admPanel = 0
+			metaCharset = utf-8
+			additionalHeaders = Content-Type:text/calendar;charset=utf-8
+			disablePrefixComment = 1
+		}
+		
+		typeNum = 1234
+		
+		10 = USER
+		10 {
+			userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
+			vendorName = NIMIUS
+			extensionName = Workshops
+			pluginName = Exports
+		}
+	}
+
+Don't forget to have the following configuration parts set in your TypoScript template:
+
+	plugin.tx_workshops.settings.export.iCalendar {
+		// These two values are used as PRODID, which is a required property.
+		businessName = Your business name
+		productName = Your product name
+	}
+	
+	// The 2-char language code is also required for a valid PRODID
+	config.language = en
+
+Requesting a page with `?type=1234` will now respond with an ICS file containing all upcoming dates.
 
 #### Tasks
 In order to deliver confirmation emails, make sure to have a working scheduler, and register the appropriate extbase tasks. The following tasks are currently provided:

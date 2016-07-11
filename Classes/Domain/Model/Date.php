@@ -149,6 +149,11 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var integer
      */
+    protected $updatedAt;
+
+    /**
+     * @var integer
+     */
     protected $paymentType;
 
     /**
@@ -305,6 +310,14 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setEndAt($endAt)
     {
         $this->endAt = $endAt;
+    }
+
+    /**
+     * @return integer
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
     }
 
     /**

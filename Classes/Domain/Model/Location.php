@@ -66,6 +66,18 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->address;
     }
+
+    /**
+     * @return string
+     */
+    public function getFullAddress()
+    {
+        $values = [
+            $this->name, $this->address,
+            trim("{$this->zip} {$this->city}")
+        ];
+        return implode(', ', $values);
+    }
     
     /**
      * @return string
