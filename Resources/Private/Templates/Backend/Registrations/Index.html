@@ -1,10 +1,11 @@
+{namespace c=TYPO3\CMS\Core\ViewHelpers}
 {namespace w=NIMIUS\Workshops\ViewHelpers}
 
 <f:layout name="Backend"/>
  
 <f:section name="docheader-buttons-left">
 	<f:link.action controller="Backend\Workshops" action="show" arguments="{workshop: workshop}" class="btn btn-default btn-sm">
-		<w:be.icon identifier="actions-move-left" />
+		<c:icon identifier="actions-move-left" />
 	</f:link.action>
 	
 	<w:be.tableLink
@@ -13,7 +14,7 @@
 		key="new"
 		defaultValues="{workshopDate: date}"
 		class="btn btn-default btn-sm">
-		<w:be.icon identifier="actions-document-new" />
+		<c:icon identifier="actions-document-new" />
 	</w:be.tableLink>
 </f:section>
 
@@ -74,7 +75,7 @@
 												table="tx_workshops_domain_model_registration"
 												uid="{registration.uid}"
 												class="btn btn-default btn-sm">
-												<w:be.icon identifier="actions-document-open" />
+												<c:icon identifier="actions-document-open" />
 											</w:be.tableLink>
 										</td>
 									</tr>

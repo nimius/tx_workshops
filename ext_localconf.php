@@ -50,5 +50,33 @@ if (!defined('TYPO3_MODE')) {
     ]
 );
 
+/**
+ * Configure 'Dates' plugin.
+ */
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    'NIMIUS.' . $_EXTKEY,
+    'Dates',
+    [
+        'Dates' => 'index',
+    ],
+    [
+        'Dates' => 'index',
+    ]
+);
+
+/**
+ * Configure 'UpcomingDatesTeaser' plugin.
+ */
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    'NIMIUS.' . $_EXTKEY,
+    'UpcomingDatesTeaser',
+    [
+        'Dates' => 'upcoming',
+    ],
+    [
+        'Dates' => 'upcoming',
+    ]
+);
+
 // Register extbase command controllers for delivering notifications.
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \NIMIUS\Workshops\Command\NotificationCommandController::class;

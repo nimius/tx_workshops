@@ -1,0 +1,33 @@
+{namespace w=NIMIUS\Workshops\ViewHelpers}
+
+<f:layout name="Default" />
+
+<!--
+	Available in this view:
+	
+	- upcomingDates
+-->
+
+<f:section name="content">
+	<w:widget.locations pluginName="Dates" />
+	<w:widget.categories pluginName="Dates" />
+	
+	<f:if condition="{upcomingDates}">
+		<f:then>
+			<f:for each="{upcomingDates}" as="date">
+				<p>
+					{date.workshop.name}<br />
+					From <f:format.date format="d.m.Y H:i">{date.beginAt}</f:format.date>
+					to <f:format.date format="d.m.Y H:i">{date.endAt}</f:format.date><br />
+					<f:if condition="{date.location}">
+					at {date.location.name}<br />
+					</f:if>
+					<w:link workshop="{date.workshop}">More information</w:link>
+				</p>
+			</f:for>
+		</f:then>
+		<f:else>
+			<p>No upcoming workshop dates.</p>
+		</f:else>
+	</f:if>
+</f:section>

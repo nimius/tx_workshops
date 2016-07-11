@@ -1,3 +1,4 @@
+{namespace c=TYPO3\CMS\Core\ViewHelpers}
 {namespace w=NIMIUS\Workshops\ViewHelpers}
 
 <f:layout name="Backend"/>
@@ -8,7 +9,7 @@
 		uid="{pageUid}"
 		key="new"
 		class="btn btn-default btn-sm">
-		<w:be.icon identifier="actions-document-new" />
+		<c:icon identifier="actions-document-new" />
 	</w:be.tableLink>
 </f:section>
 
@@ -67,7 +68,7 @@
 												table="tx_workshops_domain_model_workshop"
 												uid="{data.workshop.uid}"
 												class="btn btn-default btn-sm">
-												<w:be.icon identifier="actions-document-open" />
+												<c:icon identifier="actions-document-open" />
 											</w:be.tableLink>
 										</td>
 									</tr>

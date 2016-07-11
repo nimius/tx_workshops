@@ -27,6 +27,9 @@
 			<trans-unit id="plugin.workshops.settings.categoryOperator.or">
 				<target>Zeige Workshops mit mindestens einer Kategorie (ODER)</target>
 			</trans-unit>
+			<trans-unit id="plugin.workshops.settings.recordLimit">
+				<source>Limitierung der Resultate</source>
+			</trans-unit>
 			<trans-unit id="plugin.workshops.settings.detailPage">
 				<target>Workshops Detailseite</target>
 			</trans-unit>
@@ -59,6 +62,12 @@
 			</trans-unit>
 			<trans-unit id="plugin.workshops.settings.upcomingDays">
 				<target>Kommende Daten auf die folgende Anzahl Tage beschränken</target>
+			</trans-unit>
+			<trans-unit id="plugin.workshops.settings.hideAlreadyStartedDates">
+				<target>Daten ausblenden, deren Startdatum in der Vergangenheit liegt</target>
+			</trans-unit>
+			<trans-unit id="plugin.workshops.settings.hidePastDates">
+				<target>Daten ausblenden, deren Enddatum in der Vergangenheit liegt</target>
 			</trans-unit>
 			
 			<!--
@@ -96,6 +105,9 @@
 			<trans-unit id="model.date.property.type">
 				<target>Typ</target>
 			</trans-unit>
+			<trans-unit id="model.date.property.paymentType">
+				<target>Zahlungsart</target>
+			</trans-unit>
 			<trans-unit id="model.date.property.type.single">
 				<target>Einfaches Datum</target>
 			</trans-unit>
@@ -132,11 +144,29 @@
 			<trans-unit id="model.date.property.registrationDeadlineAt">
 				<target>Registrierungsende</target>
 			</trans-unit>
+			<trans-unit id="model.date.property.paymentType">
+				<source>Bezahlung</source>
+			</trans-unit>
+			<trans-unit id="model.date.property.paymentType.free">
+				<source>Gratis (keine Bezahlung)</source>
+			</trans-unit>
+			<trans-unit id="model.date.property.paymentType.prepay">
+				<source>Vorkasse (Emailversand mit Instruktionen)</source>
+			</trans-unit>
+			<trans-unit id="model.date.property.paymentType.boxOffice">
+				<source>Abendkasse (Bezahlung vor Einlass)</source>
+			</trans-unit>
+			<trans-unit id="model.date.property.paymentType.external">
+				<source>Externe Online-Bezahlung (eigene URL)</source>
+			</trans-unit>
 			<trans-unit id="model.date.div.general">
 				<target>Allgemein</target>
 			</trans-unit>
 			<trans-unit id="model.date.div.settings">
 				<target>Einstellungen</target>
+			</trans-unit>
+			<trans-unit id="model.date.div.payment">
+				<target>Bezahlung</target>
 			</trans-unit>
 			<trans-unit id="model.date.div.registrations">
 				<target>Registrierung</target>
@@ -252,6 +282,12 @@
 			<trans-unit id="model.workshop.property.images">
 				<target>Bilder</target>
 			</trans-unit>
+			<trans-unit id="model.workshop.property.price">
+				<source>Preis</source>
+			</trans-unit>
+			<trans-unit id="model.workshop.property.externalPaymentUrl">
+				<source>Externe Bezahl-URL</source>
+			</trans-unit>
 			<trans-unit id="model.workshop.property.files">
 				<target>Dateien</target>
 			</trans-unit>
@@ -282,6 +318,13 @@
 			</trans-unit>
 			<trans-unit id="model.instructor.property.profilePid">
 				<target>Profilseite</target>
+			</trans-unit>
+
+			<trans-unit id="model.category.property.detailPid">
+				<target>Detailseite für Workshops aus dieser Kategorie</target>
+			</trans-unit>
+			<trans-unit id="model.category.property.images">
+				<target>Workshop Kategoriebilder</target>
 			</trans-unit>
 			
 			

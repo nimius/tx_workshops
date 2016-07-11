@@ -25,7 +25,7 @@ $TCA['tx_workshops_domain_model_date'] = [
 		'label_userFunc' => 'NIMIUS\\Workshops\\UserFunc\\TcaLabelling->date',
 		'hideTable' => TRUE,
 		'dividers2tabs' => TRUE,
-		'requestUpdate' => 'type',
+		'requestUpdate' => 'type, payment_type',
 		'type' => 'type',
 		'iconfile' => 'EXT:workshops/Resources/Public/Icons/Time.png'
     ],
@@ -54,6 +54,53 @@ $TCA['tx_workshops_domain_model_date'] = [
 				'default' => Date::TYPE_SINGLE
             ,]
 		],
+		'payment_type' => [
+			'label' => $lll . 'property.paymentType',
+            'displayCond' => 'FIELD:parent:=:0',
+			'config' => [
+				'type' => 'select',
+				'renderType' => 'selectSingle',
+				'items' => [
+					[$lll . 'property.paymentType.free', Date::PAYMENT_TYPE_FREE],
+					[$lll . 'property.paymentType.prepay', Date::PAYMENT_TYPE_PREPAY],
+                    [$lll . 'property.paymentType.boxOffice', Date::PAYMENT_TYPE_BOX_OFFICE],
+                    [$lll . 'property.paymentType.external', Date::PAYMENT_TYPE_EXTERNAL],
+                ],
+            ],
+        ],
+		'price' => [
+			'label' => $lll . 'property.price',
+            'displayCond' => 'FIELD:payment_type:!=:' . Date::PAYMENT_TYPE_FREE,
+			'config' => [
+				'type' => 'input',
+				'eval' => 'double2',
+				'size' => 8,
+            ],
+        ],
+        'external_payment_url' => [
+            'label' => $lll . 'property.externalPaymentUrl',
+            'displayCond' => 'FIELD:payment_type:=:' . Date::PAYMENT_TYPE_EXTERNAL,
+			'config' => [
+				'type' => 'input',
+				'eval' => 'required',
+				'softref' => 'typolink',
+				'wizards' => [
+					'link' => [
+						'type' => 'popup',
+						'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
+						'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
+                        'module' => [
+                        	'name' => 'wizard_element_browser',
+                        	'urlParameters' => [
+                        		'mode' => 'wizard',
+                        		'act' => 'page'
+                            ],
+                        ],
+						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1',
+                    ],
+                ],
+            ],
+        ],
 		'parent' => [
 			'config' => [
 				'type' => 'passthrough',
@@ -142,6 +189,8 @@ $TCA['tx_workshops_domain_model_date'] = [
 				--div--;' . $lll . 'div.settings,
 				minimum_attendance_enabled, minimum_attendance,
 				maximum_attendance_enabled, maximum_attendance,
+                --div--;' . $lll . 'div.payment,
+                payment_type, external_payment_url, price,
 				--div--;' . $lll . 'div.registrations,
 				registrations
 			'
@@ -153,6 +202,8 @@ $TCA['tx_workshops_domain_model_date'] = [
 				--div--;' . $lll . 'div.settings,
 				minimum_attendance_enabled, minimum_attendance,
 				maximum_attendance_enabled, maximum_attendance,
+                --div--;' . $lll . 'div.payment,
+                payment_type, external_payment_url, price,
 				--div--;' . $lll . 'div.registrations,
 				registrations
 			'

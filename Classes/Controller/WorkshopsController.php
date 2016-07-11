@@ -17,6 +17,7 @@ namespace NIMIUS\Workshops\Controller;
 use NIMIUS\Workshops\Domain\Model\Category;
 use NIMIUS\Workshops\Domain\Model\Date;
 use NIMIUS\Workshops\Domain\Model\Workshop;
+use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
 use NIMIUS\Workshops\Domain\Proxy\WorkshopRepositoryProxy;
 use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
@@ -25,7 +26,6 @@ use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
  */
 class WorkshopsController extends AbstractController
 {
-
     /**
      * Workshop listing.
      *
@@ -47,10 +47,8 @@ class WorkshopsController extends AbstractController
 
         $proxy = $this->objectManager->get(WorkshopRepositoryProxy::class);
         $proxy->initializeFromSettings($this->settings);
-
         if ($category) {
-            // Override categories if one is given as argument
-            $proxy->setCategories([$category]);
+            $proxy->addCategory($category);
         }
 
         $this->view->assignMultiple([
@@ -75,11 +73,14 @@ class WorkshopsController extends AbstractController
             $workshop = $this->workshopRepository->findByUid((int)$this->settings['workshop']);
         }
         if ($workshop) {
-            $tstamp = time() + (int)$this->settings['upcomingDays'] * 24 * 60 * 60;
-            $this->view->assign('workshop', $workshop);
-            $this->view->assign('upcomingDates', $this->dateRepository->findAllUpcomingForWorkshop($workshop, $tstamp, (bool)$this->settings['filterByEnd']));
+            $proxy = $this->objectManager->get(DateRepositoryProxy::class);
+            $proxy->initializeFromSettings($this->settings);
+            $proxy->setWorkshop($workshop);
+            $this->view->assignMultiple([
+                'workshop' => $workshop,
+                'upcomingDates' => $this->dateRepository->findByProxy($proxy)
+            ]);
         }
         $this->view->assign('frontendUser', $this->currentFrontendUser());
     }
-
 }

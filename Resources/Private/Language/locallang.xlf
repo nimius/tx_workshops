@@ -62,6 +62,9 @@
 			<trans-unit id="plugin.workshops.settings.categoryOperator.or">
 				<source>Show workshops having at least one selected category (OR)</source>
 			</trans-unit>
+			<trans-unit id="plugin.workshops.settings.recordLimit">
+				<source>Result limit</source>
+			</trans-unit>
 			<trans-unit id="plugin.workshops.settings.detailPage">
 				<source>Workshop detail page</source>
 			</trans-unit>
@@ -95,13 +98,16 @@
 			<trans-unit id="plugin.workshops.settings.upcomingDays">
 				<source>Restrict upcoming workshop dates to be within the following amount of days</source>
 			</trans-unit>
+			<trans-unit id="plugin.workshops.settings.hideAlreadyStartedDates">
+				<source>Hide dates having a begin date in the past</source>
+			</trans-unit>
+			<trans-unit id="plugin.workshops.settings.hidePastDates">
+				<source>Hide dates having an end date in the past</source>
+			</trans-unit>
 			
 			<!--
 				Plugin "Workshops single view"
 			-->
-			<trans-unit id="plugin.workshopsSingleView.sheets.main">
-				<source>Main</source>
-			</trans-unit>
 			<trans-unit id="plugin.workshopsSingleView.settings.displayMode">
 				<source>Display mode</source>
 			</trans-unit>
@@ -198,11 +204,35 @@
 			<trans-unit id="model.date.property.maximumAttendanceEnabled">
 				<source>Maximum attendance active</source>
 			</trans-unit>
+			<trans-unit id="model.date.property.paymentType">
+				<source>Payment type</source>
+			</trans-unit>
+			<trans-unit id="model.date.property.paymentType.free">
+				<source>Free (no payment)</source>
+			</trans-unit>
+			<trans-unit id="model.date.property.paymentType.prepay">
+				<source>Pre-payment (delivers an email with payment instructions)</source>
+			</trans-unit>
+			<trans-unit id="model.date.property.paymentType.boxOffice">
+				<source>Box office (payment prior to entry)</source>
+			</trans-unit>
+			<trans-unit id="model.date.property.paymentType.external">
+				<source>External online-payment (custom URL)</source>
+			</trans-unit>
+			<trans-unit id="model.date.property.price">
+				<source>Price</source>
+			</trans-unit>
+			<trans-unit id="model.date.property.externalPaymentUrl">
+				<source>External payment URL</source>
+			</trans-unit>
 			<trans-unit id="model.date.div.general">
 				<source>General</source>
 			</trans-unit>
 			<trans-unit id="model.date.div.settings">
 				<source>Settings</source>
+			</trans-unit>
+			<trans-unit id="model.date.div.payment">
+				<source>Payment</source>
 			</trans-unit>
 			<trans-unit id="model.date.div.registrations">
 				<source>Registrations</source>
@@ -351,6 +381,13 @@
 			</trans-unit>
 			<trans-unit id="model.instructor.property.profilePid">
 				<source>Profile page</source>
+			</trans-unit>
+            
+			<trans-unit id="model.category.property.detailPid">
+				<source>Detail page for workshops from this category</source>
+			</trans-unit>
+			<trans-unit id="model.category.property.images">
+				<source>Workshop category images</source>
 			</trans-unit>
 			
 			

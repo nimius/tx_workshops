@@ -21,7 +21,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetController
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Repository\CategoryRepository
      * @inject
@@ -37,18 +36,22 @@ class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCo
     public function indexAction()
     {
         $categories = [];
-        $pluginArguments = GeneralUtility::_GP('tx_workshops_workshops');
+        $pluginArguments = GeneralUtility::_GP('tx_workshops_' . strtolower($this->widgetConfiguration['pluginName']));
         if ((int)$pluginArguments['category']) {
             $activeCategory = $this->categoryRepository->findByUid((int)$pluginArguments['category']);
+        }
+        if (empty($this->widgetConfiguration['controllerName'])) {
+            $this->widgetConfiguration['controllerName'] = $this->widgetConfiguration['pluginName'];
         }
         $rootCategories = $this->categoryRepository->findAllRootCategories()->toArray();
         $this->fetchChildren($categories, $rootCategories);
         $this->view->assignMultiple([
             'categories' => $categories,
-            'activeCategory' => $activeCategory
+            'activeCategory' => $activeCategory,
+            'pluginName' => $this->widgetConfiguration['pluginName'],
+            'controllerName' => $this->widgetConfiguration['controllerName']
         ]);
     }
-
 
     /**
      * Method to recursively fetch child categories into an array.
@@ -70,5 +73,4 @@ class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCo
             }
         }
     }
-
 }

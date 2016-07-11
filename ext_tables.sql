@@ -21,9 +21,9 @@ CREATE TABLE tx_workshops_domain_model_workshop (
     sorting int(11) default '0' NOT NULL,
     crdate int(11) default '0' NOT NULL,
     cruser_id int(11) default '0' NOT NULL,
-	sys_language_uid int(11) DEFAULT '0' NOT NULL,
-	l10n_parent int(11) DEFAULT '0' NOT NULL,
-	l10n_diffsource mediumtext,
+    sys_language_uid int(11) DEFAULT '0' NOT NULL,
+    l10n_parent int(11) DEFAULT '0' NOT NULL,
+    l10n_diffsource mediumtext,
 
     PRIMARY KEY (uid),
     KEY parent (pid),
@@ -47,11 +47,14 @@ CREATE TABLE tx_workshops_domain_model_date (
     hidden tinyint(1) unsigned default '0' NOT NULL,
 
     type tinyint(1) unsigned default '0' NOT NULL,
+    payment_type tinyint(1) unsigned default '0' NOT NULL,
     dates int(11) unsigned default '0' NOT NULL,
     workshop int(11) unsigned default '0' NOT NULL,
     location int(11) unsigned default '0' NOT NULL,
     instructor int(11) unsigned default '0' NOT NULL,
     registrations int(11) unsigned default '0' NOT NULL,
+    price decimal(7,2) unsigned NULL default NULL,
+    external_payment_url varchar(255) default NULL,
 
     begin_at int(11) unsigned default '0' NOT NULL,
     end_at int(11) unsigned default '0' NOT NULL,
@@ -78,8 +81,8 @@ CREATE TABLE tx_workshops_domain_model_location (
     zip varchar(10) default NULL,
     city varchar(255) default NULL,
     country int(11) unsigned default '0' NOT NULL,
-    latitude DECIMAL(10,8) signed NULL,
-    longitude DECIMAL(11, 8) signed NULL,
+    latitude decimal(10,8) signed NULL default NULL,
+    longitude decimal(11,8) signed NULL default NULL,
 
     PRIMARY KEY (uid),
     KEY parent (pid)
@@ -126,4 +129,11 @@ CREATE TABLE tx_workshops_domain_model_registration (
     KEY parent (pid),
     KEY frontend_user (frontend_user),
     KEY workshop_date (workshop_date)
+);
+
+CREATE TABLE sys_category (
+    tx_workshops_detail_pid int(11) unsigned default '0' NOT NULL,
+    tx_workshops_images int(11) unsigned default '0' NOT NULL,
+
+    KEY tx_workshops_detail_pid(tx_workshops_detail_pid)
 );

@@ -5,3 +5,9 @@
 	<strong>{workshop.name}</strong> which is taking place
 	at <f:format.date format="d.m.Y H:i">{date.beginAt}</f:format.date>.
 </p>
+
+<f:if condition="{date.paymentTypeIsPrepay}">
+	<p>
+		Please transfer the amount of {date.price} to us prior to the event.
+	</p>
+</f:if>

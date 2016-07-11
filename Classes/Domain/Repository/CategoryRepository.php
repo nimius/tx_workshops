@@ -19,7 +19,6 @@ namespace NIMIUS\Workshops\Domain\Repository;
  */
 class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRepository
 {
-
     /**
      * Find all categories without a parent.
      *
@@ -44,5 +43,4 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
             $query->equals('parent', $uid)
         )->execute();
     }
-
 }

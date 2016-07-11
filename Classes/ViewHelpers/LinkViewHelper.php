@@ -21,7 +21,6 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
  */
 class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
 {
-
     /**
      * @var TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer $cObj
      */
@@ -46,8 +45,11 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
      * @param array $typolinkConfiguration
      * @return string
      */
-    public function render(Workshop $workshop, array $localSettings = [], $typolinkConfiguration = [])
+    public function render(Workshop $workshop = NULL, array $localSettings = [], $typolinkConfiguration = [])
     {
+        if (!$workshop) {
+            return;
+        }
         $this->workshop = $workshop;
         $this->settings = $this->prepareSettings($localSettings);
         unset($workshop, $localSettings);
@@ -55,11 +57,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
 
         switch($this->workshop->getType()) {
             case Workshop::TYPE_DEFAULT:
-                if ($this->workshop->getInternalUrl()) {
-                    $this->configureForInternalType($configuration);
-                } else {
-                    $this->configureForDefaultType($configuration);
-                }
+                $this->configureForDefaultType($configuration);
                 break;
 
             case Workshop::TYPE_EXTERNAL:
@@ -97,26 +95,37 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
      */
     protected function configureForDefaultType(&$configuration = [])
     {
-        // Link to given detail page, dropping controller and action parameters, as the page must contain the single view plugin.
+        // If the workshops has its own internal URL, link to it.
+        if ($this->workshop->getInternalUrl()) {
+            $configuration['parameter'] = $this->workshop->getInternalUrl();
+            $configuration['additionalParams'] .= '&tx_workshops_workshopssingleview[workshop]=' . $this->workshop->getUid();
+            return;
+        }
+
+        // If the current plugin has given a detail page, utilize that one.
+        // Drop controller and action parameters, as the page must contain the single view plugin.
         if ((int)$this->settings['detailPage']) {
             $configuration['parameter'] = (int)$this->settings['detailPage'];
             $configuration['additionalParams'] .= '&tx_workshops_workshopssingleview[workshop]=' . $this->workshop->getUid();
-        } else {
-            // Link to the current page.
-            $configuration['parameter'] = $GLOBALS['TSFE']->id;
-            $configuration['additionalParams'] .= '&tx_workshops_workshops[workshop]=' . $this->workshop->getUid();
+            return;
         }
-    }
 
-    /**
-     * Configure links to workshops of internal type.
-     *
-     * @param array &$configuration
-     * @return void
-     */
-    protected function configureForInternalType(&$configuration = [])
-    {
-        $configuration['parameter'] = $this->workshop->getInternalUrl();
+        // If one of the workshop's categories has a detail pid, take the first one having one
+        // for building the internal link to the workshop detail page. Drop controller and action
+        // parameters, as the page must contain the single view plugin.
+        if (count($this->workshop->getCategories()) > 0) {
+            foreach ($this->workshop->getCategories() as $category) {
+                if ((int)$category->getWorkshopsDetailPid() > 0) {
+                    $configuration['parameter'] = $category->getWorkshopsDetailPid();
+                    $configuration['additionalParams'] .= '&tx_workshops_workshopssingleview[workshop]=' . $this->workshop->getUid();
+                    return;
+                }
+            }
+        }
+
+        // If nothing is defined, link to the current page.
+        $configuration['parameter'] = $GLOBALS['TSFE']->id;
+        $configuration['additionalParams'] .= '&tx_workshops_workshops[workshop]=' . $this->workshop->getUid();
     }
 
     /**
@@ -127,8 +136,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
      */
     protected function configureForExternalType(&$configuration = [])
     {
-        $configuration['parameter'] = $workshop->getExternalUrl();
+        $configuration['parameter'] = $this->workshop->getExternalUrl();
         $this->tag->addAttribute('target', '_blank');
     }
-
 }

@@ -80,6 +80,7 @@ class ConfigurationUtility
      * setup of "foo = 1, foo.bar = 1", you won't have [foo][_typoScriptNodeValue]
      * and also not have [foo][bar], but [foo] and [foo.][bar].
      *
+     * @param string $extKey
      * @return array
      */
     public static function getTyposcriptConfiguration($extKey = NULL)

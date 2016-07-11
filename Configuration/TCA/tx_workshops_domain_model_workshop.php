@@ -125,8 +125,14 @@ $TCA['tx_workshops_domain_model_workshop'] = [
 					'link' => [
 						'type' => 'popup',
 						'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
-						'icon' => 'link_popup.gif',
-						'script' => 'browse_links.php?mode=wizard',
+						'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
+                        'module' => [
+                        	'name' => 'wizard_element_browser',
+                        	'urlParameters' => [
+                        		'mode' => 'wizard',
+                        		'act' => 'page'
+                            ],
+                        ],
 						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1',
                     ],
                 ],
@@ -158,6 +164,7 @@ $TCA['tx_workshops_domain_model_workshop'] = [
         ],
 		'description' => [
 			'label' => $lll . 'property.description',
+            'defaultExtras' => 'richtext:rte_transform[mode=ts_css]',
 			'config' => [
 				'type' => 'text',
 				'eval' => 'trim',
@@ -274,7 +281,7 @@ $TCA['tx_workshops_domain_model_workshop'] = [
                 type, identifier, name, abstract,
 				external_url,
 				--div--;' . $lll . 'div.relations,
-				categories, images, 
+				categories, images
 			',
         ],
     ],

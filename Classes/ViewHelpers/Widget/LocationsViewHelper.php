@@ -15,14 +15,14 @@ namespace NIMIUS\Workshops\ViewHelpers\Widget;
  */
 
 /**
- * Categories widget view helper.
+ * Locations widget view helper.
  *
- * Displays a list of categories to filter workshops.
+ * Displays a list of locations to filter workshop dates.
  */
-class CategoriesViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper
+class LocationsViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetViewHelper
 {
     /**
-     * @var \NIMIUS\Workshops\ViewHelpers\Widget\Controller\CategoriesController
+     * @var \NIMIUS\Workshops\ViewHelpers\Widget\Controller\LocationsController
      * @inject
      */
     protected $controller;
@@ -35,7 +35,7 @@ class CategoriesViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetVi
      * @param string $controllerName The controller name
      * @return string
      */
-    public function render($pluginName = 'Workshops', $controllerName = NULL)
+    public function render($pluginName = 'Dates', $controllerName = NULL)
     {
         return $this->initiateSubRequest();
     }

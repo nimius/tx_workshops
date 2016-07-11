@@ -14,9 +14,17 @@ namespace NIMIUS\Workshops\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+
 /**
  * Location repository.
  */
 class LocationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
+    /**
+     * @var array Setting for default ORDER BY when fetching records.
+     */
+    protected $defaultOrderings = [
+        'name' => QueryInterface::ORDER_ASCENDING,
+    ];
 }
