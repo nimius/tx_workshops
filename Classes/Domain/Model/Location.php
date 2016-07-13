@@ -41,6 +41,12 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $city;
 
     /**
+     * @var \SJBR\StaticInfoTables\Domain\Model\Country
+     * @lazy
+     */
+    protected $country;
+
+    /**
      * @var float
      */
     protected $latitude = 0.000000;
@@ -93,6 +99,14 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * @return \SJBR\StaticInfoTables\Domain\Model\Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 
     /**
