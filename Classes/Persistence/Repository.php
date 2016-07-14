@@ -33,23 +33,23 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository
      */
     protected function initializeQuery($query, $proxy)
     {
-        if ($proxy->getPid()) {
-            $this->setStoragePageId($query, $proxy->getPid());
+        if (count($proxy->getPids()) > 0) {
+            $this->setStoragePageIds($query, $proxy->getPids());
         } elseif ($proxy->getIgnoreStoragePid()) {
             $this->setRespectStoragePageId($query, FALSE);
         }
     }
 
     /**
-     * Helper method to set storage page id for query constraints.
+     * Helper method to set storage page ids for query constraints.
      *
      * @param \TYPO3\CMS\Extbase\Persistence\Query $query
      * @param integer $pid
      * @return void
      */
-    protected function setStoragePageId($query, $pid)
+    protected function setStoragePageIds($query, $pids)
     {
-        $query->getQuerySettings()->setStoragePageIds([$pid]);
+        $query->getQuerySettings()->setStoragePageIds($pids);
     }
 
     /**

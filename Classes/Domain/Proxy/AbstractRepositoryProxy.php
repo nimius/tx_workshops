@@ -32,9 +32,9 @@ abstract class AbstractRepositoryProxy
     protected $categoryRepository;
 
     /**
-     * @var integer Storage page id.
+     * @var array Storage page ids.
      */
-    protected $pid;
+    protected $pids = [];
 
     /**
      * @var bool Set to ignore storage pid constraints.
@@ -117,11 +117,11 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getPid()
+    public function getPids()
     {
-        return $this->pid;
+        return $this->pids;
     }
 
     /**
@@ -130,7 +130,16 @@ abstract class AbstractRepositoryProxy
      */
     public function setPid($pid)
     {
-        $this->pid = $pid;
+        $this->setPids([$pid]);
+    }
+
+    /**
+     * @param array $pids
+     * @return void
+     */
+    public function setPids($pids)
+    {
+        $this->pids = $pids;
     }
 
     /**
