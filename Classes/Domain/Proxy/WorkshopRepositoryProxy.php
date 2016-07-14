@@ -21,10 +21,16 @@ namespace NIMIUS\Workshops\Domain\Proxy;
  */
 class WorkshopRepositoryProxy extends AbstractRepositoryProxy
 {
+
     /**
-     * @var bool Hide workshops not having an upcoming date
+     * @var bool Hide workshops not having an upcoming date.
      */
     protected $hideWorkshopsWithoutUpcomingDates = FALSE;
+
+    /**
+     * @var array Workshop types to filter for.
+     */
+    protected $types = [];
 
 
     /**
@@ -43,4 +49,22 @@ class WorkshopRepositoryProxy extends AbstractRepositoryProxy
     {
         $this->hideWorkshopsWithoutUpcomingDates = $hide;
     }
+
+    /**
+     * @var array $types
+     * @return void
+     */
+    public function setTypes($types)
+    {
+        $this->types = $types;
+    }
+
+    /**
+     * @return array
+     */
+    public function getTypes()
+    {
+        return $this->types;
+    }
+
 }

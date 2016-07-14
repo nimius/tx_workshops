@@ -44,6 +44,9 @@ class WorkshopRepository extends Repository
         parent::initializeQuery($query, $proxy);
 
         $constraints = [];
+        if (count($proxy->getTypes()) > 0) {
+            $constraints[] = $query->in('type', $proxy->getTypes());
+        }
         if ($proxy->getCategories()) {
             $categoriesConstraints = [];
             foreach($proxy->getCategories() as $category) {
