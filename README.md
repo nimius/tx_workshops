@@ -75,7 +75,9 @@ Don't forget to have the following configuration parts set in your TypoScript te
 	// The 2-char language code is also required for a valid PRODID
 	config.language = en
 
-Requesting a page with `?type=1234` will now respond with an ICS file containing all upcoming dates.
+Requesting a page with `?type=1234` will now respond with an ICS file containing all upcoming dates. You can also pass `workshop` to it to narrow down results. Example:
+
+	<f:link.action pluginName="Exports" controller="Exports" action="iCalendar" arguments="{workshop: workshop}" additionalParams="{type: 1234}">ICS</f:link.action>
 
 #### Tasks
 In order to deliver confirmation emails, make sure to have a working scheduler, and register the appropriate extbase tasks. The following tasks are currently provided:

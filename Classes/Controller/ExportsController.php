@@ -14,6 +14,7 @@ namespace NIMIUS\Workshops\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
 use NIMIUS\Workshops\Utility\ConfigurationUtility;
 use NIMIUS\Workshops\Utility\ObjectUtility;
@@ -29,13 +30,16 @@ class ExportsController extends AbstractController
     /**
      * Export data as iCalendar.
      *
+     * @param \NIMIUS\Workshops\Domain\Model\Workshop $workshop
+     * @ignorevalidation $workshop
      * @return string
      */
-    public function iCalendarAction()
+    public function iCalendarAction(Workshop $workshop = NULL)
     {
         $proxy = $this->objectManager->get(DateRepositoryProxy::class);
         $proxy->initializeFromSettings($this->settings);
         $proxy->setIgnoreStoragePid(TRUE);
+        $proxy->setWorkshop($workshop);
 
         $view = $this->objectManager->get(StandaloneView::class);
         $basePath = GeneralUtility::getFileAbsFileName('EXT:workshops/Resources/Private/Templates/Exports/'); // TODO configurable
