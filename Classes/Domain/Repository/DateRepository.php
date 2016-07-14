@@ -75,6 +75,9 @@ class DateRepository extends Repository
             }
             unset($categoriesConstraints);
         }
+        if ($proxy->getHideChildDates()) {
+            $constraints[] = $query->equals('parent', 0);
+        }
 
         if (!empty($constraints)) {
             $query->matching($query->logicalAnd($constraints));

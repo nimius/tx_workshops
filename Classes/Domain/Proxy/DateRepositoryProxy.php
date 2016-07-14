@@ -23,6 +23,7 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
  */
 class DateRepositoryProxy extends AbstractRepositoryProxy
 {
+
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Workshop Workshop to filter dates for.
      */
@@ -37,6 +38,11 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
      * @var integer
      */
     protected $recordLimit;
+
+    /**
+     * @var bool
+     */
+    protected $hideChildDates = TRUE;
 
 
     /**
@@ -105,4 +111,19 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
     {
         $this->recordLimit = (int)$recordLimit;
     }
+
+    /**
+     * @param bool $hide
+     * @return void
+     */
+    public function setHideChildDates($hide)
+    {
+        $this->hideChildDates = $hide;
+    }
+
+    public function getHideChildDates()
+    {
+        return $this->hideChildDates;
+    }
+
 }
