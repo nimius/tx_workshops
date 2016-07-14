@@ -54,7 +54,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
         $this->settings = $this->prepareSettings($localSettings);
         unset($workshop, $localSettings);
         $this->cObj = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Frontend\\ContentObject\\ContentObjectRenderer');
-
+        
         switch($this->workshop->getType()) {
             case Workshop::TYPE_DEFAULT:
                 $this->configureForDefaultType($configuration);
@@ -63,6 +63,10 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
             case Workshop::TYPE_EXTERNAL:
                 $this->configureForExternalType($configuration);
                 break;
+        }
+        
+        if ($typolinkConfiguration['returnLast'] == 'configuration') {
+            return $configuration;
         }
 
         $url = $this->cObj->typoLink_URL($configuration);
@@ -83,6 +87,23 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
      */
     protected function prepareSettings($localSettings)
     {
+        /*
+         * If no targetPid is given, set the current page as a default value.
+         * This allows overriding the target page in e.g. BE context.
+         */
+        if ((int)$localSettings['targetPid'] == 0) {
+            $localSettings['targetPid'] = $GLOBALS['TSFE']->id;
+        }
+
+        /*
+         * Set a default target plugin signature if none is given. This
+         * option is useful when e.g. in BE context where no flexform
+         * settings for a detail page is present.
+         */
+        if (empty($localSettings['targetPlugin'])) {
+            $localSettings['targetPlugin'] = 'tx_workshops_workshops';
+        }
+
         $typoscriptSettings = \NIMIUS\Workshops\Utility\ConfigurationUtility::getTyposcriptConfiguration();
         return array_merge($typoscriptSettings, $localSettings);
     }
@@ -123,9 +144,9 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
             }
         }
 
-        // If nothing is defined, link to the current page.
-        $configuration['parameter'] = $GLOBALS['TSFE']->id;
-        $configuration['additionalParams'] .= '&tx_workshops_workshops[workshop]=' . $this->workshop->getUid();
+        // If nothing is defined, link to the defined target page and plugin signature combination.
+        $configuration['parameter'] = $this->settings['targetPid'];
+        $configuration['additionalParams'] .= '&' . $this->settings['targetPlugin'] . '[workshop]=' . $this->workshop->getUid();
     }
 
     /**
