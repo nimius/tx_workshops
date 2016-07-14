@@ -138,3 +138,7 @@ CREATE TABLE sys_category (
 
     KEY tx_workshops_detail_pid (tx_workshops_detail_pid)
 );
+
+CREATE TABLE tx_kesearch_indexerconfig (
+	tx_workshops_targetpid_plugin varchar(40) default NULL
+);
