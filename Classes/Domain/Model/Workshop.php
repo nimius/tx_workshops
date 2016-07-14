@@ -16,13 +16,13 @@ namespace NIMIUS\Workshops\Domain\Model;
 
 use NIMIUS\Workshops\Domain\Model\Category;
 use NIMIUS\Workshops\Domain\Model\Date;
-
+use NIMIUS\Workshops\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Workshop model.
  */
-class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Workshop extends AbstractEntity
 {
 
     /**

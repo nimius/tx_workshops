@@ -14,10 +14,12 @@ namespace NIMIUS\Workshops\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\DomainObject\AbstractEntity;
+
 /**
  * Instructor model.
  */
-class Instructor extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Instructor extends AbstractEntity
 {
     /**
      * @var string

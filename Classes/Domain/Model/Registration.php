@@ -14,12 +14,14 @@ namespace NIMIUS\Workshops\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\DomainObject\AbstractEntity;
+
 /**
  * The registration model.
  *
  * This is basically the join model between attendee and workshop date.
  */
-class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Registration extends AbstractEntity
 {
 
     /**

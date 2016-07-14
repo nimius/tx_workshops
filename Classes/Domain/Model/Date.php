@@ -14,13 +14,15 @@ namespace NIMIUS\Workshops\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\DomainObject\AbstractEntity;
+
 /**
  * Date model.
  *
  * @todo field "takes place" yes/no
  * @todo change "takes place" if minimum attendance reached
  */
-class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Date extends AbstractEntity
 {
 
     /**

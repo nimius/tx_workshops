@@ -1,7 +1,7 @@
 <?php
-namespace NIMIUS\Workshops\Domain\Model;
+namespace NIMIUS\Workshops\DomainObject;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -14,27 +14,17 @@ namespace NIMIUS\Workshops\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
-use NIMIUS\Workshops\DomainObject\AbstractEntity;
-
 /**
- * Language model.
- *
- * Represents sys_language.
+ * Abstract entity.
  */
-class Language extends AbstractEntity
+abstract class AbstractEntity extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
 
-    /**
-     * @var string 2 char ISO code.
-     */
-    protected $languageIsocode;
-
-
-    /**
-     * @return string
-     */
-    public function getLanguageIsoCode() {
-        return $this->languageIsocode;
-    }
+	/**
+	 * @return integer
+	 */
+	public function getSysLanguageUid() {
+		return $this->_languageUid;
+	}
 
 }
