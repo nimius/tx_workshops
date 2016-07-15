@@ -76,7 +76,12 @@ class DateRepository extends Repository
             unset($categoriesConstraints);
         }
         if ($proxy->getHideChildDates()) {
+            // Child dates obviously have a parent set.
             $constraints[] = $query->equals('parent', 0);
+
+            // Additional failproofing if dates are available without a
+            // valid workshop, or a workshop had dates and switched type.
+            $constraints[] = $query->greaterThan('workshop.uid', 0);
         }
 
         if (!empty($constraints)) {
