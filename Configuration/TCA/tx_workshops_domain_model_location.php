@@ -21,6 +21,9 @@ $TCA['tx_workshops_domain_model_location'] = [
 		'label' => 'name',
 		'dividers2tabs' => TRUE,
 		'searchFields' => 'name, address, city',
+        'languageField' => 'sys_language_uid',
+        'transOrigPointerField' => 'l10n_parent',
+        'transOrigDiffSourceField' => 'l10n_diffsource',
 		'iconfile' => 'EXT:workshops/Resources/Public/Icons/Map.png'
 	],
 	'interface' => [
@@ -87,8 +90,46 @@ $TCA['tx_workshops_domain_model_location'] = [
 				'readOnly' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('geocoding')
             ],
 		],
+        'sys_language_uid' => [
+            'exclude' => 1,
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'special' => 'languages',
+                'items' => [
+                    [
+                        'LLL:EXT:lang/locallang_general.xlf:LGL.allLanguages',
+                        -1,
+                        'flags-multiple'
+                    ],
+                ],
+                'default' => 0,
+            ]
+        ],
+        'l10n_parent' => [
+            'displayCond' => 'FIELD:sys_language_uid:>:0',
+            'exclude' => 1,
+            'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.l18n_parent',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    ['', 0],
+                ],
+                'foreign_table' => 'tx_workshops_domain_model_location',
+                'foreign_table_where' => 'AND tx_workshops_domain_model_location.pid=###CURRENT_PID### AND tx_workshops_domain_model_location.sys_language_uid IN (-1,0)',
+                'showIconTable' => FALSE
+            ]
+        ],
+        'l10n_diffsource' => [
+            'config' => [
+                'type' => 'passthrough',
+                'default' => ''
+            ]
+        ],
 	],
 	'types' => [
-		'0' => ['showitem' => 'name, address, zip, city, country, latitude, longitude']
+		'0' => ['showitem' => 'sys_language_uid, l10n_parent, name, address, zip, city, country, latitude, longitude']
     ]
 ];

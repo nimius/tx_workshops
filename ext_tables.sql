@@ -85,8 +85,13 @@ CREATE TABLE tx_workshops_domain_model_location (
     latitude decimal(10,8) signed NULL default NULL,
     longitude decimal(11,8) signed NULL default NULL,
 
+    sys_language_uid int(11) DEFAULT '0' NOT NULL,
+    l10n_parent int(11) DEFAULT '0' NOT NULL,
+    l10n_diffsource mediumtext,
+
     PRIMARY KEY (uid),
-    KEY parent (pid)
+    KEY parent (pid),
+	KEY language (sys_language_uid,l10n_parent)
 );
 
 CREATE TABLE tx_workshops_domain_model_instructor (
