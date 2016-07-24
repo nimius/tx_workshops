@@ -93,7 +93,7 @@ class DataMapperHook
         }
 
         // fetching the important information from the database
-        $record = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('address, zip, city, country', $table, 'uid = ' . (int)$uid);
+        $record = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('name, address, zip, city, country', $table, 'uid = ' . (int)$uid);
         if (count($record) === 0) {
             $logManager->getLogger(__CLASS__)->warning('Cannot geocode: record ' . $uid . ' does not exist in table ' . $table);
             error_log('Cannot geocode: record ' . $uid . ' does not exist in table ' . $table);
@@ -115,8 +115,12 @@ class DataMapperHook
         // trying to initialize a non-existing class with objectManager will return null, but using Foo:class
         // if the class is non-existent will yield a PHP fatal error
         $geoService = ObjectUtility::getObjectManager()->get('B13\\Geocoding\\Service\\GeoService');
+        $street = $record['address'];
+        if (!empty($record['name'])) {
+            $street = $record['name'] . ', ' . $street;
+        }
         $coordinates = $geoService->getCoordinatesForAddress(
-            $record['street'],
+            $street,
             $record['zip'],
             $record['city'],
             $country
