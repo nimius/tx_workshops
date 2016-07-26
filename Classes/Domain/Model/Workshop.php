@@ -124,6 +124,15 @@ class Workshop extends AbstractEntity
     {
         return $this->hidden;
     }
+
+    /**
+     * @param boolean $hidden
+     * @return void
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
+    }
     
     /**
      * @return integer
@@ -131,6 +140,15 @@ class Workshop extends AbstractEntity
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * @param integer $type
+     * @return void
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
     
     /**
@@ -156,6 +174,15 @@ class Workshop extends AbstractEntity
     {
         return $this->identifier;
     }
+
+    /**
+     * @param string $identifier
+     * @return void
+     */
+    public function setIdentifier($identifier)
+    {
+        return $this->identifier = $identifier;
+    }
     
     /**
      * @return string
@@ -163,6 +190,15 @@ class Workshop extends AbstractEntity
     public function getInternalUrl()
     {
         return $this->internalUrl;
+    }
+
+    /**
+     * @param string $url
+     * @return void
+     */
+    public function setInternalUrl($url)
+    {
+        $this->internalUrl = $url;
     }
     
     /**
@@ -172,6 +208,15 @@ class Workshop extends AbstractEntity
     {
         return $this->externalUrl;
     }
+
+    /**
+     * @param string $url
+     * @return void
+     */
+    public function setExternalUrl($url)
+    {
+        $this->externalUrl = $url;
+    }
     
     /**
      * @return string
@@ -179,6 +224,15 @@ class Workshop extends AbstractEntity
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
     
     /**
@@ -188,6 +242,15 @@ class Workshop extends AbstractEntity
     {
         return $this->abstract;
     }
+
+    /**
+     * @param string $abstract
+     * @return void
+     */
+    public function setAbstract($abstract)
+    {
+        $this->abstract = $abstract;
+    }
     
     /**
      * @return string
@@ -196,10 +259,17 @@ class Workshop extends AbstractEntity
     {
         return $this->description;
     }
+
+    /**
+     * @param string $description
+     * @return void
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
     
     /**
-     * Get all dates.
-     *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Date>
      */
     public function getDates()

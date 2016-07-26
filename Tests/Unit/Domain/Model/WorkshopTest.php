@@ -14,19 +14,42 @@ namespace NIMIUS\Workshops\Test\Unit\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
-class WorkshopTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+// Manually requiring custom class as it is not autoloaded in the bootstrap process.
+require_once __DIR__ . '/../../../AbstractUnitTestCase.php';
+
+use NIMIUS\Workshops\Domain\Model\Category;
+use NIMIUS\Workshops\Domain\Model\Workshop;
+
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
+/**
+ * Unit test case for Workshop model.
+ */
+class WorkshopTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
+
     /**
-     * @var NIMIUS\Workshops\Domain\Model\Workshop
+     * @var \NIMIUS\Workshops\Domain\Model\Workshop
      */
     protected $subject;
 
-    /**
-     * @var TYPO3\CMS\Extbase\Object\ObjectManagerInterface
-     * @inject
-     */
-    protected $objectManager;
 
+    /**
+     * Test getter/setter for properties.
+     *
+     * @test
+     */
+    public function testSettersAndGettersForProperties()
+    {
+        $this->_testGetterAndSetterForProperty('hidden', true);
+        $this->_testGetterAndSetterForProperty('type', Workshop::TYPE_EXTERNAL);
+        $this->_testGetterAndSetterForProperty('identifier', 'test-001');
+        $this->_testGetterAndSetterForProperty('internalUrl', '23');
+        $this->_testGetterAndSetterForProperty('externalUrl', 'http://example.com');
+        $this->_testGetterAndSetterForProperty('name', 'Test Workshop');
+        $this->_testGetterAndSetterForProperty('abstract', 'Test Workshop abstract');
+        $this->_testGetterAndSetterForProperty('description', 'Workshop description');
+    }
 
     /**
      * Test if getFirstCategory() returns an ObjectStorage if no
@@ -34,32 +57,33 @@ class WorkshopTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      *
      * @test
      */
-    public function getFirstCategoryReturnsObjectStorageWhenNoCategoryIsAssigned() {
-        $this->assertEquals(new \TYPO3\CMS\Extbase\Persistence\ObjectStorage, $this->subject->getCategories());
+    public function getFirstCategoryReturnsObjectStorageWhenNoCategoryIsAssigned()
+    {
+        $this->assertEquals(new ObjectStorage, $this->subject->getCategories());
     }
-    
+
     /**
      * Test if getFirstCategory() returns the first category if
      * multiple categories are assigned to a workshop.
      *
      * @test
      */
-    public function getFirstCategoryReturnsTheFirstCategoryWhenMultipleCategoriesAreAssigned() {
-        $category1 = new \NIMIUS\Workshops\Domain\Model\Category;
+    public function getFirstCategoryReturnsTheFirstCategoryWhenMultipleCategoriesAreAssigned()
+    {
+        $category1 = new Category;
         $this->subject->addCategory($category1);
-        $category2 = new \NIMIUS\Workshops\Domain\Model\Category;
+        $category2 = new Category;
         $this->subject->addCategory($category2);
-        
         $this->assertEquals($category1, $this->subject->getFirstCategory());
     }
-    
-    
+
+
     /**
      * Set up the test case.
      */
-    protected function setUp() {
-        $this->objectManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Object\\ObjectManager');
-        $this->subject = new \NIMIUS\Workshops\Domain\Model\Workshop;
+    protected function setUp()
+    {
+        $this->subject = new Workshop;
     }
 
 }

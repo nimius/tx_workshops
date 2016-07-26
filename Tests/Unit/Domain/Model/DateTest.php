@@ -14,6 +14,9 @@ namespace NIMIUS\Workshops\Test\Unit\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+// Manually requiring custom class as it is not autoloaded in the bootstrap process.
+require_once __DIR__ . '/../../../AbstractUnitTestCase.php';
+
 use NIMIUS\Workshops\Domain\Model\Date;
 use NIMIUS\Workshops\Domain\Model\Instructor;
 use NIMIUS\Workshops\Domain\Model\Location;
@@ -26,7 +29,7 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 /**
  * Unit test case for Date model.
  */
-class DateTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class DateTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
 
     /**
