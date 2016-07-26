@@ -81,7 +81,7 @@ class DateRepository extends Repository
 
             // Additional failproofing if dates are available without a
             // valid workshop, or a workshop had dates and switched type.
-            $constraints[] = $query->greaterThan('workshop.uid', 0);
+            $constraints[] = $query->greaterThan('workshop', 0);
         }
 
         if (!empty($constraints)) {

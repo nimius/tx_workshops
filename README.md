@@ -1,5 +1,7 @@
 # tx_workshops
-A TYPO3 extension.
+A TYPO3 extension to manage workshops (or events, seminars, ...).
+
+[![Build Status](https://travis-ci.org/nimius/tx_workshops.svg)](https://travis-ci.org/nimius/tx_workshops)
 
 ## What does it do?
 tx_workshops provides functionality for managing and displaying workshops, and ships with signup functionality.
