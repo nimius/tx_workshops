@@ -1,4 +1,5 @@
 language: php
+
 php:
   - 5.5
   - 5.6
@@ -16,7 +17,7 @@ addons:
 
 cache:
   directories:
-    - $HOME/.composer/cache
+    - "$HOME/.composer/cache"
 
 before_install:
   - phpenv config-rm xdebug.ini
@@ -33,3 +34,7 @@ script:
     echo;
     echo "Running unit tests";
     .Build/bin/phpunit -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/UnitTests.xml Tests/Unit/
+
+notifications:
+  slack:
+    secure: jmH6uld4EuFJA/E2g4v2ulSHqCDtZjgoLBIdVWt8AVPLUDbzScLmOUWt2z0IHyZ1T300tpY5SjwXJZ8OkBKhzr0WSzRkdsDU/M6c5HcmdrzgLcbFjvhhy5OCh6ijTFB9/eKZiLxHU2nkvk5ekf1bMaJBn6/j911Dpel7tXuegaYS6CnTOoU8za9ruNt+FnNExSFyO+B8VUsqSwRdqLMQLejNPNcm027e+t1W4CJlWgA8r9ZRTScB78UzC8yqNf4XsyyIDjtbtw0G60I/v6g7XOtXgAJu84LvMFoYfi3GjeEYmGT+n+E7HVkPZVr5CrLNA46a5mTbfdBzCFezrXCha/r46FTKdxB/5sU2FaCp70WaOfH6fUGZ5Vxh/Hc0/drgYkerDFKqC/T+AETX3rGwzTAfynT33/kQMiFQ2K93wPy3eYIdfL4u3RXk1HFb1w9k8ez9ETjl7SZXE9/vsXAGpIeeXw2MEKtYkHuj+aT5NRgKwaKxrV110mGS1sBo7cs/ARtMdw+j4g2SPXkNT0YP9qZvXTrO/YOm5fsVsbKSiP5y/h2JaTi68a4s1897asy/UxKGx8APZts66azbtr4oxinh8yzVHPDiwpNllR7u1Bi5dOwRC9Tn/dzlIe4R7cPtN1QNIJ/v9MS1PQ+1JNEO8xVG+mIs0MMg47w0wpMaESA=
