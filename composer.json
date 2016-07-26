@@ -1,31 +1,56 @@
 {
-  "name": "nimius/workshops",
-  "type": "typo3-cms-extension",
-  "description": "Flexible workshop and courses management",
-  "keywords": [
-    "TYPO3", "extension", "workshops", "courses", "seminars"
-  ],
-  "homepage": "https://github.com/nimius/tx_workshops",
-  "authors": [
-    {
-      "name": "NIMIUS",
-      "role": "Developer",
-      "homepage": "http://nimius.net"
-    }
-  ],
-  "repositories": [
-    {
-      "type": "composer",
-      "url": "https://composer.typo3.org"
-    }
-  ],
-  "license": "GPL-2.0+",
-  "require": {
-    "typo3/cms-core": ">=7.6.0,<8.3",
-    "typo3-ter/static-info-tables": ">=6.3"
-  },
-  "replace": {
-    "workshops": "self.version",
-    "typo3-ter/workshops": "self.version"
-  }
+	"name": "nimius/workshops",
+	"type": "typo3-cms-extension",
+	"description": "Flexible workshop and courses management",
+	"keywords": [
+		"TYPO3", "extension", "workshops", "courses", "seminars"
+	],
+	"homepage": "https://github.com/nimius/tx_workshops",
+	"authors": [
+		{
+			"name": "NIMIUS",
+			"role": "Developer",
+			"homepage": "http://nimius.net"
+		}
+	],
+	"repositories": [
+		{
+			"type": "composer",
+			"url": "https://composer.typo3.org"
+		}
+	],
+	"license": "GPL-2.0+",
+	"require": {
+		"typo3/cms-core": ">=7.6.0,<8.3",
+		"typo3-ter/static-info-tables": ">=6.3"
+	},
+	"require-dev": {
+		"phpunit/phpunit": "~4.8.0"
+	},
+	"replace": {
+		"workshops": "self.version",
+		"typo3-ter/workshops": "self.version"
+	},
+	"config": {
+		"vendor-dir": ".Build/vendor",
+		"bin-dir": ".Build/bin"
+	},
+	"extra": {
+		"typo3/cms": {
+			"cms-package-dir": "{$vendor-dir}/typo3/cms",
+			"web-dir": ".Build/Web"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"NIMIUS\\Workshops\\": "Classes"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
+			"NIMIUS\\Workshops\\Tests\\": "Tests",
+			"TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/",
+			"TYPO3\\CMS\\Fluid\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/fluid/Tests/"
+		}
+	}
 }
