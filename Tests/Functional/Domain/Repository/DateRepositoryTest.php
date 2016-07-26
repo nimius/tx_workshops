@@ -82,12 +82,14 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     public function findByProxyRespectsStoragePid()
     {
         $date = $this->createDate();
+        $date->setWorkshop($this->createWorkshop());
         $date->setPid(8);
         $this->dateRepository->add($date);
         $this->persistenceManager->persistAll();
         
         $proxy = $this->createProxy();
         $proxy->setPid(8);
+        $proxy->setHidePastDates(false);
         
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 1);
@@ -101,6 +103,7 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     public function findByProxyRespectsHidePastDates()
     {
         $date = $this->createDate();
+        $date->setWorkshop($this->createWorkshop());
         $date->setEndAt(strtotime('-2 days'));
         $this->dateRepository->add($date);
         $this->persistenceManager->persistAll();
@@ -123,6 +126,7 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     public function findByProxyRespectsHideAlreadyStartedDates()
     {
         $date = $this->createDate();
+        $date->setWorkshop($this->createWorkshop());
         $date->setBeginAt(strtotime('-2 days'));
         $this->dateRepository->add($date);
         $this->persistenceManager->persistAll();
@@ -145,14 +149,17 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     public function findByProxyRespectsWithinDaysFromNow()
     {
         $date = $this->createDate();
+        $date->setWorkshop($this->createWorkshop());
         $date->setBeginAt(strtotime('+2 days'));
         $this->dateRepository->add($date);
         
         $date = $this->createDate();
+        $date->setWorkshop($this->createWorkshop());
         $date->setBeginAt(strtotime('+8 days'));
         $this->dateRepository->add($date);
 
         $date = $this->createDate();
+        $date->setWorkshop($this->createWorkshop());
         $date->setBeginAt(strtotime('+1 year'));
         $this->dateRepository->add($date);
 
@@ -173,7 +180,8 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      *
      * @return DateRepositoryProxy
      */
-    protected function createProxy() {
+    protected function createProxy()
+    {
         return $this->objectManager->get(DateRepositoryProxy::class);
     }
 
@@ -182,8 +190,13 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      *
      * @return Workshop
      */
-    protected function createWorkshop() {
-        return $this->objectManager->get(Workshop::class);
+    protected function createWorkshop()
+    {
+        $workshop = $this->objectManager->get(Workshop::class);
+        $workshop->setPid(2);
+        $this->workshopRepository->add($workshop);
+        $this->persistenceManager->persistAll();
+        return $workshop;
     }
 
     /**
@@ -191,7 +204,8 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      *
      * @return Category
      */
-    protected function createDate() {
+    protected function createDate()
+    {
         return $this->objectManager->get(Date::class);
     }
 

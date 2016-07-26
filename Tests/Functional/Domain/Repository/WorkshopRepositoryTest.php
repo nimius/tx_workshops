@@ -230,7 +230,8 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      *
      * @return WorkshopRepositoryProxy
      */
-    protected function createProxy() {
+    protected function createProxy()
+    {
         return $this->objectManager->get(WorkshopRepositoryProxy::class);
     }
 
@@ -239,7 +240,8 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      *
      * @return Workshop
      */
-    protected function createWorkshop() {
+    protected function createWorkshop()
+    {
         return $this->objectManager->get(Workshop::class);
     }
 
@@ -248,7 +250,8 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      *
      * @return Category
      */
-    protected function createCategory() {
+    protected function createCategory()
+    {
         return $this->objectManager->get(Category::class);
     }
 
@@ -257,7 +260,8 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      *
      * @return Category
      */
-    protected function createDate() {
+    protected function createDate()
+    {
         return $this->objectManager->get(Date::class);
     }
 
