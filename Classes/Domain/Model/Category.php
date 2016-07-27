@@ -19,6 +19,7 @@ namespace NIMIUS\Workshops\Domain\Model;
  */
 class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
 {
+
     /**
      * @var integer
      */
@@ -39,9 +40,29 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
     }
 
     /**
+     * @param integer $pid
+     * @return void
+     */
+    public function setWorkshopsDetailPid($pid)
+    {
+        $this->txWorkshopsDetailPid = $pid;
+    }
+
+    /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage
      */
-    public function getWorkshopsImages() {
+    public function getWorkshopsImages()
+    {
         return $this->txWorkshopsImages;
     }
+
+    /**
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage|null $images
+     * @return void
+     */
+    public function setWorkshopsImages($images)
+    {
+        $this->txWorkshopsImages = $images;
+    }
+
 }
