@@ -28,7 +28,7 @@ class WorkshopRepositoryProxy extends AbstractRepositoryProxy
     protected $hideWorkshopsWithoutUpcomingDates = FALSE;
 
     /**
-     * @var array Workshop types to filter for.
+     * @var array|null Workshop types to filter for.
      */
     protected $types = [];
 
@@ -51,7 +51,7 @@ class WorkshopRepositoryProxy extends AbstractRepositoryProxy
     }
 
     /**
-     * @var array $types
+     * @param array|null $types
      * @return void
      */
     public function setTypes($types)
@@ -60,7 +60,7 @@ class WorkshopRepositoryProxy extends AbstractRepositoryProxy
     }
 
     /**
-     * @return array
+     * @return array|null
      */
     public function getTypes()
     {
