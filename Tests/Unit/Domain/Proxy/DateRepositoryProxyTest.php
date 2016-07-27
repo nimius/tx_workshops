@@ -22,7 +22,7 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
 
 /**
- * Unit test case for DateRepository proxy class.
+ * Unit test case for DateRepositoryProxy class.
  */
 class DateRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {

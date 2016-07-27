@@ -47,7 +47,7 @@ abstract class AbstractRepositoryProxy
     protected $categories;
 
     /**
-     * @var string Category operator (AND, OR, ...).
+     * @var string|null Category operator (AND, OR, ...).
      */
     protected $categoryOperator;
 
@@ -82,6 +82,7 @@ abstract class AbstractRepositoryProxy
      *
      * Settings are coming from e.g. TypoScript or FlexForm.
      *
+     * @todo test coverage
      * @param array $settings
      * @return void
      */
@@ -181,7 +182,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
     public function getCategoryOperator()
     {
@@ -189,7 +190,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @param string $categoryOperator
+     * @param string|null $categoryOperator
      * @return void
      */
     public function setCategoryOperator($categoryOperator)
@@ -198,7 +199,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getSortingField()
     {
@@ -206,7 +207,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @param string $sortingField
+     * @param string|null $sortingField
      * @return void
      */
     public function setSortingField($sortingField)
@@ -223,7 +224,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @param string $sortingType
+     * @param string|null $sortingType
      * @return void
      */
     public function setSortingType($sortingType)
@@ -232,7 +233,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
     public function getWithinDaysFromNow()
     {
@@ -240,12 +241,12 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @param integer $withinDaysFromNow
+     * @param integer|null $withinDaysFromNow
      * @return void
      */
     public function setWithinDaysFromNow($withinDaysFromNow)
     {
-        $this->withinDaysFromNow = (int)$withinDaysFromNow;
+        $this->withinDaysFromNow = $withinDaysFromNow;
     }
 
     /**
