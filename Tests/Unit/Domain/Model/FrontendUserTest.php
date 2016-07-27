@@ -18,7 +18,6 @@ namespace NIMIUS\Workshops\Test\Unit\Domain\Model;
 require_once __DIR__ . '/../../../AbstractUnitTestCase.php';
 
 use NIMIUS\Workshops\Domain\Model\FrontendUser;
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Unit test case for FrontendUser model.
