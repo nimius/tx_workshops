@@ -33,8 +33,18 @@ class Language extends AbstractEntity
     /**
      * @return string
      */
-    public function getLanguageIsoCode() {
+    public function getLanguageIsoCode()
+    {
         return $this->languageIsocode;
+    }
+
+    /**
+     * @param string $code
+     * @return void
+     */
+    public function setLanguageIsoCode($code)
+    {
+        $this->languageIsocode = $code;
     }
 
 }
