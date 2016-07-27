@@ -49,6 +49,10 @@ class WorkshopTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
         $this->_testGetterAndSetterForProperty('name', 'Test Workshop');
         $this->_testGetterAndSetterForProperty('abstract', 'Test Workshop abstract');
         $this->_testGetterAndSetterForProperty('description', 'Workshop description');
+        $this->_testGetterAndSetterForProperty('categories', (new ObjectStorage));
+        $this->_testGetterAndSetterForProperty('relatedWorkshops', (new ObjectStorage));
+        $this->_testGetterAndSetterForProperty('images', (new ObjectStorage));
+        $this->_testGetterAndSetterForProperty('files', (new ObjectStorage));
     }
 
     /**
@@ -60,6 +64,18 @@ class WorkshopTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
     public function getFirstCategoryReturnsObjectStorageWhenNoCategoryIsAssigned()
     {
         $this->assertEquals(new ObjectStorage, $this->subject->getCategories());
+    }
+
+    /**
+     * Test if addCategory() adds a category
+     *
+     * @test
+     */
+    public function addCategoryAddsACategory()
+    {
+        $categoriesCount = count($this->subject->getCategories());
+        $this->subject->addCategory((new Category));
+        $this->assertEquals(($categoriesCount + 1), count($this->subject->getCategories()));
     }
 
     /**
@@ -75,6 +91,28 @@ class WorkshopTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
         $category2 = new Category;
         $this->subject->addCategory($category2);
         $this->assertEquals($category1, $this->subject->getFirstCategory());
+    }
+
+    /**
+     * Test if getIsDefault() returns true if type is set to default.
+     *
+     * @test
+     */
+    public function getIsDefaultReturnsTrueIfTypeIsSetToDefault()
+    {
+        $this->subject->setType(Workshop::TYPE_DEFAULT);
+        $this->assertEquals(true, $this->subject->getIsDefault());
+    }
+
+    /**
+     * Test if getIsExternal() returns true if type is set to external.
+     *
+     * @test
+     */
+    public function getIsExternalReturnsTrueIfTypeIsSetToExternal()
+    {
+        $this->subject->setType(Workshop::TYPE_EXTERNAL);
+        $this->assertEquals(true, $this->subject->getIsExternal());
     }
 
 

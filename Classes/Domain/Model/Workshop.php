@@ -278,9 +278,8 @@ class Workshop extends AbstractEntity
     }
     
     /**
-     * Adds a date.
-     *
      * @param $date \NIMIUS\Workshops\Domain\Model\Date
+     * @return void
      */
     public function addDate(Date $date)
     {
@@ -288,19 +287,25 @@ class Workshop extends AbstractEntity
     }
     
     /**
-     * Get all categories.
-     *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Category>
      */
     public function getCategories()
     {
         return $this->categories;
     }
+
+    /**
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories
+     * @return void
+     */
+    public function setCategories(ObjectStorage $categories)
+    {
+        $this->categories = $categories;
+    }
     
     /**
-     * Adds a category.
-     *
      * @param $category \NIMIUS\Workshops\Domain\Model\Category
+     * @return void
      */
     public function addCategory(Category $category)
     {
@@ -308,8 +313,6 @@ class Workshop extends AbstractEntity
     }
     
     /**
-     * Get all related workshops.
-     *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Workshop>
      */
     public function getRelatedWorkshops()
@@ -318,8 +321,15 @@ class Workshop extends AbstractEntity
     }
 
     /**
-     * Get all images.
-     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return void
+     */
+    public function setRelatedWorkshops(ObjectStorage $relatedWorkshops)
+    {
+        return $this->relatedWorkshops = $relatedWorkshops;
+    }
+
+    /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
     public function getImages()
@@ -328,8 +338,15 @@ class Workshop extends AbstractEntity
     }
 
     /**
-     * Get all files.
-     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return void
+     */
+    public function setImages(ObjectStorage $images)
+    {
+        $this->images = $images;
+    }
+
+    /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
     public function getFiles()
@@ -338,8 +355,15 @@ class Workshop extends AbstractEntity
     }
 
     /**
-     * Get the first category.
-     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $files
+     * @return
+     */
+    public function setFiles(ObjectStorage $files)
+    {
+        $this->files = $files;
+    }
+
+    /**
      * @return \NIMIUS\Workshops\Domain\Model\Category
      */
     public function getFirstCategory()

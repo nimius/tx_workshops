@@ -355,21 +355,4 @@ class DateTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
         $this->subject = new Date;
     }
 
-    /**
-     * Helper to test a property getter and setter.
-     *
-     * The name is underscored to prevent phpunit calling it as a test itself.
-     *
-     * @param string $property
-     * @param mixed $value
-     * @return void
-     */
-    protected function _testGetterAndSetterForProperty($property, $value)
-    {
-        $setter = 'set' . ucfirst($property);
-        $getter = 'get' . ucfirst($property);
-        $this->subject->{$setter}($value);
-        $this->assertEquals($value, $this->subject->{$getter}());
-    }
-
 }
