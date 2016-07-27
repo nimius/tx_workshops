@@ -25,7 +25,6 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
 
 use SJBR\StaticInfoTables\Domain\Model\Country;
 
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
