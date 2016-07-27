@@ -15,6 +15,7 @@ namespace NIMIUS\Workshops\Domain\Model;
  */
 
 use NIMIUS\Workshops\DomainObject\AbstractEntity;
+use SJBR\StaticInfoTables\Domain\Model\Country;
 
 /**
  * Location model.
@@ -66,6 +67,15 @@ class Location extends AbstractEntity
     {
         return $this->name;
     }
+
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
     
     /**
      * @return string
@@ -73,6 +83,15 @@ class Location extends AbstractEntity
     public function getAddress()
     {
         return $this->address;
+    }
+
+    /**
+     * @param string $address
+     * @return void
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
     }
 
     /**
@@ -94,6 +113,15 @@ class Location extends AbstractEntity
     {
         return $this->zip;
     }
+
+    /**
+     * @param string $zip
+     * @return void
+     */
+    public function setZip($zip)
+    {
+        $this->zip = $zip;
+    }
     
     /**
      * @return string
@@ -101,6 +129,15 @@ class Location extends AbstractEntity
     public function getCity()
     {
         return $this->city;
+    }
+
+    /**
+     * @param string $city
+     * @return void
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
     }
 
     /**
@@ -112,11 +149,29 @@ class Location extends AbstractEntity
     }
 
     /**
-     * @return float
+     * @param \SJBR\StaticInfoTables\Domain\Model\Country|null $country
+     * @return void
+     */
+    public function setCountry(Country $country = null)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return float|null
      */
     public function getLatitude()
     {
         return $this->latitude;
+    }
+
+    /**
+     * @param float|null $latitude
+     * @return void
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
     }
     
     /**
@@ -125,6 +180,15 @@ class Location extends AbstractEntity
     public function getLongitude()
     {
         return $this->longitude;
+    }
+
+    /**
+     * @param float|null $longitude
+     * @return void
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
     }
 
 }
