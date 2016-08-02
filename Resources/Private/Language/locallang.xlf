@@ -9,6 +9,9 @@
 			<trans-unit id="extconf.locations.enable">
 				<source>Enable Locations feature</source>
 			</trans-unit>
+			<trans-unit id="extconf.locations.alwaysGeocode">
+				<source>Always update latitude/longitude of a location record. If unchecked, geocoding only happens when values are not set.</source>
+			</trans-unit>
 			<trans-unit id="extconf.attendees.maximumAttendance.enable">
 				<source>Enable maximum attendance feature:Enables feature to limit available seats for attendees per
 					workshop date.

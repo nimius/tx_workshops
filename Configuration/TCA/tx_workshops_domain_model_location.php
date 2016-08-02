@@ -77,8 +77,7 @@ $TCA['tx_workshops_domain_model_location'] = [
 			'config' => [
 				'type' => 'input',
 				'max'  => 12,
-				'eval' => 'trim',
-				'readOnly' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('geocoding')
+				'eval' => 'trim'
             ],
 		],
 		'longitude' => [
@@ -86,8 +85,7 @@ $TCA['tx_workshops_domain_model_location'] = [
 			'config' => [
 				'type' => 'input',
 				'max'  => 12,
-				'eval' => 'trim',
-				'readOnly' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('geocoding')
+				'eval' => 'trim'
             ],
 		],
         'sys_language_uid' => [
