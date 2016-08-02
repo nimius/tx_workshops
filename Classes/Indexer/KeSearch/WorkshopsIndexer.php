@@ -17,7 +17,8 @@ namespace NIMIUS\Workshops\Indexer\KeSearch;
 use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Domain\Proxy\WorkshopRepositoryProxy;
 use NIMIUS\Workshops\Indexer\AbstractIndexer;
-use NIMIUS\Workshops\ViewHelpers\LinkViewHelper;
+use NIMIUS\Workshops\Service\WorkshopUrlService;
+
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
@@ -71,15 +72,17 @@ class WorkshopsIndexer extends AbstractIndexer
 
         $workshops = $this->workshopRepository->findByProxy($proxy);
         foreach($workshops as $workshop) {
-            $linkViewHelper = $this->objectManager->get(LinkViewHelper::class);
-            $linkConfiguration = $linkViewHelper->render(
-                $workshop, 
-                [
-                    'targetPid' => (int)$indexerConfiguration['targetpid'],
-                    'targetPlugin' => $indexerConfiguration['tx_workshops_targetpid_plugin']
-                ],
-                ['returnLast' => 'configuration']
-            );
+            $urlService = $this->objectManager->get(WorkshopUrlService::class);
+            $urlService->setObject($workshop);
+
+            $urlSettings = $urlService->getSettings();
+            $urlSettings['targetPid'] = (int)$indexerConfiguration['targetpid'];
+            $urlSettings['targetPlugin'] = $indexerConfiguration['tx_workshops_targetpid_plugin'];    
+            $urlService->setSettings($urlSettings);
+            unset($urlSettings);
+
+            $urlService->setTypolinkConfiguration(['returnLast' => 'configuration']);
+            $urlConfiguration = $urlService->render();
             
             $indexContent = $workshop->getName();
             $indexContent .= "\n";
@@ -96,7 +99,7 @@ class WorkshopsIndexer extends AbstractIndexer
 				self::INDEXER_TYPE,
 
 				// Target page of the record's single view.
-				$linkConfiguration['parameter'],
+				$urlConfiguration['parameter'],
 
 				// Indexed content.
 				$indexContent,
