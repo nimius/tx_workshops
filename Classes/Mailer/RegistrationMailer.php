@@ -48,6 +48,15 @@ class RegistrationMailer extends AbstractMailer
             return FALSE;
         }
 
+        /*
+         * TODO FIXME: Currently, all three get the mail in the same language as defined in the
+         * given registration's language, as switching language is not easily possible.
+         * At least the backoffice address should get emails in their preferred language.
+         */
+        if ($registration->getLanguage()) {
+            $this->setLanguage($registration->getLanguage()->getLanguageIsoCode());
+        }
+
         if ((int)$settings['attendee']) {
             try {
                 $body = $this->renderEmailTemplate(
