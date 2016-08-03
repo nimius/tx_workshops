@@ -18,6 +18,7 @@ if (!defined ('TYPO3_MODE')) {
 
 $emConf = \NIMIUS\Workshops\Utility\ConfigurationUtility::getExtensionConfiguration();
 $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
+$languagePath = 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang.xlf:';
 
 /**
  * Register 'Workshops' plugin.
@@ -25,7 +26,7 @@ $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamel
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NIMIUS.' . $_EXTKEY,
     'Workshops',
-    'Workshops system - default plugin'
+    $languagePath . 'plugin.workshops'
 );
 $pluginSignature = strtolower($extensionName) . '_workshops';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
@@ -39,7 +40,7 @@ $pluginSignature = strtolower($extensionName) . '_workshops';
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NIMIUS.' . $_EXTKEY,
     'WorkshopsSingleView',
-    'Workshops system - single view'
+    $languagePath . 'plugin.workshopssingleview'
 );
 $pluginSignature = strtolower($extensionName) . '_workshopssingleview';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
@@ -53,7 +54,7 @@ $pluginSignature = strtolower($extensionName) . '_workshopssingleview';
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NIMIUS.' . $_EXTKEY,
     'Dates',
-    'Workshops system - dates plugin'
+    $languagePath . 'plugin.dates'
 );
 $pluginSignature = strtolower($extensionName) . '_dates';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
@@ -67,7 +68,7 @@ $pluginSignature = strtolower($extensionName) . '_dates';
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NIMIUS.' . $_EXTKEY,
     'UpcomingDatesTeaser',
-    'Workshops system - upcoming dates teaser'
+    $languagePath . 'plugin.upcomingdatesteaser'
 );
 $pluginSignature = strtolower($extensionName) . '_upcomingdatesteaser';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
