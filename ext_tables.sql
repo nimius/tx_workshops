@@ -64,6 +64,7 @@ CREATE TABLE tx_workshops_domain_model_date (
     maximum_attendance_enabled tinyint(1) unsigned default '0' NOT NULL,
     maximum_attendance tinyint(4) unsigned default '0' NOT NULL,
     notes text,
+	updated_at int(11) unsigned DEFAULT '0' NOT NULL,
 
     PRIMARY KEY (uid),
     KEY parent (pid),
@@ -84,8 +85,13 @@ CREATE TABLE tx_workshops_domain_model_location (
     latitude decimal(10,8) signed NULL default NULL,
     longitude decimal(11,8) signed NULL default NULL,
 
+    sys_language_uid int(11) DEFAULT '0' NOT NULL,
+    l10n_parent int(11) DEFAULT '0' NOT NULL,
+    l10n_diffsource mediumtext,
+
     PRIMARY KEY (uid),
-    KEY parent (pid)
+    KEY parent (pid),
+	KEY language (sys_language_uid,l10n_parent)
 );
 
 CREATE TABLE tx_workshops_domain_model_instructor (
@@ -135,5 +141,9 @@ CREATE TABLE sys_category (
     tx_workshops_detail_pid int(11) unsigned default '0' NOT NULL,
     tx_workshops_images int(11) unsigned default '0' NOT NULL,
 
-    KEY tx_workshops_detail_pid(tx_workshops_detail_pid)
+    KEY tx_workshops_detail_pid (tx_workshops_detail_pid)
+);
+
+CREATE TABLE tx_kesearch_indexerconfig (
+	tx_workshops_targetpid_plugin varchar(40) default NULL
 );

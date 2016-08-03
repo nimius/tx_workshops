@@ -1,5 +1,5 @@
 /**
- * Plugin configuration
+ * Workshops plugin configuration.
  */
 plugin.tx_workshops {
 	view {
@@ -31,6 +31,11 @@ plugin.tx_workshops {
 				
 				instructor = 0
 				instructor.subject = 
+                
+                backOffice = 0
+                backOffice {
+                    recipients = 
+                }
 			}
 			
 			validation {
@@ -45,12 +50,19 @@ plugin.tx_workshops {
 		}
 		
 		form.appendToLabelIfRequiredField = 
+		
+		export {
+			iCalendar {
+				businessName = Business Name
+				productName = Product Name
+			}
+		}
 	}
 }
 
 
 /**
- * Backend module configuration
+ * Workshops backend module configuration
  */
 module.tx_workshops < plugin.tx_workshops
 module.tx_workshops {
@@ -63,6 +75,6 @@ module.tx_workshops {
 		mailerRootPath = {$module.tx_workshops.view.mailerRootPath}
 	}
 }
+
 // Referencing settings as they are also used in backend context
 module.tx_workshops.settings =< plugin.tx_workshops.settings
-

@@ -135,3 +135,7 @@ $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['proc
 
 // Register status provider for reports module.
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['reports']['tx_reports']['status']['providers']['EXT:NIMIUS.' . $_EXTKEY][] = \NIMIUS\Workshops\Report\Status\ConfigurationStatus::class;
+
+// Register indexer for ext:ke_search.
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ke_search']['customIndexer'][] = \NIMIUS\Workshops\Indexer\KeSearch\WorkshopsIndexer::class;
+$GLOBALS['TYPO3_CONF_VARS']['EXTCONF']['ke_search']['registerIndexerConfiguration'][] = \NIMIUS\Workshops\Indexer\KeSearch\WorkshopsIndexer::class;

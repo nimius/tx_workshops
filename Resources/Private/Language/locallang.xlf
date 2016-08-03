@@ -400,6 +400,9 @@
 			<trans-unit id="mailer.registration.deliverRegistrationConfirmation.instructor.subject">
 				<source>New registration</source>
 			</trans-unit>
+			<trans-unit id="mailer.registration.deliverRegistrationConfirmation.backOffice.subject">
+				<source>New registration</source>
+			</trans-unit>
 
 
 			<!--

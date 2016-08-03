@@ -40,14 +40,13 @@ class WorkshopRepository extends Repository
      */
     public function findByProxy(WorkshopRepositoryProxy $proxy)
     {
-        $constraints = [];
-
-        if ($proxy->getPid()) {
-            $this->setStoragePageId($proxy->getPid());
-        }
-
         $query = $this->createQuery();
-        
+        parent::initializeQuery($query, $proxy);
+
+        $constraints = [];
+        if (count($proxy->getTypes()) > 0) {
+            $constraints[] = $query->in('type', $proxy->getTypes());
+        }
         if ($proxy->getCategories()) {
             $categoriesConstraints = [];
             foreach($proxy->getCategories() as $category) {
@@ -72,21 +71,6 @@ class WorkshopRepository extends Repository
 
         $query->setOrderings([$proxy->getSortingField() => $proxy->getSortingType()]);
         return $query->execute();
-    }
-
-    /**
-     * Find all workshops.
-     *
-     * Overrides already present findAll() from parent class to
-     * enable scoping by page uid.
-     *
-     * @param integer $pid Page uid to constrain queries to.
-     * @return \TYPO3\CMS\Extbase\Persistence\QueryResult
-     */
-    public function findAll($pid = NULL)
-    {
-        $this->setStoragePageId($pid);
-        return parent::findAll();
     }
 
 }

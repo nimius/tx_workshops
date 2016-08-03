@@ -78,5 +78,17 @@ if (!defined('TYPO3_MODE')) {
     ]
 );
 
+/**
+ * Configure 'Exports' plugin.
+ */
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+    'NIMIUS.' . $_EXTKEY,
+    'Exports',
+    [
+        'Exports' => 'iCalendar',
+    ],
+    []
+);
+
 // Register extbase command controllers for delivering notifications.
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \NIMIUS\Workshops\Command\NotificationCommandController::class;

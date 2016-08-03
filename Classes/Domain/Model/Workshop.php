@@ -16,13 +16,13 @@ namespace NIMIUS\Workshops\Domain\Model;
 
 use NIMIUS\Workshops\Domain\Model\Category;
 use NIMIUS\Workshops\Domain\Model\Date;
-
+use NIMIUS\Workshops\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Workshop model.
  */
-class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Workshop extends AbstractEntity
 {
 
     /**
@@ -124,6 +124,15 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->hidden;
     }
+
+    /**
+     * @param boolean $hidden
+     * @return void
+     */
+    public function setHidden($hidden)
+    {
+        $this->hidden = $hidden;
+    }
     
     /**
      * @return integer
@@ -131,6 +140,15 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getType()
     {
         return $this->type;
+    }
+
+    /**
+     * @param integer $type
+     * @return void
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
     
     /**
@@ -156,6 +174,15 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->identifier;
     }
+
+    /**
+     * @param string $identifier
+     * @return void
+     */
+    public function setIdentifier($identifier)
+    {
+        return $this->identifier = $identifier;
+    }
     
     /**
      * @return string
@@ -163,6 +190,15 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getInternalUrl()
     {
         return $this->internalUrl;
+    }
+
+    /**
+     * @param string $url
+     * @return void
+     */
+    public function setInternalUrl($url)
+    {
+        $this->internalUrl = $url;
     }
     
     /**
@@ -172,6 +208,15 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->externalUrl;
     }
+
+    /**
+     * @param string $url
+     * @return void
+     */
+    public function setExternalUrl($url)
+    {
+        $this->externalUrl = $url;
+    }
     
     /**
      * @return string
@@ -179,6 +224,15 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
     }
     
     /**
@@ -188,6 +242,15 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->abstract;
     }
+
+    /**
+     * @param string $abstract
+     * @return void
+     */
+    public function setAbstract($abstract)
+    {
+        $this->abstract = $abstract;
+    }
     
     /**
      * @return string
@@ -196,10 +259,17 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->description;
     }
+
+    /**
+     * @param string $description
+     * @return void
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+    }
     
     /**
-     * Get all dates.
-     *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Date>
      */
     public function getDates()
@@ -208,9 +278,8 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
     
     /**
-     * Adds a date.
-     *
      * @param $date \NIMIUS\Workshops\Domain\Model\Date
+     * @return void
      */
     public function addDate(Date $date)
     {
@@ -218,19 +287,25 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
     
     /**
-     * Get all categories.
-     *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Category>
      */
     public function getCategories()
     {
         return $this->categories;
     }
+
+    /**
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $categories
+     * @return void
+     */
+    public function setCategories(ObjectStorage $categories)
+    {
+        $this->categories = $categories;
+    }
     
     /**
-     * Adds a category.
-     *
      * @param $category \NIMIUS\Workshops\Domain\Model\Category
+     * @return void
      */
     public function addCategory(Category $category)
     {
@@ -238,8 +313,6 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
     
     /**
-     * Get all related workshops.
-     *
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Workshop>
      */
     public function getRelatedWorkshops()
@@ -248,8 +321,15 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get all images.
-     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return void
+     */
+    public function setRelatedWorkshops(ObjectStorage $relatedWorkshops)
+    {
+        return $this->relatedWorkshops = $relatedWorkshops;
+    }
+
+    /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
     public function getImages()
@@ -258,8 +338,15 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get all files.
-     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage
+     * @return void
+     */
+    public function setImages(ObjectStorage $images)
+    {
+        $this->images = $images;
+    }
+
+    /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
     public function getFiles()
@@ -268,8 +355,15 @@ class Workshop extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Get the first category.
-     *
+     * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $files
+     * @return
+     */
+    public function setFiles(ObjectStorage $files)
+    {
+        $this->files = $files;
+    }
+
+    /**
      * @return \NIMIUS\Workshops\Domain\Model\Category
      */
     public function getFirstCategory()

@@ -14,6 +14,7 @@ namespace NIMIUS\Workshops\Domain\Proxy;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\Domain\Model\Location;
 use NIMIUS\Workshops\Domain\Model\Workshop;
 
 /**
@@ -23,13 +24,14 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
  */
 class DateRepositoryProxy extends AbstractRepositoryProxy
 {
+
     /**
-     * @var \NIMIUS\Workshops\Domain\Model\Workshop Workshop to filter dates for.
+     * @var \NIMIUS\Workshops\Domain\Model\Workshop|null Workshop to filter dates for.
      */
     protected $workshop;
 
     /**
-     * @var \NIMIUS\Workshops\Domain\Model\Location Location to filter dates for.
+     * @var \NIMIUS\Workshops\Domain\Model\Location|null Location to filter dates for.
      */
     protected $location;
 
@@ -37,6 +39,11 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
      * @var integer
      */
     protected $recordLimit;
+
+    /**
+     * @var bool
+     */
+    protected $hideChildDates = TRUE;
 
 
     /**
@@ -56,7 +63,7 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
     }
 
     /**
-     * @return NULL|\NIMIUS\Workshops\Domain\Model\Workshop
+     * @return null|\NIMIUS\Workshops\Domain\Model\Workshop
      */
     public function getWorkshop()
     {
@@ -64,16 +71,16 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
     }
 
     /**
-     * @param NULL|\NIMIUS\Workshops\Domain\Model\Workshop $workshop
+     * @param null|\NIMIUS\Workshops\Domain\Model\Workshop $workshop
      * @return void
      */
-    public function setWorkshop($workshop)
+    public function setWorkshop(Workshop $workshop = null)
     {
         $this->workshop = $workshop;
     }
 
     /**
-     * @return NULL|\NIMIUS\Workshops\Domain\Model\Location
+     * @return null|\NIMIUS\Workshops\Domain\Model\Location
      */
     public function getLocation()
     {
@@ -81,16 +88,16 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
     }
 
     /**
-     * @param NULL|\NIMIUS\Workshops\Domain\Model\Location $location
+     * @param null|\NIMIUS\Workshops\Domain\Model\Location $location
      * @return void
      */
-    public function setLocation($location)
+    public function setLocation(Location $location = null)
     {
         $this->location = $location;
     }
 
     /**
-     * @return mixed
+     * @return integer|null
      */
     public function getRecordLimit()
     {
@@ -98,11 +105,29 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
     }
 
     /**
-     * @param integer $recordLimit
+     * @param integer|null $recordLimit
      * @return void
      */
     public function setRecordLimit($recordLimit)
     {
-        $this->recordLimit = (int)$recordLimit;
+        $this->recordLimit = $recordLimit;
     }
+
+    /**
+     * @param bool $hide
+     * @return void
+     */
+    public function setHideChildDates($hide)
+    {
+        $this->hideChildDates = $hide;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getHideChildDates()
+    {
+        return $this->hideChildDates;
+    }
+
 }

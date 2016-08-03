@@ -14,12 +14,14 @@ namespace NIMIUS\Workshops\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\DomainObject\AbstractEntity;
+
 /**
  * Language model.
  *
  * Represents sys_language.
  */
-class Language extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Language extends AbstractEntity
 {
 
     /**
@@ -31,8 +33,18 @@ class Language extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @return string
      */
-    public function getLanguageIsoCode() {
+    public function getLanguageIsoCode()
+    {
         return $this->languageIsocode;
+    }
+
+    /**
+     * @param string $code
+     * @return void
+     */
+    public function setLanguageIsoCode($code)
+    {
+        $this->languageIsocode = $code;
     }
 
 }

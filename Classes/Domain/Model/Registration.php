@@ -14,16 +14,18 @@ namespace NIMIUS\Workshops\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\DomainObject\AbstractEntity;
+
 /**
  * The registration model.
  *
  * This is basically the join model between attendee and workshop date.
  */
-class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Registration extends AbstractEntity
 {
 
     /**
-     * @var \NIMIUS\Workshops\Domain\Model\FrontendUser
+     * @var \NIMIUS\Workshops\Domain\Model\FrontendUser|null
      * @lazy
      */
     protected $frontendUser;
@@ -72,6 +74,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @var string
+     * @todo shouldn't this also map to static info tables?
      */
     protected $country;
 
@@ -106,6 +109,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $confirmationSentAt;
     
     /**
+     * @todo refactor to "createdAt"
      * @var integer
      */
     protected $crdate;
@@ -144,7 +148,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     
     
     /**
-     * @return \NIMIUS\Workshops\Domain\Model\FrontendUser
+     * @return \NIMIUS\Workshops\Domain\Model\FrontendUser|null
      */
     public function getFrontendUser()
     {
@@ -152,7 +156,8 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
     
     /**
-     * @var \NIMIUS\Workshops\Domain\Model\FrontendUser $frontendUser
+     * @param \NIMIUS\Workshops\Domain\Model\FrontendUser $frontendUser
+     * @return void
      */
     public function setFrontendUser(FrontendUser $frontendUser)
     {
@@ -168,7 +173,8 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
     
     /**
-     * @var \NIMIUS\Workshops\Domain\Model\Date $date
+     * @param \NIMIUS\Workshops\Domain\Model\Date $date
+     * @return void
      */
     public function setWorkshopDate(Date $date)
     {
@@ -184,7 +190,8 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
     
     /**
-     * @var \NIMIUS\Workshops\Domain\Model\Language $language
+     * @param \NIMIUS\Workshops\Domain\Model\Language $language
+     * @return void
      */
     public function setLanguage(Language $language)
     {
@@ -193,6 +200,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     
     /**
      * @param string $firstName
+     * @return void
      */
     public function setFirstName($firstName)
     {
@@ -209,6 +217,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param string $lastName
+     * @return void
      */
     public function setLastName($lastName)
     {
@@ -225,6 +234,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param string $company
+     * @return void
      */
     public function setCompany($company)
     {
@@ -241,6 +251,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param string $address
+     * @return void
      */
     public function setAddress($address)
     {
@@ -257,6 +268,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param string $zip
+     * @return void
      */
     public function setZip($zip)
     {
@@ -273,6 +285,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param string $city
+     * @return void
      */
     public function setCity($city)
     {
@@ -289,6 +302,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param string $country
+     * @return void
      */
     public function setCountry($country)
     {
@@ -305,6 +319,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param string $email
+     * @return void
      */
     public function setEmail($email)
     {
@@ -321,6 +336,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param string $telephone
+     * @return void
      */
     public function setTelephone($telephone)
     {
@@ -337,6 +353,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param string $notes
+     * @return void
      */
     public function setNotes($notes)
     {
@@ -361,6 +378,7 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param string $string
+     * @return void
      */
     public function setAdditionalFieldsString($string)
     {
@@ -377,20 +395,22 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param array $fields
+     * @return void
      */
     public function setAdditionalFields($fields)
     {
         $this->setAdditionalFieldsString(serialize($fields));
     }
-    
+
     /**
-     * @param integer
+     * @param integer|null $value
+     * @return void
      */
-    public function setConfirmationSentAt($value)
+    public function setConfirmationSentAt($value = null)
     {
         $this->confirmationSentAt = $value;
     }
-    
+
     /**
      * @return integer
      */
@@ -398,14 +418,22 @@ class Registration extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->confirmationSentAt;
     }
-    
+
     /**
-     * @return integer
+     * @return integer|null
      */
     public function getCreatedAt()
     {
         return $this->crdate;
+    }
 
+    /**
+     * @param integer|null $value
+     * @return integer|null
+     */
+    public function setCreatedAt($value)
+    {
+        $this->crdate = $value;
     }
 
 }

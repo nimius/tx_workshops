@@ -90,7 +90,7 @@ class ConfigurationUtility
         }
         $signature = 'tx_' . $extKey . '.';
         
-        $configuration = ObjectUtility::getConfigurationManager()->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
+        $configuration = self::getFullTypoScript();
         $settings = (array)$configuration['plugin.'][$signature]['settings.'];
 
         // A cObj is only given in some cases, mostly in FE context.
@@ -101,6 +101,16 @@ class ConfigurationUtility
             $settings = array_merge($settings, (array)$flexFormSettings['settings']);
         }
         return $settings;
+    }
+
+    /**
+     * Shorthand to get the full TypoScript.
+     *
+     * @return array
+     */
+    public static function getFullTypoScript()
+    {
+        return ObjectUtility::getConfigurationManager()->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
     }
 
     /**

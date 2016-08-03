@@ -14,13 +14,22 @@ namespace NIMIUS\Workshops\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\DomainObject\AbstractEntity;
+use NIMIUS\Workshops\Domain\Model\Date;
+use NIMIUS\Workshops\Domain\Model\Registration;
+use NIMIUS\Workshops\Domain\Model\Instructor;
+use NIMIUS\Workshops\Domain\Model\Location;
+use NIMIUS\Workshops\Domain\Model\Workshop;
+
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+
 /**
  * Date model.
  *
  * @todo field "takes place" yes/no
  * @todo change "takes place" if minimum attendance reached
  */
-class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Date extends AbstractEntity
 {
 
     /**
@@ -69,23 +78,23 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     const PAYMENT_TYPE_EXTERNAL = 3;
 
     /**
-     * @var \NIMIUS\Workshops\Domain\Model\Workshop
+     * @var \NIMIUS\Workshops\Domain\Model\Workshop|null
      */
     protected $workshop;
 
     /**
-     * @var \NIMIUS\Workshops\Domain\Model\Date
+     * @var \NIMIUS\Workshops\Domain\Model\Date|null
      * @lazy
      */
     protected $parent;
     
     /**
-     * @var \NIMIUS\Workshops\Domain\Model\Location
+     * @var \NIMIUS\Workshops\Domain\Model\Location|null
      */
     protected $location;
 
     /**
-     * @var \NIMIUS\Workshops\Domain\Model\Instructor
+     * @var \NIMIUS\Workshops\Domain\Model\Instructor|null
      */
     protected $instructor;
     
@@ -149,6 +158,11 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * @var integer
      */
+    protected $updatedAt;
+
+    /**
+     * @var integer
+     */
     protected $paymentType;
 
     /**
@@ -167,8 +181,8 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function __construct()
     {
-        $this->registrations = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage;
-        $this->dates = new \TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+        $this->registrations = new ObjectStorage;
+        $this->dates = new ObjectStorage;
     }
     
     /**
@@ -181,6 +195,7 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param integer $type
+     * @return void
      */
     public function setType($type)
     {
@@ -188,7 +203,7 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @return \NIMIUS\Workshops\Domain\Model\Date
+     * @return \NIMIUS\Workshops\Domain\Model\Date|null
      */
     public function getParent()
     {
@@ -196,15 +211,16 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @param \NIMIUS\Workshops\Domain\Model\Date $parent
+     * @param \NIMIUS\Workshops\Domain\Model\Date|null $parent
+     * @return void
      */
-    public function setParent($parent)
+    public function setParent(Date $parent = null)
     {
         $this->parent = $parent;
     }
 
     /**
-     * @return \NIMIUS\Workshops\Domain\Model\Workshop
+     * @return \NIMIUS\Workshops\Domain\Model\Workshop|null
      */
     public function getWorkshop()
     {
@@ -212,15 +228,16 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @param \NIMIUS\Workshops\Domain\Model\Workshop $workshop
+     * @param \NIMIUS\Workshops\Domain\Model\Workshop|null $workshop
+     * @return void
      */
-    public function setWorkshop(\NIMIUS\Workshops\Domain\Model\Workshop $workshop)
+    public function setWorkshop(Workshop $workshop = null)
     {
         $this->workshop = $workshop;
     }
     
     /**
-     * @return \NIMIUS\Workshops\Domain\Model\Location
+     * @return \NIMIUS\Workshops\Domain\Model\Location|null
      */
     public function getLocation()
     {
@@ -228,11 +245,29 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @return \NIMIUS\Workshops\Domain\Model\Instructor
+     * @param \NIMIUS\Workshops\Domain\Model\Location|null $location
+     * @return void
+     */
+    public function setLocation(Location $location = null)
+    {
+        $this->location = $location;
+    }
+
+    /**
+     * @return \NIMIUS\Workshops\Domain\Model\Instructor|null
      */
     public function getInstructor()
     {
         return $this->instructor;
+    }
+
+    /**
+     * @param \NIMIUS\Workshops\Domain\Model\Instructor|null $instructor
+     * @return void
+     */
+    public function setInstructor(Instructor $instructor = null)
+    {
+        $this->instructor = $instructor;
     }
     
     /**
@@ -253,24 +288,29 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param \TYPO3\CMS\Extbase\Persistence\ObjectStorage $dates
+     * @return void
      */
-    public function setDates(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $dates)
+    public function setDates(ObjectStorage $dates)
     {
         $this->dates = $dates;
     }
 
     /**
+     * @todo coverage
      * @param \NIMIUS\Workshops\Domain\Model\Date $date
+     * @return void
      */
-    public function addDate(\NIMIUS\Workshops\Domain\Model\Date $date)
+    public function addDate(Date $date)
     {
         $this->dates->attach($date);
     }
     
     /**
+     * @todo coverage
      * @param \NIMIUS\Workshops\Domain\Model\Registration
+     * @return void
      */
-    public function addRegistration(\NIMIUS\Workshops\Domain\Model\Registration $registration)
+    public function addRegistration(Registration $registration)
     {
         $this->registrations->attach($registration);
     }
@@ -285,6 +325,7 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * @param integer $beginAt
+     * @return void
      */
     public function setBeginAt($beginAt)
     {
@@ -308,6 +349,23 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
+     * @return integer
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updatedAt;
+    }
+
+    /**
+     * @param integer $updatedAt
+     * @return void
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
      * @return bool
      */
     public function getEndsOnSameDay()
@@ -322,6 +380,15 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->notes;
     }
+
+    /**
+     * @param string $notes
+     * @return void
+     */
+    public function setNotes($notes)
+    {
+        $this->notes = $notes;
+    }
     
     /**
      * @return boolean
@@ -333,6 +400,7 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     
     /**
      * @param boolean $value
+     * @return void
      */
     public function setMaximumAttendanceEnabled($value)
     {
@@ -349,6 +417,7 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     
     /**
      * @param integer $value
+     * @return void
      */
     public function setMaximumAttendance($value)
     {
@@ -356,7 +425,7 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
     
     /**
-     * @return mixed An integer if seat restrictions are in place, TRUE otherwise
+     * @return mixed An integer if seat restrictions are in place, TRUE otherwise.
      */
     public function getSeatsAvailable()
     {
@@ -381,7 +450,8 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
     
     /**
-     * @param boolean
+     * @param boolean $value
+     * @return void
      */
     public function setMinimumAttendanceEnabled($value)
     {
@@ -397,7 +467,8 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
     
     /**
-     * @param integer
+     * @param integer $value
+     * @return void
      */
     public function setMinimumAttendance($value)
     {
@@ -447,7 +518,8 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
     
     /**
-     * @param integer
+     * @param integer $value
+     * @return void
      */
     public function setRegistrationDeadlineAt($value)
     {
@@ -491,11 +563,9 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Returns the state of this date. Returns one of the following state constants:
-     * - STATE_ENDED
-     * - STATE_RUNNING
-     * - STATE_UPCOMING
+     * Returns the state of this date.
      *
+     * @todo coverage
      * @return string
      */
     public function getState()
@@ -509,9 +579,10 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * Fake getter for dates, that sorts the dates
-     * TODO find a way of solving the foreign sorting problem in TCA
+     * Fake getter for dates that sorts the dates.
      *
+     * @todo find a way of solving the foreign sorting problem in TCA
+     * @todo coverage
      * @return array
      */
     public function getDatesSorted()
@@ -529,6 +600,15 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getPaymentType()
     {
         return $this->paymentType;
+    }
+
+    /**
+     * @param integer $type
+     * @return void
+     */
+    public function setPaymentType($type)
+    {
+        return $this->paymentType = $type;
     }
 
     /**
@@ -557,11 +637,20 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @return float|NULL
+     * @return float|null
      */
     public function getPrice()
     {
         return $this->price;
+    }
+
+    /**
+     * @param float|null $price
+     * @return void
+     */
+    public function setPrice($price = null)
+    {
+        $this->price = $price;
     }
 
     /**
@@ -570,6 +659,15 @@ class Date extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getExternalPaymentUrl()
     {
         return $this->externalPaymentUrl;
+    }
+
+    /**
+     * @param string $url
+     * @return void
+     */
+    public function setExternalPaymentUrl($url)
+    {
+        $this->externalPaymentUrl = $url;
     }
 
 }

@@ -24,6 +24,7 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
  */
 abstract class AbstractRepositoryProxy
 {
+
     /**
      * @var \NIMIUS\Workshops\Domain\Repository\CategoryRepository
      * @inject
@@ -31,9 +32,14 @@ abstract class AbstractRepositoryProxy
     protected $categoryRepository;
 
     /**
-     * @var integer Storage page id.
+     * @var array Storage page ids.
      */
-    protected $pid;
+    protected $pids = [];
+
+    /**
+     * @var bool Set to ignore storage pid constraints.
+     */
+    protected $ignoreStoragePid = FALSE;
 
     /**
      * @var mixed A traversable object containing \NIMIUS\Workshops\Domain\Model\Category records.
@@ -41,7 +47,7 @@ abstract class AbstractRepositoryProxy
     protected $categories;
 
     /**
-     * @var string Category operator (AND, OR, ...).
+     * @var string|null Category operator (AND, OR, ...).
      */
     protected $categoryOperator;
 
@@ -76,6 +82,7 @@ abstract class AbstractRepositoryProxy
      *
      * Settings are coming from e.g. TypoScript or FlexForm.
      *
+     * @todo test coverage
      * @param array $settings
      * @return void
      */
@@ -111,11 +118,11 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @return mixed
+     * @return array
      */
-    public function getPid()
+    public function getPids()
     {
-        return $this->pid;
+        return $this->pids;
     }
 
     /**
@@ -124,7 +131,16 @@ abstract class AbstractRepositoryProxy
      */
     public function setPid($pid)
     {
-        $this->pid = $pid;
+        $this->setPids([$pid]);
+    }
+
+    /**
+     * @param array $pids
+     * @return void
+     */
+    public function setPids($pids)
+    {
+        $this->pids = $pids;
     }
 
     /**
@@ -166,7 +182,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
     public function getCategoryOperator()
     {
@@ -174,7 +190,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @param string $categoryOperator
+     * @param string|null $categoryOperator
      * @return void
      */
     public function setCategoryOperator($categoryOperator)
@@ -183,7 +199,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @return string
+     * @return string|null
      */
     public function getSortingField()
     {
@@ -191,7 +207,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @param string $sortingField
+     * @param string|null $sortingField
      * @return void
      */
     public function setSortingField($sortingField)
@@ -208,7 +224,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @param string $sortingType
+     * @param string|null $sortingType
      * @return void
      */
     public function setSortingType($sortingType)
@@ -217,7 +233,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @return mixed
+     * @return string|null
      */
     public function getWithinDaysFromNow()
     {
@@ -225,12 +241,12 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @param integer $withinDaysFromNow
+     * @param integer|null $withinDaysFromNow
      * @return void
      */
     public function setWithinDaysFromNow($withinDaysFromNow)
     {
-        $this->withinDaysFromNow = (int)$withinDaysFromNow;
+        $this->withinDaysFromNow = $withinDaysFromNow;
     }
 
     /**
@@ -266,4 +282,22 @@ abstract class AbstractRepositoryProxy
     {
         $this->hideAlreadyStartedDates = (bool)$hideAlreadyStartedDates;
     }
+
+    /**
+     * @return bool
+     */
+    public function getIgnoreStoragePid()
+    {
+        return $this->ignoreStoragePid;
+    }
+
+    /**
+     * @param bool $ignoreStoragePid
+     * @return void
+     */
+    public function setIgnoreStoragePid($ignoreStoragePid)
+    {
+        $this->ignoreStoragePid = (bool)$ignoreStoragePid;
+    }
+
 }

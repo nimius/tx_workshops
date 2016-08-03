@@ -78,11 +78,33 @@ class RegistrationMailer extends AbstractMailer
         if ((int)$settings['instructor']) {
             try {
                 $instructor = $registration->getWorkshopDate()->getInstructor();
-                if (!$instructor) {
-                    return;
+                if ($instructor) {
+                    $body = $this->renderEmailTemplate(
+                        'Registration/Confirmation/Instructor.html',
+                        [
+                            'registration' => $registration,
+                            'date' => $registration->getWorkshopDate(),
+                            'workshop' => $registration->getWorkshopDate()->getWorkshop()
+                        ]
+                    );
+                    $mail = $this->createMailMessage();
+                    if (!empty($settings['mailFromAddress'])) {
+                        $mail->setFrom([$settings['mailFromAddress'] => $settings['mailFromName']]);
+                    }
+                    $mail->setTo([$instructor->getEmail() => $instructor->getName()]);
+                    $mail->setSubject($this->getLanguageLabel('mailer.registration.deliverRegistrationConfirmation.instructor.subject'));
+                    $mail->setBody($body, 'text/html');
+                    $mail->send();
                 }
+            } catch(\Swift_TransportException $e) {
+                // Mail could not be sent.
+            }
+        }        
+        
+        if ((int)$settings['backOffice']) {    
+            try {
                 $body = $this->renderEmailTemplate(
-                    'Registration/Confirmation/Instructor.html',
+                    'Registration/Confirmation/BackOffice.html',
                     [
                         'registration' => $registration,
                         'date' => $registration->getWorkshopDate(),
@@ -93,10 +115,14 @@ class RegistrationMailer extends AbstractMailer
                 if (!empty($settings['mailFromAddress'])) {
                     $mail->setFrom([$settings['mailFromAddress'] => $settings['mailFromName']]);
                 }
-                $mail->setTo([$instructor->getEmail() => $instructor->getName()]);
-                $mail->setSubject($this->getLanguageLabel('mailer.registration.deliverRegistrationConfirmation.instructor.subject'));
+                $mail->setSubject($this->getLanguageLabel('mailer.registration.deliverRegistrationConfirmation.backOffice.subject'));
                 $mail->setBody($body, 'text/html');
-                $mail->send();
+                
+                $recipients = GeneralUtility::trimExplode(',', $settings['backOffice.']['recipients']);
+                foreach ($recipients as $emailAddress) {
+                    $mail->setTo($emailAddress);
+                    $mail->send();
+                }
             } catch(\Swift_TransportException $e) {
                 // Mail could not be sent.
             }

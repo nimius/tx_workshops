@@ -337,6 +337,9 @@
 			<trans-unit id="mailer.registration.deliverRegistrationConfirmation.instructor.subject">
 				<target>Neue Registrierung</target>
 			</trans-unit>
+			<trans-unit id="mailer.registration.deliverRegistrationConfirmation.backOffice.subject">
+				<target>Neue Registrierung</target>
+			</trans-unit>
 
 
 			<!--

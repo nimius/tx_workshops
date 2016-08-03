@@ -59,6 +59,7 @@ class MapViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVie
             . '&z=' . $this->arguments['zoom']
             . '&output=embed';
         
+        $this->tag->forceClosingTag(TRUE);
         $this->tag->addAttribute('src', $query);
         return $this->tag->render();
     }

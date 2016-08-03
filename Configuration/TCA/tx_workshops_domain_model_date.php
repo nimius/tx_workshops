@@ -27,6 +27,7 @@ $TCA['tx_workshops_domain_model_date'] = [
 		'dividers2tabs' => TRUE,
 		'requestUpdate' => 'type, payment_type',
 		'type' => 'type',
+        'tstamp' => 'updated_at',
 		'iconfile' => 'EXT:workshops/Resources/Public/Icons/Time.png'
     ],
 	'interface' => [
@@ -178,6 +179,11 @@ $TCA['tx_workshops_domain_model_date'] = [
 				'type' => 'text',
 				'eval' => 'trim',
 				'rows' => 4,
+            ],
+        ],
+		'updated_at' => [
+			'config' => [
+				'type' => 'passthrough',
             ],
         ],
     ],

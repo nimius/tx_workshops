@@ -14,10 +14,13 @@ namespace NIMIUS\Workshops\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\DomainObject\AbstractEntity;
+use SJBR\StaticInfoTables\Domain\Model\Country;
+
 /**
  * Location model.
  */
-class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Location extends AbstractEntity
 {
 
     /**
@@ -41,6 +44,12 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $city;
 
     /**
+     * @var \SJBR\StaticInfoTables\Domain\Model\Country
+     * @lazy
+     */
+    protected $country;
+
+    /**
      * @var float
      */
     protected $latitude = 0.000000;
@@ -58,6 +67,15 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->name;
     }
+
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
     
     /**
      * @return string
@@ -66,6 +84,27 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->address;
     }
+
+    /**
+     * @param string $address
+     * @return void
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFullAddress()
+    {
+        $values = [
+            $this->name, $this->address,
+            trim("{$this->zip} {$this->city}")
+        ];
+        return implode(', ', $values);
+    }
     
     /**
      * @return string
@@ -73,6 +112,15 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getZip()
     {
         return $this->zip;
+    }
+
+    /**
+     * @param string $zip
+     * @return void
+     */
+    public function setZip($zip)
+    {
+        $this->zip = $zip;
     }
     
     /**
@@ -84,11 +132,46 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     }
 
     /**
-     * @return float
+     * @param string $city
+     * @return void
+     */
+    public function setCity($city)
+    {
+        $this->city = $city;
+    }
+
+    /**
+     * @return \SJBR\StaticInfoTables\Domain\Model\Country
+     */
+    public function getCountry()
+    {
+        return $this->country;
+    }
+
+    /**
+     * @param \SJBR\StaticInfoTables\Domain\Model\Country|null $country
+     * @return void
+     */
+    public function setCountry(Country $country = null)
+    {
+        $this->country = $country;
+    }
+
+    /**
+     * @return float|null
      */
     public function getLatitude()
     {
         return $this->latitude;
+    }
+
+    /**
+     * @param float|null $latitude
+     * @return void
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
     }
     
     /**
@@ -97,6 +180,15 @@ class Location extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getLongitude()
     {
         return $this->longitude;
+    }
+
+    /**
+     * @param float|null $longitude
+     * @return void
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
     }
 
 }

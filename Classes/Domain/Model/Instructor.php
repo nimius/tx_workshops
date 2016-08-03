@@ -14,11 +14,14 @@ namespace NIMIUS\Workshops\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\DomainObject\AbstractEntity;
+
 /**
  * Instructor model.
  */
-class Instructor extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Instructor extends AbstractEntity
 {
+
     /**
      * @var string
      */
@@ -43,7 +46,6 @@ class Instructor extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
     protected $images;
-    
 
 
     /**
@@ -53,6 +55,15 @@ class Instructor extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->name;
     }
+
+    /**
+     * @param string $name
+     * @return void
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+    }
     
     /**
      * @return string
@@ -60,6 +71,15 @@ class Instructor extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getAbstract()
     {
         return $this->abstract;
+    }
+
+    /**
+     * @param string $abstract
+     * @return void
+     */
+    public function setAbstract($abstract)
+    {
+        $this->abstract = $abstract;
     }
     
     /**
@@ -69,6 +89,15 @@ class Instructor extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->email;
     }
+
+    /**
+     * @param string $email
+     * @return void
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
     
     /**
      * @return integer
@@ -77,6 +106,15 @@ class Instructor extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         return $this->detailPid;
     }
+
+    /**
+     * @param integer $pid
+     * @return void
+     */
+    public function setDetailPid($pid)
+    {
+        $this->detailPid = $pid;
+    }
     
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
@@ -84,6 +122,14 @@ class Instructor extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+     */
+    public function setImages($images)
+    {
+        $this->images = $images;
     }
 
 }
