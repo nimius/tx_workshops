@@ -1,3 +1,6 @@
+# cat=plugins; type=boolean; label=LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:extconf.plugins.disablePreview
+plugins.disablePreview = 0
+
 # cat=locations; type=boolean; label=LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:extconf.locations.enable
 locations.enable = 0
 

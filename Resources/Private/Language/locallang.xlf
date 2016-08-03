@@ -6,6 +6,9 @@
 			<!--
 				Extension configuration from ext_emconf_template.txt
 			-->
+			<trans-unit id="extconf.plugins.disablePreview">
+				<source>Disable plugin previews in backend</source>
+			</trans-unit>
 			<trans-unit id="extconf.locations.enable">
 				<source>Enable Locations feature</source>
 			</trans-unit>
@@ -99,7 +102,7 @@
 				<source>Descending</source>
 			</trans-unit>
 			<trans-unit id="flexForm.settings.upcomingDays">
-				<source>Restrict upcoming workshop dates to be within the following amount of days</source>
+				<source>Dates have to be within the following amount of days</source>
 			</trans-unit>
 			<trans-unit id="flexForm.settings.hideAlreadyStartedDates">
 				<source>Hide dates having a begin date in the past</source>
@@ -121,6 +124,48 @@
 			</trans-unit>
 			<trans-unit id="flexForm.settings.filterByEnd">
 				<source>Show events that have already begun but not ended yet</source>
+			</trans-unit>
+
+
+			<!--
+				Plugin "Workshops"
+			-->
+			<trans-unit id="plugin.workshops">
+				<source>Workshops system - Workshops</source>
+			</trans-unit>
+			<trans-unit id="plugin.workshops.description">
+				<source>Displays workshops</source>
+			</trans-unit>
+			
+			<!--
+				Plugin "Workshops single view"
+			-->
+			<trans-unit id="plugin.workshopssingleview">
+				<source>Workshops system - Single view</source>
+			</trans-unit>
+			<trans-unit id="plugin.workshopssingleview.description">
+				<source>Single display of a given workshop</source>
+			</trans-unit>
+			
+
+			<!--
+				Plugin "Dates"
+			-->
+			<trans-unit id="plugin.dates">
+				<source>Workshops system - Dates view</source>
+			</trans-unit>
+			<trans-unit id="plugin.dates.description">
+				<source>Displays workshop dates</source>
+			</trans-unit>
+
+			<!--
+				Plugin "Upcoming dates teaser"
+			-->
+			<trans-unit id="plugin.upcomingdatesteaser">
+				<source>Workshops system - Upcoming dates teaser</source>
+			</trans-unit>
+			<trans-unit id="plugin.upcomingdatesteaser.description">
+				<source>Displays a teaser of workshop dates</source>
 			</trans-unit>
 
 

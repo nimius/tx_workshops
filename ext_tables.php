@@ -131,6 +131,9 @@ if ((bool)$emConf['instructors.']['enable']) {
 // Add static extension TypoScript template.
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Default TypoScript');
 
+// Add DrawItem Hook to add information to content element previews.
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem'][$_EXTKEY] = \NIMIUS\Workshops\Hook\PageLayoutViewDrawItemHook::class;
+
 // Hook into datamapper for backend data processing.
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['EXT:NIMIUS.' . $_EXTKEY] = \NIMIUS\Workshops\Hook\DataMapperHook::class;
 
