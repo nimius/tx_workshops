@@ -56,7 +56,7 @@ class NotificationCommandController extends AbstractCommandController
 	 * This delivers a registration confirmation to the attendee,
 	 * and optionally a notification to the workshop owner.
 	 *
-	 * @return boolean TRUE if task run was successful
+	 * @return boolean true if task run was successful
 	 */
 	public function registrationConfirmationCommand()
 	{
@@ -64,7 +64,7 @@ class NotificationCommandController extends AbstractCommandController
 		foreach($registrations as $registration) {
 			$this->registrationMailer->deliverRegistrationConfirmation($registration);
 		}
-		return TRUE;
+		return true;
 	}
 
 }

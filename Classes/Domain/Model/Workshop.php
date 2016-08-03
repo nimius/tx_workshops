@@ -373,7 +373,7 @@ class Workshop extends AbstractEntity
             $categories->rewind();
             return $categories->current();
         } else {
-            return NULL;
+            return null;
         }
     }
 

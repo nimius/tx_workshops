@@ -66,7 +66,7 @@ class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
     public function initializeArguments()
     {
         $this->registerUniversalTagAttributes();
-        $this->registerTagAttribute('for', 'string', 'Id of the form element this label belongs to.', FALSE);
+        $this->registerTagAttribute('for', 'string', 'Id of the form element this label belongs to.', false);
     }
 
     /**
@@ -81,7 +81,7 @@ class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
     public function render($property)
     {
         $content = $this->renderChildren();
-        if (strpos($property, '.') !== FALSE) {
+        if (strpos($property, '.') !== false) {
             $property = sscanf($property, 'additionalFields.%s')[0];
             $validationSettings = $this->settings['registration.']['validation.']['additionalFields.'][$property . '.'];
         } else {

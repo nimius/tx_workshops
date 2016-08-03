@@ -109,11 +109,11 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $this->persistenceManager->persistAll();
         
         $proxy = $this->createProxy();
-        $proxy->setHidePastDates(TRUE);
+        $proxy->setHidePastDates(true);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 0);
         
-        $proxy->setHidePastDates(FALSE);
+        $proxy->setHidePastDates(false);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 1);
     }
@@ -132,11 +132,11 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $this->persistenceManager->persistAll();
         
         $proxy = $this->createProxy();
-        $proxy->setHideAlreadyStartedDates(TRUE);
+        $proxy->setHideAlreadyStartedDates(true);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 0);
         
-        $proxy->setHideAlreadyStartedDates(FALSE);
+        $proxy->setHideAlreadyStartedDates(false);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 1);
     }
@@ -170,7 +170,7 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 1);
         
-        $proxy->setWithinDaysFromNow(NULL);
+        $proxy->setWithinDaysFromNow(null);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 3);
     }

@@ -45,7 +45,7 @@ class RegistrationMailer extends AbstractMailer
         $settings = ConfigurationUtility::getTyposcriptConfiguration()['registration.']['confirmationEmail.'];
         $this->prepareMailConfiguration($settings);
         if (!$this->mailConfigurationAllowsSendingEmails($settings)) {
-            return FALSE;
+            return false;
         }
 
         /*

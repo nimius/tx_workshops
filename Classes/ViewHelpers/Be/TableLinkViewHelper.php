@@ -50,7 +50,7 @@ class TableLinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBa
     public function initializeArguments()
     {
         $this->registerUniversalTagAttributes();
-        $this->registerTagAttribute('urlOnly', 'boolean', 'If TRUE, only the url is rendered instead of the full tag', FALSE);
+        $this->registerTagAttribute('urlOnly', 'boolean', 'If true, only the url is rendered instead of the full tag', false);
     }
     
     /**
@@ -98,12 +98,12 @@ class TableLinkViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBa
         
         $url = BackendUtility::getModuleUrl('record_edit', $parameters);
         
-        if ($this->arguments['urlOnly'] == TRUE) {
+        if ($this->arguments['urlOnly'] == true) {
             return $url;
         } else {
             $this->tag->addAttribute('href', $url);
             $this->tag->setContent($this->renderChildren());
-            $this->tag->forceClosingTag(TRUE);
+            $this->tag->forceClosingTag(true);
             return $this->tag->render();
         }
     }

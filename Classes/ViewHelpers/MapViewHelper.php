@@ -41,9 +41,9 @@ class MapViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVie
     public function initializeArguments()
     {
         $this->registerUniversalTagAttributes();
-        $this->registerTagAttribute('width', 'integer', 'Iframe width', FALSE, 300);
-        $this->registerTagAttribute('height', 'integer', 'Iframe height', FALSE, 200);
-        $this->registerTagAttribute('zoom', 'integer', 'Zoom level', FALSE, 16);
+        $this->registerTagAttribute('width', 'integer', 'Iframe width', false, 300);
+        $this->registerTagAttribute('height', 'integer', 'Iframe height', false, 200);
+        $this->registerTagAttribute('zoom', 'integer', 'Zoom level', false, 16);
     }
 
     /**
@@ -59,7 +59,7 @@ class MapViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVie
             . '&z=' . $this->arguments['zoom']
             . '&output=embed';
         
-        $this->tag->forceClosingTag(TRUE);
+        $this->tag->forceClosingTag(true);
         $this->tag->addAttribute('src', $query);
         return $this->tag->render();
     }

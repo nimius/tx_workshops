@@ -425,12 +425,12 @@ class Date extends AbstractEntity
     }
     
     /**
-     * @return mixed An integer if seat restrictions are in place, TRUE otherwise.
+     * @return mixed An integer if seat restrictions are in place, true otherwise.
      */
     public function getSeatsAvailable()
     {
         if (!$this->maximumAttendanceEnabled) {
-            return TRUE;
+            return true;
         }
 
         $count = (int)($this->maximumAttendance - count($this->getRegistrations()));
@@ -532,9 +532,9 @@ class Date extends AbstractEntity
     public function getRegistrationDeadlineReached()
     {
         if ((int)$this->registrationDeadlineAt == 0 || (int)$this->registrationDeadlineAt > time()) {
-            return FALSE;
+            return false;
         } else {
-            return TRUE;
+            return true;
         }
     }
 

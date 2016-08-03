@@ -69,7 +69,7 @@ class TcaLabelling
      * @param array $age Different values than $begin and $end for age calculation
      * @return string
      */
-    protected function dateString($begin, $end, $age = NULL)
+    protected function dateString($begin, $end, $age = null)
     {
         $str  = BackendUtility::datetime($begin);
         $str .= ' - ';

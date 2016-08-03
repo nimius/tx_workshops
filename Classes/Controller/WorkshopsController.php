@@ -36,12 +36,12 @@ class WorkshopsController extends AbstractController
      * @ignorevalidation $category
      * @return void
      */
-    public function indexAction(Category $category = NULL)
+    public function indexAction(Category $category = null)
     {
         $arguments = $this->request->getArguments();
         if ((int)$arguments['workshop'] > 0) {
             // If a workshop uid is given, redirect to the show action instead.
-            $this->forward('show', NULL, NULL, ['workshop' => (int)$arguments['workshop']]);
+            $this->forward('show', null, null, ['workshop' => (int)$arguments['workshop']]);
             return;
         }
 
@@ -67,7 +67,7 @@ class WorkshopsController extends AbstractController
      * @dontvalidate $workshop
      * @return void
      */
-    public function showAction(Workshop $workshop = NULL)
+    public function showAction(Workshop $workshop = null)
     {
         if ($this->settings['displayMode'] == 'selectedRecord') {
             $workshop = $this->workshopRepository->findByUid((int)$this->settings['workshop']);

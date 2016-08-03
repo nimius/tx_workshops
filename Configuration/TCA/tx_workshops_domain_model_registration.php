@@ -22,7 +22,7 @@ $TCA['tx_workshops_domain_model_registration'] = [
 		'title' => $lFile . 'model.registration',
 		'label' => 'attendee',
 		'crdate' => 'crdate',
-		'hideTable' => TRUE,
+		'hideTable' => true,
 		'iconfile' => 'EXT:workshops/Resources/Public/Icons/Vcard.png'
 	],
 	'interface' => [
@@ -48,7 +48,7 @@ $TCA['tx_workshops_domain_model_registration'] = [
 				'foreign_table' => 'fe_users',
 				'maxitems' => 1,
 				'items' => [
-					[NULL, NULL]
+					[null, null]
                 ],
             ],
 		],
@@ -61,7 +61,7 @@ $TCA['tx_workshops_domain_model_registration'] = [
 				'minitems' => 0,
 				'maxitems' => 1,
 				'items' => [
-					[NULL, NULL]
+					[null, null]
                 ],
             ],
 		],
@@ -132,7 +132,7 @@ $TCA['tx_workshops_domain_model_registration'] = [
 			'config' => [
 				'type' => 'input',
 				'eval' => 'datetime',
-				'readOnly' => TRUE,
+				'readOnly' => true,
 			],
 		],
 		'additional_fields_string' => [
@@ -145,7 +145,7 @@ $TCA['tx_workshops_domain_model_registration'] = [
 			'config' => [
 				'type' => 'input',
 				'eval' => 'datetime',
-				'readOnly' => TRUE,
+				'readOnly' => true,
             ],
 		],
 	],

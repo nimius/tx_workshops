@@ -25,7 +25,7 @@ class WorkshopRepositoryProxy extends AbstractRepositoryProxy
     /**
      * @var bool Hide workshops not having an upcoming date.
      */
-    protected $hideWorkshopsWithoutUpcomingDates = FALSE;
+    protected $hideWorkshopsWithoutUpcomingDates = false;
 
     /**
      * @var array|null Workshop types to filter for.

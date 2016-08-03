@@ -128,7 +128,7 @@ class RegistrationsController extends AbstractController
         $this->session->set('registrationHmac', $registrationHmac);
 
 		$this->signalSlotDispatcher->dispatch(__CLASS__, 'registrationsAfterCreateAction', [$registration, $this]);
-		$this->redirect('confirm', NULL, NULL, ['registration' => $registration]);
+		$this->redirect('confirm', null, null, ['registration' => $registration]);
 	}
 	
 	/**

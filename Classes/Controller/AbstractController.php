@@ -80,7 +80,7 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
         if (!$this->currentFrontendUser()) {
             $loginPid = (int)$this->settings['loginPid'];
             if ($loginPid > 0) {
-                $this->redirect(NULL, NULL, NULL, NULL, $loginPid);
+                $this->redirect(null, null, null, null, $loginPid);
                 exit;
             } else {
                 $GLOBALS['TSFE']->pageNotFoundAndExit('Frontend user required to proceed.');
@@ -91,7 +91,7 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
     /**
      * Get the currently logged in frontend user.
      *
-     * @return mixed A FrontendUser object or FALSE.
+     * @return mixed A FrontendUser object or false.
      */
     public function currentFrontendUser()
     {
@@ -103,7 +103,7 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
             $this->currentFrontendUser = $this->frontendUserRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
             return $this->currentFrontendUser;
         } else {
-            return FALSE;
+            return false;
         }
     }
 

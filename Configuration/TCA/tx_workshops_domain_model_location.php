@@ -19,7 +19,7 @@ $TCA['tx_workshops_domain_model_location'] = [
 	'ctrl' => [
 		'title' => $lFile . 'model.location',
 		'label' => 'name',
-		'dividers2tabs' => TRUE,
+		'dividers2tabs' => true,
 		'searchFields' => 'name, address, city',
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
@@ -117,7 +117,7 @@ $TCA['tx_workshops_domain_model_location'] = [
                 ],
                 'foreign_table' => 'tx_workshops_domain_model_location',
                 'foreign_table_where' => 'AND tx_workshops_domain_model_location.pid=###CURRENT_PID### AND tx_workshops_domain_model_location.sys_language_uid IN (-1,0)',
-                'showIconTable' => FALSE
+                'showIconTable' => false
             ]
         ],
         'l10n_diffsource' => [

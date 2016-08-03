@@ -21,7 +21,7 @@ $TCA['tx_workshops_domain_model_workshop'] = [
 	'ctrl' => [
 		'title' => $lFile . 'model.workshop',
 		'label' => 'name',
-		'dividers2tabs' => TRUE,
+		'dividers2tabs' => true,
 		'enablecolumns' => [
 			'disabled' => 'hidden',
         ],
@@ -76,7 +76,7 @@ $TCA['tx_workshops_domain_model_workshop'] = [
                 ],
                 'foreign_table' => 'tx_workshops_domain_model_workshop',
                 'foreign_table_where' => 'AND tx_workshops_domain_model_workshop.pid=###CURRENT_PID### AND tx_workshops_domain_model_workshop.sys_language_uid IN (-1,0)',
-                'showIconTable' => FALSE
+                'showIconTable' => false
             ]
         ],
         'l10n_diffsource' => [
@@ -206,9 +206,9 @@ $TCA['tx_workshops_domain_model_workshop'] = [
 				'treeConfig' => [
 					'parentField' => 'parent',
 					'appearance' => [
-						'showHeader' => TRUE,
-						'allowRecursiveMode' => TRUE,
-						'expandAll' => TRUE,
+						'showHeader' => true,
+						'allowRecursiveMode' => true,
+						'expandAll' => true,
 						'maxLevels' => 99,
                     ],
                 ],

@@ -34,11 +34,11 @@ class ExportsController extends AbstractController
      * @ignorevalidation $workshop
      * @return string
      */
-    public function iCalendarAction(Workshop $workshop = NULL)
+    public function iCalendarAction(Workshop $workshop = null)
     {
         $proxy = $this->objectManager->get(DateRepositoryProxy::class);
         $proxy->initializeFromSettings($this->settings);
-        $proxy->setIgnoreStoragePid(TRUE);
+        $proxy->setIgnoreStoragePid(true);
         $proxy->setWorkshop($workshop);
 
         $view = $this->objectManager->get(StandaloneView::class);

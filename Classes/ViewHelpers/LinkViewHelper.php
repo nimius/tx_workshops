@@ -32,7 +32,7 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
      * @param array $typolinkConfiguration
      * @return string
      */
-    public function render(Workshop $workshop = NULL, array $settings = [], $typolinkConfiguration = [])
+    public function render(Workshop $workshop = null, array $settings = [], $typolinkConfiguration = [])
     {
         if (!$workshop) {
             return;

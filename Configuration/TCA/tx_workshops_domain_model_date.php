@@ -23,8 +23,8 @@ $TCA['tx_workshops_domain_model_date'] = [
 		'title' => $lFile . 'model.date',
 		'label' => 'begin_at',
 		'label_userFunc' => 'NIMIUS\\Workshops\\UserFunc\\TcaLabelling->date',
-		'hideTable' => TRUE,
-		'dividers2tabs' => TRUE,
+		'hideTable' => true,
+		'dividers2tabs' => true,
 		'requestUpdate' => 'type, payment_type',
 		'type' => 'type',
         'tstamp' => 'updated_at',
@@ -133,7 +133,7 @@ $TCA['tx_workshops_domain_model_date'] = [
 			 * field.
 			 */
 			'label' => $lFile . 'model.workshop',
-			'displayCond' => 'FIELD:workshop:REQ:TRUE',
+			'displayCond' => 'FIELD:workshop:REQ:true',
 			'config' => [
 				'type' => 'select',
 				'renderType' => 'selectSingle',
@@ -228,7 +228,7 @@ if ((bool)$emConf['locations.']['enable']) {
 				'foreign_table' => 'tx_workshops_domain_model_location',
 				'maxitems' => 1,
 				'items' => [
-					[NULL, NULL]
+					[null, null]
                 ],
             ],
         ],

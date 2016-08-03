@@ -219,7 +219,7 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $this->persistenceManager->persistAll();
         
         $proxy = $this->createProxy();
-        $proxy->setHideWorkshopsWithoutUpcomingDates(TRUE);
+        $proxy->setHideWorkshopsWithoutUpcomingDates(true);
         
         $workshops = $this->workshopRepository->findByProxy($proxy)->toArray();
         $this->assertTrue(count($workshops) == 1);

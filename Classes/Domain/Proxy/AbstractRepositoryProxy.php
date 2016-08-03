@@ -39,7 +39,7 @@ abstract class AbstractRepositoryProxy
     /**
      * @var bool Set to ignore storage pid constraints.
      */
-    protected $ignoreStoragePid = FALSE;
+    protected $ignoreStoragePid = false;
 
     /**
      * @var mixed A traversable object containing \NIMIUS\Workshops\Domain\Model\Category records.
@@ -99,10 +99,10 @@ abstract class AbstractRepositoryProxy
             $this->setWithinDaysFromNow((int)$settings['upcomingDays']);
         }
         if ((bool)$settings['hidePastDates']) {
-            $this->setHidePastDates(TRUE);
+            $this->setHidePastDates(true);
         }
         if ((bool)$settings['hideAlreadyStartedDates']) {
-            $this->setHideAlreadyStartedDates(TRUE);
+            $this->setHideAlreadyStartedDates(true);
         }
         // Unset already processed settings.
         unset(

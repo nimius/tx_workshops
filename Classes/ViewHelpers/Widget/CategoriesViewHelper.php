@@ -35,7 +35,7 @@ class CategoriesViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetVi
      * @param string $controllerName The controller name
      * @return string
      */
-    public function render($pluginName = 'Workshops', $controllerName = NULL)
+    public function render($pluginName = 'Workshops', $controllerName = null)
     {
         return $this->initiateSubRequest();
     }

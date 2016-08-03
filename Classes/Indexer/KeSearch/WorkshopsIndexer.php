@@ -67,7 +67,7 @@ class WorkshopsIndexer extends AbstractIndexer
 		}
 
         $proxy = $this->objectManager->get(WorkshopRepositoryProxy::class);
-        $proxy->setPids(GeneralUtility::trimExplode(',', $indexerConfiguration['sysfolder'], TRUE));
+        $proxy->setPids(GeneralUtility::trimExplode(',', $indexerConfiguration['sysfolder'], true));
         $proxy->setTypes([Workshop::TYPE_DEFAULT]);
 
         $workshops = $this->workshopRepository->findByProxy($proxy);
@@ -117,16 +117,16 @@ class WorkshopsIndexer extends AbstractIndexer
 				$workshop->getSysLanguageUid(),
 
 				// Start time.
-				NULL,
+				null,
 
 				// End time.
-				NULL,
+				null,
 
 				// fe_groups.
-				NULL,
+				null,
 				
 				// Debugging.
-				FALSE,
+				false,
 				
 				// Additional fields.
 				array(

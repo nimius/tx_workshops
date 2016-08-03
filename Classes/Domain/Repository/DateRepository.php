@@ -103,7 +103,7 @@ class DateRepository extends Repository
     public function findNextUpcomingForWorkshop(Workshop $workshop)
     {
         $query = $this->createQuery();
-        $query->getQuerySettings()->setRespectStoragePage(FALSE);
+        $query->getQuerySettings()->setRespectStoragePage(false);
         return $query->matching(
             $query->logicalAnd(
                 $query->greaterThanOrEqual('beginAt', time()),

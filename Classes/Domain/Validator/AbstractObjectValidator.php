@@ -56,7 +56,7 @@ abstract class AbstractObjectValidator extends \TYPO3\CMS\Extbase\Validation\Val
      * @param string $property
      * @return void
      */
-    protected function mergeErrorsFromValidator($validator, $property = NULL)
+    protected function mergeErrorsFromValidator($validator, $property = null)
     {
         foreach($validator->getErrors() as $error) {
             if ($property) {

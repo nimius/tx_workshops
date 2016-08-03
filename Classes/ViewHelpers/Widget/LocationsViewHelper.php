@@ -35,7 +35,7 @@ class LocationsViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetVie
      * @param string $controllerName The controller name
      * @return string
      */
-    public function render($pluginName = 'Dates', $controllerName = NULL)
+    public function render($pluginName = 'Dates', $controllerName = null)
     {
         return $this->initiateSubRequest();
     }

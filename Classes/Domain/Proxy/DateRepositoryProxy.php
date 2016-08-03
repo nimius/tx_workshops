@@ -43,7 +43,7 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
     /**
      * @var bool
      */
-    protected $hideChildDates = TRUE;
+    protected $hideChildDates = true;
 
 
     /**

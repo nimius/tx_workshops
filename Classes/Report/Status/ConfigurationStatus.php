@@ -54,7 +54,7 @@ class ConfigurationStatus implements \TYPO3\CMS\Reports\StatusProviderInterface
                 Status::class,
                 'Registration: Confirmation mailer',
                 'OK',
-                NULL,
+                null,
                 Status::OK
             );
         } else {

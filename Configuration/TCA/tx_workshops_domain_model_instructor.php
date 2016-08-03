@@ -19,7 +19,7 @@ $TCA['tx_workshops_domain_model_instructor'] = [
 	'ctrl' => [
 		'title' => $lFile . 'model.instructor',
 		'label' => 'name',
-		'dividers2tabs' => TRUE,
+		'dividers2tabs' => true,
 		'searchFields' => 'name, email',
 		'iconfile' => 'EXT:workshops/Resources/Public/Icons/Instructor.png'
     ],

@@ -35,7 +35,7 @@ class RegistrationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     {
         /** @var $querySettings \TYPO3\CMS\Extbase\Persistence\Generic\Typo3QuerySettings */
         $querySettings = $this->objectManager->get(Typo3QuerySettings::class);
-        $querySettings->setRespectStoragePage(FALSE);
+        $querySettings->setRespectStoragePage(false);
         $this->setDefaultQuerySettings($querySettings);
     }
 
@@ -50,7 +50,7 @@ class RegistrationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param integer $graceTime Grace time in seconds
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResult
      */
-    public function findAllWithoutSentConfirmation($graceTime = NULL)
+    public function findAllWithoutSentConfirmation($graceTime = null)
     {
         $countQuery = $this->createQuery();
         $countQuery->statement('

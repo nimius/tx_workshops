@@ -83,7 +83,7 @@ class ConfigurationUtility
      * @param string $extKey
      * @return array
      */
-    public static function getTyposcriptConfiguration($extKey = NULL)
+    public static function getTyposcriptConfiguration($extKey = null)
     {
         if (!$extKey) {
             $extKey = self::$extKey;
@@ -122,7 +122,7 @@ class ConfigurationUtility
      *
      * @return array
      */
-    public static function getModuleTyposcriptConfiguration($extKey = NULL)
+    public static function getModuleTyposcriptConfiguration($extKey = null)
     {
         if (!$extKey) {
             $extKey = self::$extKey;

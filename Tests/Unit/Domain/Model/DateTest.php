@@ -251,7 +251,7 @@ class DateTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
      */
     public function getAttendeesNeededForPossibleMaximumReturnsACorrectIntegerWhenAnyRegistrationsArePresent()
     {
-        $this->subject->setMaximumAttendanceEnabled(TRUE);
+        $this->subject->setMaximumAttendanceEnabled(true);
         $this->subject->setMaximumAttendance(4);
         $this->subject->addRegistration((new Registration));
 
@@ -266,7 +266,7 @@ class DateTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
      */
     public function getAttendeesNeededForPossibleMaximumReturnsZeroWhenTheFeatureIsDisabled()
     {
-        $this->subject->setMaximumAttendanceEnabled(FALSE);
+        $this->subject->setMaximumAttendanceEnabled(false);
         $this->subject->setMaximumAttendance(4);
         $this->subject->addRegistration((new Registration));
 
@@ -274,7 +274,7 @@ class DateTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
     }
 
     /**
-     * Test if getRegistrationDeadlineReached returns FALSE if the deadline
+     * Test if getRegistrationDeadlineReached returns false if the deadline
      * Test if getRegistrationDeadlineReached returns false if the deadline
      * is set to '0'.
      *

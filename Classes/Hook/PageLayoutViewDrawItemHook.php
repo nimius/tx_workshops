@@ -58,7 +58,7 @@ class PageLayoutViewDrawItemHook implements \TYPO3\CMS\Backend\View\PageLayoutVi
     	}
 		
 		// Disable default output.
-		$drawItem = FALSE;
+		$drawItem = false;
 		
         /*
          * Set plugin header.
