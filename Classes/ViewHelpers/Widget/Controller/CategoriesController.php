@@ -43,7 +43,12 @@ class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCo
         if (empty($this->widgetConfiguration['controllerName'])) {
             $this->widgetConfiguration['controllerName'] = $this->widgetConfiguration['pluginName'];
         }
-        $rootCategories = $this->categoryRepository->findAllRootCategories()->toArray();
+        $categoryUids = GeneralUtility::trimExplode(',', $this->settings['categories'], true);
+        if (count($categoryUids)) {
+            $rootCategories = $this->categoryRepository->findByUids($categoryUids)->toArray();
+        } else {
+            $rootCategories = $this->categoryRepository->findAllRootCategories()->toArray();
+        }
         $this->fetchChildren($categories, $rootCategories);
         $this->view->assignMultiple([
             'categories' => $categories,
@@ -54,15 +59,19 @@ class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCo
     }
 
     /**
-     * Method to recursively fetch child categories into an array.
+     * Recursively fetch child categories into an array.
      *
      * @param array &$collection Category collection to work on
      * @param array $categories Current level's categories to process
      * @return void
      */
-    protected function fetchChildren(&$collection, $categories)
+    protected function fetchChildren(array &$collection, array $categories)
     {
         foreach ($categories as $category) {
+            if ($this->categoryIsInCollection($collection, $category)) {
+                continue;
+            }
+
             $children = $this->categoryRepository->findAllChildren($category)->toArray();
             $collection[$category->getUid()] = [
                 'category' => $category,
@@ -72,5 +81,27 @@ class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCo
                 $this->fetchChildren($collection[$category->getUid()]['children'], $children);
             }
         }
+    }
+
+    /**
+     * Check given collection recursively if the given category is already present.
+     *
+     * @param array $collection
+     * @param \NIMIUS\Workshops\Domain\Model\Category $category
+     * @return bool
+     */
+    protected function categoryIsInCollection(array $collection, $category)
+    {
+        $iterator = new \RecursiveArrayIterator($collection);
+        $recursive = new \RecursiveIteratorIterator(
+            $iterator,
+            \RecursiveIteratorIterator::SELF_FIRST
+        );
+        foreach ($recursive as $key => $value) {
+            if ($key === $category->getUid()) {
+                return true;
+            }
+        }
+        return false;
     }
 }

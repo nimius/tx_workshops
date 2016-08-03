@@ -30,6 +30,21 @@ class CategoryRepository extends \TYPO3\CMS\Extbase\Domain\Repository\CategoryRe
     }
 
     /**
+     * Find all categories by given uids.
+     *
+     * @param array $uids
+     * @return \TYPO3\CMS\Extbase\Persistence\QueryResult
+     */
+    public function findByUids(array $uids)
+    {
+        $query = $this->createQuery();
+        $query->matching(
+            $query->in('uid', $uids)
+        );
+        return $query->execute();
+    }
+
+    /**
      * Find all child categories of the given parent.
      *
      * @param mixed $category Either a Category or a uid.
