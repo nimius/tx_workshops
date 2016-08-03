@@ -13,10 +13,10 @@
  */
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'Workshop management',
+    'title' => 'Workshops system',
     'description' => 'Flexible workshop and courses management.',
     'category' => 'fe',
-    'version' => '1.1.0',
+    'version' => '1.2.0',
     'state' => 'beta',
     'author' => 'NIMIUS',
     'author_email' => 'info@nimius.net',
