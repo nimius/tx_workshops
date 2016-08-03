@@ -42,88 +42,84 @@
 
 
 			<!--
-				Plugin "Workshops"
+				FlexForm settings
 			-->
-			<trans-unit id="plugin.workshops.sheets.workshops">
+			<trans-unit id="flexForm.sheets.workshops">
 				<source>Workshops</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.sheets.dates">
+			<trans-unit id="flexForm.sheets.dates">
 				<source>Dates</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.categories">
+			<trans-unit id="flexForm.settings.categories">
 				<source>Categories</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.categoryOperator">
+			<trans-unit id="flexForm.settings.categoryOperator">
 				<source>Limitation mode</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.categoryOperator.none">
+			<trans-unit id="flexForm.settings.categoryOperator.none">
 				<source>Don't limit workshops by categories</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.categoryOperator.and">
+			<trans-unit id="flexForm.settings.categoryOperator.and">
 				<source>Show workshops having all selected categories (AND)</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.categoryOperator.or">
+			<trans-unit id="flexForm.settings.categoryOperator.or">
 				<source>Show workshops having at least one selected category (OR)</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.recordLimit">
+			<trans-unit id="flexForm.settings.recordLimit">
 				<source>Result limit</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.detailPage">
+			<trans-unit id="flexForm.settings.detailPage">
 				<source>Workshop detail page</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.hideWorkshopsWithoutUpcomingDates">
+			<trans-unit id="flexForm.settings.hideWorkshopsWithoutUpcomingDates">
 				<source>Hide workshops without an upcoming date</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.sortingField">
+			<trans-unit id="flexForm.settings.sortingField">
 				<source>Sort workshops by</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.sortingField.sorting">
+			<trans-unit id="flexForm.settings.sortingField.sorting">
 				<source>Manual sorting</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.sortingField.identifier">
+			<trans-unit id="flexForm.settings.sortingField.identifier">
 				<source>Identifier</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.sortingField.name">
+			<trans-unit id="flexForm.settings.sortingField.name">
 				<source>Name</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.sortingField.dates_beginAt">
+			<trans-unit id="flexForm.settings.sortingField.dates_beginAt">
 				<source>Begin of dates</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.sortingType">
+			<trans-unit id="flexForm.settings.sortingType">
 				<source>Sorting type</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.sortingType.ascending">
+			<trans-unit id="flexForm.settings.sortingType.ascending">
 				<source>Ascending</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.sortingType.descending">
+			<trans-unit id="flexForm.settings.sortingType.descending">
 				<source>Descending</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.upcomingDays">
+			<trans-unit id="flexForm.settings.upcomingDays">
 				<source>Restrict upcoming workshop dates to be within the following amount of days</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.hideAlreadyStartedDates">
+			<trans-unit id="flexForm.settings.hideAlreadyStartedDates">
 				<source>Hide dates having a begin date in the past</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshops.settings.hidePastDates">
+			<trans-unit id="flexForm.settings.hidePastDates">
 				<source>Hide dates having an end date in the past</source>
 			</trans-unit>
-			
-			<!--
-				Plugin "Workshops single view"
-			-->
-			<trans-unit id="plugin.workshopsSingleView.settings.displayMode">
+			<trans-unit id="flexForm.settings.displayMode">
 				<source>Display mode</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshopsSingleView.settings.displayMode.givenRecord">
+			<trans-unit id="flexForm.settings.displayMode.givenRecord">
 				<source>Given workshop from list page</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshopsSingleView.settings.displayMode.selectedRecord">
+			<trans-unit id="flexForm.settings.displayMode.selectedRecord">
 				<source>Selected workshop</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshopsSingleView.settings.workshop">
+			<trans-unit id="flexForm.settings.workshop">
 				<source>Workshop</source>
 			</trans-unit>
-			<trans-unit id="plugin.workshopsSingleView.settings.filterByEnd">
+			<trans-unit id="flexForm.settings.filterByEnd">
 				<source>Show events that have already begun but not ended yet</source>
 			</trans-unit>
 

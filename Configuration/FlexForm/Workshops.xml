@@ -7,27 +7,27 @@
 		<workshops>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.sheets.workshops</sheetTitle>
+					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.sheets.workshops</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<settings.categoryOperator>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.categoryOperator</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.categoryOperator</label>
 							<onChange>reload</onChange>
 							<config>
 								<type>select</type>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.categoryOperator.none</numIndex>
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.categoryOperator.none</numIndex>
 										<numIndex index="1"></numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.categoryOperator.and</numIndex>
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.categoryOperator.and</numIndex>
 										<numIndex index="1">AND</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.categoryOperator.or</numIndex>
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.categoryOperator.or</numIndex>
 										<numIndex index="1">OR</numIndex>
 									</numIndex>
 								</items>
@@ -37,7 +37,7 @@
 					
 					<settings.categories>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.categoryLimitation</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.categories</label>
 							<displayCond>FIELD:settings.categoryOperator:REQ:true</displayCond>
 							<config>
 								<type>select</type>
@@ -62,7 +62,7 @@
 
 					<settings.detailPage>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.detailPage</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.detailPage</label>
 							<config>
 								<type>input</type>
 								<eval>trim</eval>
@@ -88,24 +88,24 @@
 					
 					<settings.sortingField>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.sortingField</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.sortingField</label>
 							<config>
 								<type>select</type>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.sortingField.sorting</numIndex>
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.sortingField.sorting</numIndex>
 										<numIndex index="1">sorting</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.sortingField.identifier</numIndex>
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.sortingField.identifier</numIndex>
 										<numIndex index="1">identifier</numIndex>
 									</numIndex>
 									<numIndex index="2" type="array">
-										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.sortingField.name</numIndex>
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.sortingField.name</numIndex>
 										<numIndex index="1">name</numIndex>
 									</numIndex>
 									<numIndex index="3" type="array">
-										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.sortingField.dates_beginAt</numIndex>
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.sortingField.dates_beginAt</numIndex>
 										<numIndex index="1">dates.beginAt</numIndex>
 									</numIndex>
 								</items>
@@ -115,16 +115,16 @@
 
 					<settings.sortingType>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.sortingType</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.sortingType</label>
 							<config>
 								<type>select</type>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.sortingType.ascending</numIndex>
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.sortingType.ascending</numIndex>
 										<numIndex index="1">ASC</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.sortingType.descending</numIndex>
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.sortingType.descending</numIndex>
 										<numIndex index="1">DESC</numIndex>
 									</numIndex>
 								</items>
@@ -134,7 +134,7 @@
 					
 					<settings.hideWorkshopsWithoutUpcomingDates>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.hideWorkshopsWithoutUpcomingDates</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.hideWorkshopsWithoutUpcomingDates</label>
 							<config>
 								<type>check</type>
 							</config>
@@ -147,13 +147,13 @@
 		<dates>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.sheets.dates</sheetTitle>
+					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.sheets.dates</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<settings.hideAlreadyStartedDates>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.hideAlreadyStartedDates</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.hideAlreadyStartedDates</label>
 							<config>
 								<type>check</type>
 							</config>
@@ -162,7 +162,7 @@
 
 					<settings.hidePastDates>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.hidePastDates</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.hidePastDates</label>
 							<config>
 								<type>check</type>
 							</config>
@@ -171,7 +171,7 @@
                     
 					<settings.upcomingDays>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.upcomingDays</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.upcomingDays</label>
 							<config>
 								<type>input</type>
 								<eval>trim,num</eval>
