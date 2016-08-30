@@ -54,7 +54,7 @@ class MapViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVie
      */
     public function render(Location $location)
     {   
-        $query = 'http://maps.google.com/maps?q='
+        $query = 'https://maps.google.com/maps?q='
             . $location->getLatitude() . ',' . $location->getLongitude()
             . '&z=' . $this->arguments['zoom']
             . '&output=embed';
