@@ -52,6 +52,11 @@ abstract class AbstractRepositoryProxy
     protected $categoryOperator;
 
     /**
+     * @var bool If set, child categories are also included in queries.
+     */
+    protected $recursiveCategorySelection = false;
+
+    /**
      * @var string Sorting field.
      */
     protected $sortingField = 'sorting';
@@ -196,6 +201,23 @@ abstract class AbstractRepositoryProxy
     public function setCategoryOperator($categoryOperator)
     {
         $this->categoryOperator = $categoryOperator;
+    }
+
+    /**
+     * @param bool $recursiveCategorySelection
+     * @return void
+     */
+    public function setRecursiveCategorySelection($recursiveCategorySelection)
+    {
+        $this->recursiveCategorySelection = $recursiveCategorySelection;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getRecursiveCategorySelection()
+    {
+        return $this->recursiveCategorySelection;
     }
 
     /**

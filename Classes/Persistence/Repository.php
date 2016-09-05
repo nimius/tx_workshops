@@ -25,6 +25,13 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
     /**
+     * @var \NIMIUS\Workshops\Domain\Repository\CategoryRepository
+     * @inject
+     */
+    protected $categoryRepository;
+
+
+    /**
      * Query initializer.
      *
      * @param \TYPO3\CMS\Extbase\Persistence\Query $query
@@ -96,7 +103,13 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
         $categoriesConstraints = [];
         foreach($proxy->getCategories() as $category) {
-            $categoriesConstraints[] = $query->contains($fieldName, $category);
+            if ($proxy->getRecursiveCategorySelection()) {
+                $subcategoriesConstraints = [];
+                $this->buildSubcategoriesConstraints($category, $query, $fieldName, $subcategoriesConstraints);
+                $categoriesConstraints[] = $query->logicalAnd($query->logicalOr($subcategoriesConstraints));
+            } else {
+                $categoriesConstraints[] = $query->contains($fieldName, $category);
+            }
         }
         if ($proxy->getCategoryOperator() == 'AND') {
             $constraints[] = $query->logicalAnd($categoriesConstraints);
@@ -104,6 +117,26 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository
             $constraints[] = $query->logicalOr($categoriesConstraints);
         }
         unset($categoriesConstraints, $fieldName);
+    }
+
+    /**
+     * Helper method to buildCategoriesConstraints() for building a subcategories constraint.
+     *
+     * @param \NIMIUS\Workshops\Domain\Model\Category $category
+     * @param \TYPO3\CMS\Extbase\Persistence\Query $query
+     * @param string $fieldName
+     * @param array $constraints
+     * @return void
+     */
+    protected function buildSubcategoriesConstraints($category, $query, $fieldName, &$constraints)
+    {
+        $constraints[] = $query->contains($fieldName, $category);
+        $children = $this->categoryRepository->findAllChildren($category)->toArray();
+        foreach ($children as $childCategory)
+        {
+            $constraints[] = $query->contains($fieldName, $childCategory);
+            $this->buildSubcategoriesConstraints($childCategory, $query, $fieldName, $constraints);
+        }
     }
 
 }

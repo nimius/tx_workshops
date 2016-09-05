@@ -59,6 +59,16 @@
 							</config>
 						</TCEforms>
 					</settings.categories>
+					
+					<settings.recursiveCategorySelection>
+						<TCEforms>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.recursiveCategorySelection</label>
+							<displayCond>FIELD:settings.categoryOperator:REQ:true</displayCond>
+							<config>
+								<type>check</type>
+							</config>
+						</TCEforms>
+					</settings.recursiveCategorySelection>
 
 					<settings.detailPage>
 						<TCEforms>
