@@ -58,7 +58,7 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
     {
         parent::initializeFromSettings($settings);
         if ((int)$settings['recordLimit'] > 0) {
-            $this->setRecordLimit($settings['recordLimit']);
+            $this->setRecordLimit((int)$settings['recordLimit']);
         }
     }
 
