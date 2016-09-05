@@ -34,6 +34,7 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository
     protected function initializeQuery($query, $proxy)
     {
         if (count($proxy->getPids()) > 0) {
+            $this->setRespectStoragePageId($query, true);
             $this->setStoragePageIds($query, $proxy->getPids());
         } elseif ($proxy->getIgnoreStoragePid()) {
             $this->setRespectStoragePageId($query, false);

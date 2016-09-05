@@ -14,6 +14,9 @@ namespace NIMIUS\Workshops\ViewHelpers\Widget\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\Domain\Proxy\CategoryRepositoryProxy;
+use NIMIUS\Workshops\Utility\ObjectUtility;
+
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -21,11 +24,17 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetController
 {
+
     /**
      * @var \NIMIUS\Workshops\Domain\Repository\CategoryRepository
      * @inject
      */
     protected $categoryRepository;
+
+    /**
+     * @var array tt_content record.
+     */
+    protected $contentRecord;
 
 
     /**
@@ -36,19 +45,20 @@ class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCo
     public function indexAction()
     {
         $categories = [];
-        $pluginArguments = GeneralUtility::_GP('tx_workshops_' . strtolower($this->widgetConfiguration['pluginName']));
-        if ((int)$pluginArguments['category']) {
-            $activeCategory = $this->categoryRepository->findByUid((int)$pluginArguments['category']);
+        $proxy = $this->objectManager->get(CategoryRepositoryProxy::class);
+        $pids = GeneralUtility::trimExplode(',', $this->contentRecord['pages'], true);
+        if (count($pids)) {
+            $proxy->setPids($pids);
         }
-        if (empty($this->widgetConfiguration['controllerName'])) {
-            $this->widgetConfiguration['controllerName'] = $this->widgetConfiguration['pluginName'];
-        }
+
         $categoryUids = GeneralUtility::trimExplode(',', $this->settings['categories'], true);
         if (count($categoryUids)) {
-            $rootCategories = $this->categoryRepository->findByUids($categoryUids)->toArray();
+            $proxy->setUids($categoryUids);
         } else {
-            $rootCategories = $this->categoryRepository->findAllRootCategories()->toArray();
+            $proxy->setRootCategoriesOnly(true);
         }
+
+        $rootCategories = $this->categoryRepository->findByProxy($proxy)->toArray();
         $this->fetchChildren($categories, $rootCategories);
         $this->view->assignMultiple([
             'categories' => $categories,
@@ -104,4 +114,24 @@ class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCo
         }
         return false;
     }
+
+
+    /**
+     * Widget action initializer.
+     *
+     * @return void
+     */
+    protected function initializeAction()
+    {
+        $this->contentRecord = ObjectUtility::getConfigurationManager()->getContentObject()->data;
+
+        $pluginArguments = GeneralUtility::_GP('tx_workshops_' . strtolower($this->widgetConfiguration['pluginName']));
+        if ((int)$pluginArguments['category']) {
+            $activeCategory = $this->categoryRepository->findByUid((int)$pluginArguments['category']);
+        }
+        if (empty($this->widgetConfiguration['controllerName'])) {
+            $this->widgetConfiguration['controllerName'] = $this->widgetConfiguration['pluginName'];
+        }
+    }
+
 }
