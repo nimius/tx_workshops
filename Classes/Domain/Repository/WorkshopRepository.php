@@ -41,23 +41,11 @@ class WorkshopRepository extends Repository
     public function findByProxy(WorkshopRepositoryProxy $proxy)
     {
         $query = $this->createQuery();
-        parent::initializeQuery($query, $proxy);
-
         $constraints = [];
+        parent::initializeQuery($query, $proxy, $constraints);
+
         if (count($proxy->getTypes()) > 0) {
             $constraints[] = $query->in('type', $proxy->getTypes());
-        }
-        if ($proxy->getCategories()) {
-            $categoriesConstraints = [];
-            foreach($proxy->getCategories() as $category) {
-                $categoriesConstraints[] = $query->contains('categories', $category);
-            }
-            if ($proxy->getCategoryOperator() == 'AND') {
-                $constraints[] = $query->logicalAnd($categoriesConstraints);
-            } else {
-                $constraints[] = $query->logicalOr($categoriesConstraints);
-            }
-            unset($categoriesConstraints);
         }
         if ($proxy->getHideWorkshopsWithoutUpcomingDates()) {
             $constraints[] = $query->logicalAnd(

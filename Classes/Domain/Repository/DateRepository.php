@@ -42,9 +42,9 @@ class DateRepository extends Repository
     public function findByProxy(DateRepositoryProxy $proxy)
     {
         $query = $this->createQuery();
-        parent::initializeQuery($query, $proxy);
-
         $constraints = [];
+        parent::initializeQuery($query, $proxy, $constraints);
+        
         $beginOfToday = strtotime('today midnight');
 
         if ($proxy->getHidePastDates()) {
@@ -62,18 +62,6 @@ class DateRepository extends Repository
         }
         if ($proxy->getLocation()) {
             $constraints[] = $query->equals('location', $proxy->getLocation());
-        }
-        if ($proxy->getCategories()) {
-            $categoriesConstraints = [];
-            foreach($proxy->getCategories() as $category) {
-                $categoriesConstraints[] = $query->contains('workshop.categories', $category);
-            }
-            if ($proxy->getCategoryOperator() == 'AND') {
-                $constraints[] = $query->logicalAnd($categoriesConstraints);
-            } else {
-                $constraints[] = $query->logicalOr($categoriesConstraints);
-            }
-            unset($categoriesConstraints);
         }
         if ($proxy->getHideChildDates()) {
             // Child dates obviously have a parent set.

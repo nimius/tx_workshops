@@ -29,15 +29,20 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository
      *
      * @param \TYPO3\CMS\Extbase\Persistence\Query $query
      * @param mixed $proxy
+     * @param array &$constraints
      * @return void
      */
-    protected function initializeQuery($query, $proxy)
+    protected function initializeQuery($query, $proxy, array &$constraints = [])
     {
         if (count($proxy->getPids()) > 0) {
             $this->setRespectStoragePageId($query, true);
             $this->setStoragePageIds($query, $proxy->getPids());
         } elseif ($proxy->getIgnoreStoragePid()) {
             $this->setRespectStoragePageId($query, false);
+        }
+
+        if ($proxy->getCategories()) {
+            $this->buildCategoriesConstraints($proxy, $query, $constraints);
         }
     }
 
@@ -63,6 +68,42 @@ class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository
     protected function setRespectStoragePageId($query, $respect = false)
     {
         $query->getQuerySettings()->setRespectStoragePage($respect);
+    }
+
+    /**
+     * Builds category constraints for given proxy object.
+     *
+     * @param mixed $proxy
+     * @param \TYPO3\CMS\Extbase\Persistence\Query $query
+     * @param array &$constraints
+     * @return void
+     */
+    protected function buildCategoriesConstraints($proxy, $query, &$constraints)
+    {
+        $className = array_pop(explode('\\', $query->getType()));
+        switch($className) {
+            case 'Workshop':
+                $fieldName = 'categories';
+                break;
+            
+            case 'Date':
+                $fieldName = 'workshop.categories';
+                break;
+            
+            default:
+                return;
+        }
+
+        $categoriesConstraints = [];
+        foreach($proxy->getCategories() as $category) {
+            $categoriesConstraints[] = $query->contains($fieldName, $category);
+        }
+        if ($proxy->getCategoryOperator() == 'AND') {
+            $constraints[] = $query->logicalAnd($categoriesConstraints);
+        } else {
+            $constraints[] = $query->logicalOr($categoriesConstraints);
+        }
+        unset($categoriesConstraints, $fieldName);
     }
 
 }
