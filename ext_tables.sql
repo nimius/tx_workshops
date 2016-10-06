@@ -145,5 +145,7 @@ CREATE TABLE sys_category (
 );
 
 CREATE TABLE tx_kesearch_indexerconfig (
+    uid int(11) unsigned default '0' NOT NULL,
+    pid int(11) unsigned default '0' NOT NULL,
 	tx_workshops_targetpid_plugin varchar(40) default NULL
 );
