@@ -90,6 +90,7 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $proxy = $this->createProxy();
         $proxy->setPid(8);
         $proxy->setHidePastDates(false);
+        $proxy->setLanguages([]);
         
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 1);
@@ -109,6 +110,8 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $this->persistenceManager->persistAll();
         
         $proxy = $this->createProxy();
+        $proxy->setLanguages([]);
+
         $proxy->setHidePastDates(true);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 0);
@@ -132,6 +135,8 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $this->persistenceManager->persistAll();
         
         $proxy = $this->createProxy();
+        $proxy->setLanguages([]);
+
         $proxy->setHideAlreadyStartedDates(true);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 0);
@@ -139,6 +144,38 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $proxy->setHideAlreadyStartedDates(false);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 1);
+    }
+    
+    /**
+     * Test if findByProxy() respects workshop languages.
+     *
+     * @test
+     */
+    public function findByProxyRespectsWorkshopLanguages()
+    {
+        $date = $this->createDate();
+        $date->setWorkshop($this->createWorkshop());
+        $date->setBeginAt(strtotime('+2 days'));
+        $this->dateRepository->add($date);
+        
+        $workshop = $this->createWorkshop();
+        $date = $this->createDate();
+        $date->setWorkshop($workshop);
+        $date->setBeginAt(strtotime('+2 days'));
+        $this->dateRepository->add($date);
+        $this->persistenceManager->persistAll();
+        
+        // As sys_language_uid is overwritten on handling, the uid is set "manually".
+        $GLOBALS['TYPO3_DB']->exec_UPDATEquery('tx_workshops_domain_model_workshop', 'uid = ' . $workshop->getUid(), ['sys_language_uid' => -1]);
+        
+        $proxy = $this->createProxy();
+        $proxy->setLanguages([]);
+        $dates = $this->dateRepository->findByProxy($proxy);
+        $this->assertTrue(count($dates) == 2);
+        
+        $proxy->setLanguages([0, -1]);
+        $dates = $this->dateRepository->findByProxy($proxy);
+        $this->assertTrue(count($dates) == 2);
     }
 
     /**
@@ -166,6 +203,8 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $this->persistenceManager->persistAll();
         
         $proxy = $this->createProxy();
+        $proxy->setLanguages([]);
+
         $proxy->setWithinDaysFromNow(4);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 1);
@@ -193,7 +232,7 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     protected function createWorkshop()
     {
         $workshop = $this->objectManager->get(Workshop::class);
-        $workshop->setPid(2);
+        $workshop->setPid(0);
         $this->workshopRepository->add($workshop);
         $this->persistenceManager->persistAll();
         return $workshop;
