@@ -37,6 +37,11 @@ abstract class AbstractRepositoryProxy
     protected $pids = [];
 
     /**
+     * @var array Language uids.
+     */
+    protected $languages = [];
+
+    /**
      * @var bool Set to ignore storage pid constraints.
      */
     protected $ignoreStoragePid = false;
@@ -81,6 +86,16 @@ abstract class AbstractRepositoryProxy
      */
     protected $hideAlreadyStartedDates;
 
+
+    /**
+     * Constructor.
+     *
+     * Initializes class instance with default values.
+     */
+    public function __construct()
+    {
+        $this->languages = [-1, (int)$GLOBALS['TSFE']->sys_language_uid];
+    }
 
     /**
      * Initialize proxy properties by given settings.
@@ -146,6 +161,23 @@ abstract class AbstractRepositoryProxy
     public function setPids($pids)
     {
         $this->pids = $pids;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
+
+    /**
+     * @param array $languages
+     * @return void
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
     }
 
     /**

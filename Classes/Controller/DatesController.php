@@ -23,6 +23,7 @@ use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
  */
 class DatesController extends AbstractController
 {
+
     /**
      * Index action.
      *
@@ -61,4 +62,5 @@ class DatesController extends AbstractController
         $proxy->setHidePastDates(true);
         $this->view->assign('upcomingDates', $this->dateRepository->findByProxy($proxy));
     }
+
 }

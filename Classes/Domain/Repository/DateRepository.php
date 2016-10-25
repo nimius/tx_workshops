@@ -17,6 +17,7 @@ namespace NIMIUS\Workshops\Domain\Repository;
 use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
 use NIMIUS\Workshops\Persistence\Repository;
+
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
@@ -44,6 +45,10 @@ class DateRepository extends Repository
         $query = $this->createQuery();
         $constraints = [];
         parent::initializeQuery($query, $proxy, $constraints);
+        
+        if (count($proxy->getLanguages()) > 0) {
+            $constraints[] = $query->in('workshop.sys_language_uid', $proxy->getLanguages());
+        }
         
         $beginOfToday = strtotime('today midnight');
 
