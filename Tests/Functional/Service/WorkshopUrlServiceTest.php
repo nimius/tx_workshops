@@ -21,7 +21,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
- * Functional test case for AbstractUrlService class.
+ * Functional test case for WorkshopUrlService class.
  * 
  * @todo Add tests for various cases (Currently throws "Call to a member function getPage_noCheck() on a non-object")
  */
@@ -29,7 +29,7 @@ class WorkshopUrlServiceTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
 {
 
     /**
-     * @var array Required extensions for this test suite
+     * @var array Required extensions for this test suite.
      */
     protected $testExtensionsToLoad = ['typo3conf/ext/workshops'];
 
