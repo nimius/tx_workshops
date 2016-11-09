@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\ViewHelpers\Form;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -14,7 +14,6 @@ namespace NIMIUS\Workshops\ViewHelpers\Form;
  * The TYPO3 project - inspiring people to share!
  */
 
-use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Utility\ConfigurationUtility;
 
 /**
@@ -39,7 +38,6 @@ class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
      * @var string
      */
     protected $append = '';
-
 
     /**
      * Class initializer.
@@ -93,5 +91,4 @@ class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
         $this->tag->setContent($content);
         return $this->tag->render();
     }
-
 }

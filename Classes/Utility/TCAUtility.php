@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Utility;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -13,10 +13,6 @@ namespace NIMIUS\Workshops\Utility;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use NIMIUS\Workshops\Utility\ConfigurationUtility;
 
 /**
  * Utility class for TCA.
@@ -36,8 +32,8 @@ class TCAUtility
         $value = [];
         $settings = ConfigurationUtility::getTyposcriptConfiguration()['registration.']['validation.'][$field . '.'];
         if ($settings) {
-            foreach($settings as $validation) {
-                switch($validation['validator']) {
+            foreach ($settings as $validation) {
+                switch ($validation['validator']) {
                     case 'NotEmpty':
                         $value[] = 'required';
                         break;
@@ -66,5 +62,4 @@ class TCAUtility
         }
         return implode(',', $value);
     }
-
 }

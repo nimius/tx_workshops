@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Proxy;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -36,7 +36,7 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
     protected $location;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $recordLimit;
 
@@ -44,7 +44,6 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
      * @var bool
      */
     protected $hideChildDates = true;
-
 
     /**
      * Initialize proxy properties by given settings.
@@ -97,7 +96,7 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
     }
 
     /**
-     * @return integer|null
+     * @return int|null
      */
     public function getRecordLimit()
     {
@@ -105,7 +104,7 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
     }
 
     /**
-     * @param integer|null $recordLimit
+     * @param int|null $recordLimit
      * @return void
      */
     public function setRecordLimit($recordLimit)
@@ -129,5 +128,4 @@ class DateRepositoryProxy extends AbstractRepositoryProxy
     {
         return $this->hideChildDates;
     }
-
 }

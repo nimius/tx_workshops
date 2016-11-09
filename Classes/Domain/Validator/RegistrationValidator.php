@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Validator;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -15,7 +15,6 @@ namespace NIMIUS\Workshops\Domain\Validator;
  */
 
 use NIMIUS\Workshops\Utility\ObjectUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
@@ -39,7 +38,6 @@ class RegistrationValidator extends AbstractObjectValidator
      * @inject
      */
     protected $configurationManager;
-
 
     /**
      * Main method of the validator.
@@ -68,7 +66,7 @@ class RegistrationValidator extends AbstractObjectValidator
     protected function validateWorkshopDate()
     {
         $workshopDate = $this->registration->getWorkshopDate();
-        
+
         if ($workshopDate->getParent()) {
             $this->addErrorToProperty('validator.registration.registrationForParentRequired', [], 'workshopDate', 1448716674);
         }
@@ -79,7 +77,7 @@ class RegistrationValidator extends AbstractObjectValidator
         if ($workshopDate->getRegistrationDeadlineReached()) {
             $this->addErrorToProperty('validator.registration.registrationDeadlineReached', [], 'workshopDate', 1448124040);
         }
-        
+
         if ($workshopDate->getEndAt() < time()) {
             $this->addErrorToProperty('validator.registration.alreadyEnded', [], 'workshopDate', 1448124400);
         } elseif ($workshopDate->getBeginAt() < time()) {
@@ -115,20 +113,20 @@ class RegistrationValidator extends AbstractObjectValidator
         $resolver = ObjectUtility::get(\TYPO3\CMS\Extbase\Validation\ValidatorResolver::class);
         $validations = $this->settings['registration']['validation'];
         $additionalPropertyValidations = $validations['additionalFields'];
-        unset($validations['additionalFields']);    
-            
-        foreach($validations as $property => $config) {
-            foreach($config as $validation) {
+        unset($validations['additionalFields']);
+
+        foreach ($validations as $property => $config) {
+            foreach ($config as $validation) {
                 $validator = $resolver->createValidator($validation['validator'], (array)$validation['options']);
                 $result = $validator->validate($this->registration->_getProperty($property));
                 $this->mergeErrorsFromValidator($result, $property);
             }
         }
-        
+
         if ($additionalPropertyValidations) {
             $propertyValues = $this->registration->getAdditionalFields();
-            foreach($additionalPropertyValidations as $property => $config) {
-                foreach($config as $validation) {
+            foreach ($additionalPropertyValidations as $property => $config) {
+                foreach ($config as $validation) {
                     $validator = $resolver->createValidator($validation['validator'], (array)$validation['options']);
                     $result = $validator->validate($propertyValues[$property]);
                     $this->mergeErrorsFromValidator($result, 'additionalFields.' . $property);
@@ -136,5 +134,4 @@ class RegistrationValidator extends AbstractObjectValidator
             }
         }
     }
-
 }

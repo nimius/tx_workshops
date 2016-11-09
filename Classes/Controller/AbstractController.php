@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Controller;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -13,8 +13,6 @@ namespace NIMIUS\Workshops\Controller;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
-use NIMIUS\Workshops\Domain\Model\Date;
 
 /**
  * Abstract extension controller.
@@ -67,15 +65,16 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
      */
     protected $signalSlotDispatcher;
 
-
     /**
      * Enforces presence of a logged in fe_user.
      *
      * If plugin.tx_workshops.settings.loginPid is given,
      * a redirect to the given login page is made. Otherwise,
      * a core "page not found" is yielded.
+     *
+     * @return void
      */
-    public function requireFrontendUser() 
+    public function requireFrontendUser()
     {
         if (!$this->currentFrontendUser()) {
             $loginPid = (int)$this->settings['loginPid'];
@@ -87,7 +86,7 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
             }
         }
     }
-    
+
     /**
      * Get the currently logged in frontend user.
      *
@@ -98,7 +97,7 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
         if (isset($this->currentFrontendUser)) {
             return $this->currentFrontendUser;
         }
-        
+
         if ($GLOBALS['TSFE']->fe_user->user) {
             $this->currentFrontendUser = $this->frontendUserRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
             return $this->currentFrontendUser;
@@ -106,5 +105,4 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
             return false;
         }
     }
-
 }

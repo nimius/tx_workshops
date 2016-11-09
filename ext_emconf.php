@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,7 +11,6 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Workshops system',
     'description' => 'Flexible workshop and courses management.',

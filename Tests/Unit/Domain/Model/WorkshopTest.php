@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Test\Unit\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,7 +19,6 @@ require_once __DIR__ . '/../../../AbstractUnitTestCase.php';
 
 use NIMIUS\Workshops\Domain\Model\Category;
 use NIMIUS\Workshops\Domain\Model\Workshop;
-
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
@@ -32,7 +31,6 @@ class WorkshopTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
      * @var \NIMIUS\Workshops\Domain\Model\Workshop
      */
     protected $subject;
-
 
     /**
      * Test getter/setter for properties.
@@ -115,7 +113,6 @@ class WorkshopTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
         $this->assertEquals(true, $this->subject->getIsExternal());
     }
 
-
     /**
      * Set up the test case.
      */
@@ -123,5 +120,4 @@ class WorkshopTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
     {
         $this->subject = new Workshop;
     }
-
 }

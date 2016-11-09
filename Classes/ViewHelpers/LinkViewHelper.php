@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\ViewHelpers;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -16,13 +16,12 @@ namespace NIMIUS\Workshops\ViewHelpers;
 
 use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Service\WorkshopUrlService;
-use NIMIUS\Workshops\Utility\ConfigurationUtility;
 
 /**
  * View helper for rendering links based on the workshop type and settings.
  */
 class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
-{   
+{
 
     /**
      * Renders a detail / more link to the given workshop.
@@ -58,5 +57,4 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
         $this->tag->setContent($this->renderChildren());
         return $this->tag->render();
     }
-
 }

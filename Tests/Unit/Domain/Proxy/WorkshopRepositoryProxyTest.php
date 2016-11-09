@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Test\Unit\Domain\Proxy;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,7 +17,6 @@ namespace NIMIUS\Workshops\Test\Unit\Domain\Proxy;
 // Manually requiring custom class as it is not autoloaded in the bootstrap process.
 require_once __DIR__ . '/../../../AbstractUnitTestCase.php';
 
-use NIMIUS\Workshops\Domain\Model\Location;
 use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Domain\Proxy\WorkshopRepositoryProxy;
 
@@ -32,7 +31,6 @@ class WorkshopRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTe
      */
     protected $subject;
 
-
     /**
      * Test getter/setter for properties.
      *
@@ -46,7 +44,6 @@ class WorkshopRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTe
         $this->_testGetterAndSetterForProperty('types', [Workshop::TYPE_DEFAULT]);
     }
 
-
     /**
      * Set up the test case.
      */
@@ -54,5 +51,4 @@ class WorkshopRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTe
     {
         $this->subject = new WorkshopRepositoryProxy;
     }
-
 }

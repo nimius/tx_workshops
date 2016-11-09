@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\ViewHelpers\Widget;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -26,7 +26,6 @@ class CategoriesViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetVi
      * @inject
      */
     protected $controller;
-
 
     /**
      * Main method of this view helper.

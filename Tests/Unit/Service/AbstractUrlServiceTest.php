@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Test\Unit\Service;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -23,14 +23,13 @@ use NIMIUS\Workshops\Service\AbstractUrlService;
 /**
  * Unit test case for AbstractUrlService class.
  */
-class AbstractUrlServiceTestTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
+class AbstractUrlServiceTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
 
     /**
      * @var \object Mock of AbstractUrlService.
      */
     protected $subject;
-
 
     /**
      * Test getter/setter for properties.
@@ -47,7 +46,6 @@ class AbstractUrlServiceTestTest extends \NIMIUS\Workshops\Tests\AbstractUnitTes
         $this->_testGetterAndSetterForProperty('typolinkConfiguration', []);
     }
 
-
     /**
      * Set up the test case.
      */
@@ -55,5 +53,4 @@ class AbstractUrlServiceTestTest extends \NIMIUS\Workshops\Tests\AbstractUnitTes
     {
         $this->subject = $this->getMockForAbstractClass(AbstractUrlService::class);
     }
-
 }

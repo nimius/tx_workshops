@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Test\Unit\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -30,7 +30,6 @@ class FrontendUserTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
      */
     protected $subject;
 
-
     /**
      * Test if getFullName() returns the full name.
      *
@@ -41,11 +40,10 @@ class FrontendUserTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
         $this->subject->setFirstName('First name');
         $this->subject->setLastName('Last name');
         $this->assertEquals('First name Last name', $this->subject->getFullName());
-        
+
         $this->subject->setLastName('');
         $this->assertEquals('First name', $this->subject->getFullName());
     }
-
 
     /**
      * Set up the test case.
@@ -54,5 +52,4 @@ class FrontendUserTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
     {
         $this->subject = new FrontendUser;
     }
-
 }

@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -47,7 +47,7 @@ class RegistrationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * language as the first language processed, they are returned in badges
      * of the same language.
      *
-     * @param integer $graceTime Grace time in seconds
+     * @param int $graceTime Grace time in seconds
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResult
      */
     public function findAllWithoutSentConfirmation($graceTime = null)
@@ -89,7 +89,7 @@ class RegistrationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * Find all registrations newer than the given timestamp.
      *
-     * @param integer $timestamp
+     * @param int $timestamp
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResult
      */
     public function findAllCreatedSince($timestamp)
@@ -103,5 +103,4 @@ class RegistrationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         ]);
         return $query->execute();
     }
-
 }

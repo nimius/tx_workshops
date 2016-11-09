@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Test\Functional\Service;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -16,13 +16,12 @@ namespace NIMIUS\Workshops\Test\Functional\Service;
 
 use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Service\WorkshopUrlService;
-
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 
 /**
  * Functional test case for WorkshopUrlService class.
- * 
+ *
  * @todo Add tests for various cases (Currently throws "Call to a member function getPage_noCheck() on a non-object")
  */
 class WorkshopUrlServiceTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
@@ -42,7 +41,6 @@ class WorkshopUrlServiceTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * @var \NIMIUS\Workshops\Service\WorkshopUrlService
      */
     protected $subject;
-
 
     /**
      * Test if render() returns an external url for external workshops.

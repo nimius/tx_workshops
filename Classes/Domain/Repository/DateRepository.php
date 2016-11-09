@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,7 +17,6 @@ namespace NIMIUS\Workshops\Domain\Repository;
 use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
 use NIMIUS\Workshops\Persistence\Repository;
-
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 
 /**
@@ -33,7 +32,6 @@ class DateRepository extends Repository
         'beginAt' => QueryInterface::ORDER_ASCENDING,
     ];
 
-
     /**
      * Find all dates matching the given proxy.
      *
@@ -45,11 +43,11 @@ class DateRepository extends Repository
         $query = $this->createQuery();
         $constraints = [];
         parent::initializeQuery($query, $proxy, $constraints);
-        
+
         if (count($proxy->getLanguages()) > 0) {
             $constraints[] = $query->in('workshop.sys_language_uid', $proxy->getLanguages());
         }
-        
+
         $beginOfToday = strtotime('today midnight');
 
         if ($proxy->getHidePastDates()) {
@@ -90,7 +88,7 @@ class DateRepository extends Repository
      * Gets the next upcoming dates for a given workshop.
      *
      * @param \NIMIUS\Workshops\Domain\Model\Workshop $workshop
-     * @param integer $tstamp
+     * @param int $tstamp
      * @return mixed
      */
     public function findNextUpcomingForWorkshop(Workshop $workshop)
@@ -104,5 +102,4 @@ class DateRepository extends Repository
             )
         )->setLimit(1)->execute()->getFirst();
     }
-
 }

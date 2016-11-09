@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Test\Unit\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -22,7 +22,6 @@ use NIMIUS\Workshops\Domain\Model\Instructor;
 use NIMIUS\Workshops\Domain\Model\Location;
 use NIMIUS\Workshops\Domain\Model\Registration;
 use NIMIUS\Workshops\Domain\Model\Workshop;
-
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
@@ -35,7 +34,6 @@ class DateTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
      * @var \NIMIUS\Workshops\Domain\Model\Date
      */
     protected $subject;
-
 
     /**
      * Test getter/setter for properties.
@@ -189,7 +187,7 @@ class DateTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
     }
 
     /**
-     * Test if getSeatsAvailable() returns a correct number if no 
+     * Test if getSeatsAvailable() returns a correct number if no
      * registrations are present.
      *
      * @test
@@ -202,7 +200,7 @@ class DateTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
     }
 
     /**
-     * Test if getSeatsAvailable() returns a correct number if any 
+     * Test if getSeatsAvailable() returns a correct number if any
      * registrations are present.
      *
      * @test
@@ -216,7 +214,7 @@ class DateTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
     }
 
     /**
-     * Test if getAttendeesNeededForRequiredMinimum() returns a correct number if any 
+     * Test if getAttendeesNeededForRequiredMinimum() returns a correct number if any
      * registrations are present.
      *
      * @test
@@ -244,7 +242,7 @@ class DateTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
     }
 
     /**
-     * Test if getAttendeesNeededForPossibleMaximum() returns a correct number if any 
+     * Test if getAttendeesNeededForPossibleMaximum() returns a correct number if any
      * registrations are present.
      *
      * @test
@@ -345,7 +343,6 @@ class DateTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
         $this->assertEquals(true, $this->subject->getHasEnded());
     }
 
-
     /**
      * Set up the test case.
      */
@@ -353,5 +350,4 @@ class DateTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
     {
         $this->subject = new Date;
     }
-
 }

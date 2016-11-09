@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -31,7 +31,6 @@ class WorkshopRepository extends Repository
         'sorting' => QueryInterface::ORDER_ASCENDING,
     ];
 
-
     /**
      * Find all workshops matching the given proxy.
      *
@@ -60,5 +59,4 @@ class WorkshopRepository extends Repository
         $query->setOrderings([$proxy->getSortingField() => $proxy->getSortingType()]);
         return $query->execute();
     }
-
 }

@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Controller;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -15,11 +15,9 @@ namespace NIMIUS\Workshops\Controller;
  */
 
 use NIMIUS\Workshops\Domain\Model\Category;
-use NIMIUS\Workshops\Domain\Model\Date;
 use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
 use NIMIUS\Workshops\Domain\Proxy\WorkshopRepositoryProxy;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * Controller for displaying workshop data.
@@ -56,11 +54,11 @@ class WorkshopsController extends AbstractController
             'workshops' => $this->workshopRepository->findByProxy($proxy),
         ]);
     }
-    
+
     /**
      * Workshop detail page.
      *
-     * Either displays the provided record (via GET) or, if selected, 
+     * Either displays the provided record (via GET) or, if selected,
      * ignores a possibly given record but displays the chosen one.
      *
      * @param NIMIUS\Workshops\Domain\Model\Workshop $workshop

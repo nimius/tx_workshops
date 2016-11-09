@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Hook;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -16,7 +16,6 @@ namespace NIMIUS\Workshops\Hook;
 
 use NIMIUS\Workshops\Utility\ConfigurationUtility;
 use NIMIUS\Workshops\Utility\ObjectUtility;
-
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Backend\View\PageLayoutView;
 use TYPO3\CMS\Core\Imaging\Icon;
@@ -41,7 +40,6 @@ class PageLayoutViewDrawItemHook implements \TYPO3\CMS\Backend\View\PageLayoutVi
      */
     protected $informationParts = [];
 
-
     /**
      * Preprocesses the preview rendering of a content element.
      *
@@ -52,14 +50,15 @@ class PageLayoutViewDrawItemHook implements \TYPO3\CMS\Backend\View\PageLayoutVi
      * @param array $row Record row of tt_content
      * @return void
      */
-    public function preProcess(PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row) {
+    public function preProcess(PageLayoutView &$parentObject, &$drawItem, &$headerContent, &$itemContent, array &$row)
+    {
         if ($row['CType'] !== 'list' || substr($row['list_type'], 0, 9) !== 'workshops') {
-    		return;
-    	}
-		
-		// Disable default output.
-		$drawItem = false;
-		
+            return;
+        }
+
+        // Disable default output.
+        $drawItem = false;
+
         /*
          * Set plugin header.
          */
@@ -75,8 +74,8 @@ class PageLayoutViewDrawItemHook implements \TYPO3\CMS\Backend\View\PageLayoutVi
         /*
          * Convert FlexForm settings to an array.
          */
-		$flexFormService = ObjectUtility::getObjectManager()->get(FlexFormService::class);
-		$this->settings = (array)$flexFormService->convertFlexFormContentToArray($row['pi_flexform'])['settings'];
+        $flexFormService = ObjectUtility::getObjectManager()->get(FlexFormService::class);
+        $this->settings = (array)$flexFormService->convertFlexFormContentToArray($row['pi_flexform'])['settings'];
 
         /*
          * Generate information content.
@@ -222,16 +221,15 @@ class PageLayoutViewDrawItemHook implements \TYPO3\CMS\Backend\View\PageLayoutVi
         $iconFactory = GeneralUtility::makeInstance(IconFactory::class);
         return $iconFactory->getIcon($identifier, Icon::SIZE_SMALL, null, IconState::cast(IconState::STATE_DEFAULT))->render();
     }
-	
+
     /**
      * Retruns language label from given key.
      *
-	 * @param string $key
+     * @param string $key
      * @return string
      */
     protected function getLanguageLabel($key)
     {
-		return $GLOBALS['LANG']->sL('LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:' . $key);
+        return $GLOBALS['LANG']->sL('LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:' . $key);
     }
-
 }

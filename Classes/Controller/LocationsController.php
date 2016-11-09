@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Controller;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -29,10 +29,10 @@ class LocationsController extends AbstractController
      *
      * @param \NIMIUS\Workshops\Domain\Model\Location $location
      * @dontvalidate $location
+     * @return void
      */
     public function showAction(Location $location)
     {
         $this->view->assign('location', $location);
     }
-
 }

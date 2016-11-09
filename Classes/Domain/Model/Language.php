@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -29,7 +29,6 @@ class Language extends AbstractEntity
      */
     protected $languageIsocode;
 
-
     /**
      * @return string
      */
@@ -46,5 +45,4 @@ class Language extends AbstractEntity
     {
         $this->languageIsocode = $code;
     }
-
 }

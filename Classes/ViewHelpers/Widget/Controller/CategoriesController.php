@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\ViewHelpers\Widget\Controller;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -16,7 +16,6 @@ namespace NIMIUS\Workshops\ViewHelpers\Widget\Controller;
 
 use NIMIUS\Workshops\Domain\Proxy\CategoryRepositoryProxy;
 use NIMIUS\Workshops\Utility\ObjectUtility;
-
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /**
@@ -35,7 +34,6 @@ class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCo
      * @var array tt_content record.
      */
     protected $contentRecord;
-
 
     /**
      * Default action for this widget controller.
@@ -87,7 +85,7 @@ class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCo
                 'category' => $category,
                 'children' => []
             ];
-            if (count($children) > 0) { 
+            if (count($children) > 0) {
                 $this->fetchChildren($collection[$category->getUid()]['children'], $children);
             }
         }
@@ -115,7 +113,6 @@ class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCo
         return false;
     }
 
-
     /**
      * Widget action initializer.
      *
@@ -133,5 +130,4 @@ class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCo
             $this->widgetConfiguration['controllerName'] = $this->widgetConfiguration['pluginName'];
         }
     }
-
 }

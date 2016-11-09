@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Service;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,7 +18,7 @@ use NIMIUS\Workshops\Utility\ConfigurationUtility;
 
 /**
  * Abstract url service class.
- * 
+ *
  * Base for url service classes building urls to records.
  */
 abstract class AbstractUrlService
@@ -50,7 +50,6 @@ abstract class AbstractUrlService
      * @var array Typolink configuration.
      */
     protected $typolinkConfiguration = [];
-
 
     /**
      * @api
@@ -164,5 +163,4 @@ abstract class AbstractUrlService
             $this->settings['targetPlugin'] = $this->defaultSettings['targetPlugin'];
         }
     }
-
 }

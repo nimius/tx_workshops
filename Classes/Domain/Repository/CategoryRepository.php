@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -47,7 +47,7 @@ class CategoryRepository extends Repository
      * Find all categories without a parent.
      *
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResult
-     */ 
+     */
     public function findAllRootCategories()
     {
         return $this->findAllChildren(0);
@@ -82,5 +82,4 @@ class CategoryRepository extends Repository
             $query->equals('parent', $uid)
         )->execute();
     }
-
 }

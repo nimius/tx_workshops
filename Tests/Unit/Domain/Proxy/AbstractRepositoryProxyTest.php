@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Test\Unit\Domain\Proxy;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -30,7 +30,6 @@ class AbstractRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTe
      * @var \object Mock of AbstractRepositoryProxy
      */
     protected $subject;
-
 
     /**
      * Test getter/setter for properties.
@@ -63,7 +62,7 @@ class AbstractRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTe
 
     /**
      * Test if initializeFromSettings() initializes correctly from given settings.
-     * 
+     *
      * Watch out to not do testing on a functional level.
      *
      * @test
@@ -75,7 +74,7 @@ class AbstractRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTe
             'upcomingDays' => 12,
             'hidePastDates' => true,
             'hideAlreadyStartedDates' => true,
-            'pids' => [1,2]
+            'pids' => [1, 2]
         ];
         $this->subject->initializeFromSettings($settings);
         $this->assertEquals($settings['categoryOperator'], $this->subject->getCategoryOperator());
@@ -85,7 +84,6 @@ class AbstractRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTe
         $this->assertEquals($settings['pids'], $this->subject->getPids());
     }
 
-
     /**
      * Set up the test case.
      */
@@ -93,5 +91,4 @@ class AbstractRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTe
     {
         $this->subject = $this->getMockForAbstractClass(AbstractRepositoryProxy::class);
     }
-
 }

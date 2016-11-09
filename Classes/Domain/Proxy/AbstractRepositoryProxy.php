@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Proxy;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -13,9 +13,6 @@ namespace NIMIUS\Workshops\Domain\Proxy;
  *
  * The TYPO3 project - inspiring people to share!
  */
-
-use NIMIUS\Workshops\Domain\Model\Date;
-use NIMIUS\Workshops\Domain\Model\Workshop;
 
 /**
  * Abstract repository proxy class.
@@ -72,7 +69,7 @@ abstract class AbstractRepositoryProxy
     protected $sortingType = 'ASC';
 
     /**
-     * @var integer Restrict dates to be within the following amount of days from now
+     * @var int Restrict dates to be within the following amount of days from now
      */
     protected $withinDaysFromNow;
 
@@ -85,7 +82,6 @@ abstract class AbstractRepositoryProxy
      * @var bool Hide dates where workshops already started regarding time.
      */
     protected $hideAlreadyStartedDates;
-
 
     /**
      * Constructor.
@@ -130,7 +126,7 @@ abstract class AbstractRepositoryProxy
             $settings['hidePastDates'], $settings['hideAlreadyStartedDates']
         );
 
-        foreach($settings as $key => $value) {
+        foreach ($settings as $key => $value) {
             if (property_exists($this, $key)) {
                 $this->{$key} = $value;
             }
@@ -146,7 +142,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @param integer $pid
+     * @param int $pid
      * @return void
      */
     public function setPid($pid)
@@ -295,7 +291,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @param integer|null $withinDaysFromNow
+     * @param int|null $withinDaysFromNow
      * @return void
      */
     public function setWithinDaysFromNow($withinDaysFromNow)
@@ -353,5 +349,4 @@ abstract class AbstractRepositoryProxy
     {
         $this->ignoreStoragePid = (bool)$ignoreStoragePid;
     }
-
 }

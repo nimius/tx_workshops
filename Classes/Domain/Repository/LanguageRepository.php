@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -23,15 +23,15 @@ class LanguageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * Find currently used language by given uid.
      *
-     * @param integer $uid
+     * @param int $uid
      * @return \NIMIUS\Workshops\Domain\Model\Language|null
      */
-    public function findByUid($uid) {
+    public function findByUid($uid)
+    {
         $query = $this->createQuery();
         $query->getQuerySettings()->setRespectStoragePage(false);
         return $query->matching(
             $query->equals('uid', $uid)
         )->setLimit(1)->execute()->toArray()[0];
     }
-
 }

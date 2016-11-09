@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,9 +11,8 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
-
-if (!defined ('TYPO3_MODE')) {
-    die ('Access denied.');
+if (!defined('TYPO3_MODE')) {
+    die('Access denied.');
 }
 
 $emConf = \NIMIUS\Workshops\Utility\ConfigurationUtility::getExtensionConfiguration();
@@ -31,7 +30,7 @@ $languagePath = 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang.x
 $pluginSignature = strtolower($extensionName) . '_workshops';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
     $pluginSignature,
-    'FILE:EXT:' . $_EXTKEY.'/Configuration/FlexForm/Workshops.xml'
+    'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/Workshops.xml'
 );
 
 /**
@@ -59,7 +58,7 @@ $pluginSignature = strtolower($extensionName) . '_workshopssingleview';
 $pluginSignature = strtolower($extensionName) . '_dates';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
     $pluginSignature,
-    'FILE:EXT:' . $_EXTKEY.'/Configuration/FlexForm/Dates.xml'
+    'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/Dates.xml'
 );
 
 /**

@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Hook;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,24 +17,23 @@ namespace NIMIUS\Workshops\Hook;
 use NIMIUS\Workshops\Domain\Model\Date;
 use NIMIUS\Workshops\Utility\ConfigurationUtility;
 use NIMIUS\Workshops\Utility\ObjectUtility;
-
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 /**
  * DataMapper hook class.
- * 
+ *
  * Contains functionality to hook into backend data processing.
  */
 class DataMapperHook
 {
 
     /**
-     * Hook to post-process data. 
+     * Hook to post-process data.
      *
      * @param string $status
      * @param string $table
-     * @param integer $id
+     * @param int $id
      * @param array &$fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler &$dataHandler
      * @return void
@@ -46,13 +45,13 @@ class DataMapperHook
             $this->processDateRecords($status, $table, $uid, $fieldArray, $dataHandler, $dateDataMap);
         }
     }
-    
+
     /**
      * Hook to update data after all database operations.
      *
      * @param string $status
      * @param string $table
-     * @param integer $id
+     * @param int $id
      * @param array &$fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler &$dataHandler
      * @return void
@@ -71,7 +70,7 @@ class DataMapperHook
      *
      * @param string $status
      * @param string $table
-     * @param integer $id
+     * @param int $id
      * @param array &$fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler &$dataHandler
      * @return void
@@ -149,7 +148,7 @@ class DataMapperHook
      *
      * @param string $status
      * @param string $table
-     * @param integer $id
+     * @param int $id
      * @param array &$fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler &$dataHandler
      * @return void
@@ -187,7 +186,7 @@ class DataMapperHook
                 $this->updateDateDatamap($record, $properties);
             }
         }
-        
+
         $fieldArray['begin_at'] = $properties['begin_at'];
         $fieldArray['end_at'] = $properties['end_at'];
     }
@@ -216,7 +215,8 @@ class DataMapperHook
      * @param array $fieldArr
      * @return bool
      */
-    protected function isAddressUpdate(&$fieldArr) {
+    protected function isAddressUpdate(&$fieldArr)
+    {
         return  array_key_exists('address', $fieldArr) ||
                 array_key_exists('zip', $fieldArr) ||
                 array_key_exists('city', $fieldArr) ||
@@ -230,9 +230,9 @@ class DataMapperHook
      * @param array $fieldArr
      * @return bool
      */
-    protected function isManualCoordinateUpdate(&$fieldArr) {
+    protected function isManualCoordinateUpdate(&$fieldArr)
+    {
         return  array_key_exists('longitude', $fieldArr) ||
                 array_key_exists('latitude', $fieldArr);
     }
-
 }

@@ -21,11 +21,10 @@ abstract class AbstractEntity extends \TYPO3\CMS\Extbase\DomainObject\AbstractEn
 {
 
     /**
-     * @return integer
+     * @return int
      */
     public function getSysLanguageUid()
     {
         return $this->_languageUid;
     }
-
 }

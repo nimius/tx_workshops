@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -14,8 +14,6 @@ namespace NIMIUS\Workshops\Domain\Model;
  * The TYPO3 project - inspiring people to share!
  */
 
-use NIMIUS\Workshops\Domain\Model\Category;
-use NIMIUS\Workshops\Domain\Model\Date;
 use NIMIUS\Workshops\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
@@ -26,22 +24,22 @@ class Workshop extends AbstractEntity
 {
 
     /**
-     * @var integer Default workshop
+     * @var int Default workshop
      */
     const TYPE_DEFAULT = 0;
 
     /**
-     * @var integer Workshop with link to external page
+     * @var int Workshop with link to external page
      */
     const TYPE_EXTERNAL = 2;
 
     /**
-     * @var boolean
+     * @var bool
      */
     protected $hidden;
-    
+
     /**
-     * @var integer
+     * @var int
      */
     protected $type;
 
@@ -49,12 +47,12 @@ class Workshop extends AbstractEntity
      * @var string
      */
     protected $identifier;
-    
+
     /**
      * @var string
      */
     protected $internalUrl;
-    
+
     /**
      * @var string
      */
@@ -74,19 +72,19 @@ class Workshop extends AbstractEntity
      * @var string
      */
     protected $description;
-    
+
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Date>
      * @lazy
      */
     protected $dates;
-    
+
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Category>
      * @lazy
      */
     protected $categories;
-    
+
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Workshop>
      * @lazy
@@ -103,8 +101,6 @@ class Workshop extends AbstractEntity
      */
     protected $files;
 
-
-
     /**
      * Class constructor.
      */
@@ -116,9 +112,9 @@ class Workshop extends AbstractEntity
         $this->images = new ObjectStorage;
         $this->files = new ObjectStorage;
     }
-    
+
     /**
-     * @return boolean
+     * @return bool
      */
     public function getHidden()
     {
@@ -126,16 +122,16 @@ class Workshop extends AbstractEntity
     }
 
     /**
-     * @param boolean $hidden
+     * @param bool $hidden
      * @return void
      */
     public function setHidden($hidden)
     {
         $this->hidden = $hidden;
     }
-    
+
     /**
-     * @return integer
+     * @return int
      */
     public function getType()
     {
@@ -143,16 +139,16 @@ class Workshop extends AbstractEntity
     }
 
     /**
-     * @param integer $type
+     * @param int $type
      * @return void
      */
     public function setType($type)
     {
         $this->type = $type;
     }
-    
+
     /**
-     * @return boolean
+     * @return bool
      */
     public function getIsDefault()
     {
@@ -160,13 +156,13 @@ class Workshop extends AbstractEntity
     }
 
     /**
-     * @return boolean
+     * @return bool
      */
     public function getIsExternal()
     {
         return $this->type == self::TYPE_EXTERNAL;
     }
-    
+
     /**
      * @return string
      */
@@ -183,7 +179,7 @@ class Workshop extends AbstractEntity
     {
         return $this->identifier = $identifier;
     }
-    
+
     /**
      * @return string
      */
@@ -200,7 +196,7 @@ class Workshop extends AbstractEntity
     {
         $this->internalUrl = $url;
     }
-    
+
     /**
      * @return string
      */
@@ -217,7 +213,7 @@ class Workshop extends AbstractEntity
     {
         $this->externalUrl = $url;
     }
-    
+
     /**
      * @return string
      */
@@ -234,7 +230,7 @@ class Workshop extends AbstractEntity
     {
         $this->name = $name;
     }
-    
+
     /**
      * @return string
      */
@@ -251,7 +247,7 @@ class Workshop extends AbstractEntity
     {
         $this->abstract = $abstract;
     }
-    
+
     /**
      * @return string
      */
@@ -268,7 +264,7 @@ class Workshop extends AbstractEntity
     {
         $this->description = $description;
     }
-    
+
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Date>
      */
@@ -276,7 +272,7 @@ class Workshop extends AbstractEntity
     {
         return $this->dates;
     }
-    
+
     /**
      * @param $date \NIMIUS\Workshops\Domain\Model\Date
      * @return void
@@ -285,7 +281,7 @@ class Workshop extends AbstractEntity
     {
         $this->dates->attach($date);
     }
-    
+
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Category>
      */
@@ -302,7 +298,7 @@ class Workshop extends AbstractEntity
     {
         $this->categories = $categories;
     }
-    
+
     /**
      * @param $category \NIMIUS\Workshops\Domain\Model\Category
      * @return void
@@ -311,7 +307,7 @@ class Workshop extends AbstractEntity
     {
         $this->categories->attach($category);
     }
-    
+
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Workshop>
      */
@@ -376,5 +372,4 @@ class Workshop extends AbstractEntity
             return null;
         }
     }
-
 }

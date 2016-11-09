@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Mailer;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -20,7 +20,6 @@ use TYPO3\CMS\Core\Mail\MailMessage;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use TYPO3\CMS\Fluid\View\StandaloneView;
-
 
 /**
  * Abstract mailer class.
@@ -41,7 +40,6 @@ abstract class AbstractMailer
      * @inject
      */
     protected $objectManager;
-
 
     /**
      * @param string $locale ISO 2 char locale code.
@@ -95,5 +93,4 @@ abstract class AbstractMailer
         // LocalizationUtility respects $GLOBALS['BE_USER']->uc['lang'] if not in FE context.
         return LocalizationUtility::translate($key, 'workshops');
     }
-
 }

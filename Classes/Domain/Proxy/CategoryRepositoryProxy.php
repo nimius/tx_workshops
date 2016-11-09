@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Proxy;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -31,7 +31,6 @@ class CategoryRepositoryProxy extends AbstractRepositoryProxy
      * @var bool Only root categories.
      */
     protected $rootCategoriesOnly = false;
-
 
     /**
      * @param array $uids
@@ -66,5 +65,4 @@ class CategoryRepositoryProxy extends AbstractRepositoryProxy
     {
         return $this->rootCategoriesOnly;
     }
-
 }

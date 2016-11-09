@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Tests\Functional\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -21,7 +21,6 @@ use NIMIUS\Workshops\Domain\Proxy\WorkshopRepositoryProxy;
 use NIMIUS\Workshops\Domain\Repository\CategoryRepository;
 use NIMIUS\Workshops\Domain\Repository\DateRepository;
 use NIMIUS\Workshops\Domain\Repository\WorkshopRepository;
-
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
@@ -50,7 +49,7 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * @var \NIMIUS\Workshops\Domain\Repository\CategoryRepository
      */
     protected $categoryRepository;
-    
+
     /**
      * @var \NIMIUS\Workshops\Domain\Repository\WorkshopRepository
      */
@@ -65,7 +64,6 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      * @var \NIMIUS\Workshops\Domain\Model\Workshop
      */
     protected $workshop;
-
 
     /**
      * Test case constructor / initializer.
@@ -93,10 +91,10 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $workshop->setPid(2);
         $this->workshopRepository->add($workshop);
         $this->persistenceManager->persistAll();
-        
+
         $proxy = $this->createProxy();
         $proxy->setPid(2);
-        
+
         $workshops = $this->workshopRepository->findByProxy($proxy)->toArray();
         $this->assertTrue(count($workshops) == 1);
     }
@@ -110,23 +108,23 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     {
         $category = $this->createCategory();
         $this->categoryRepository->add($category);
-        
+
         $workshop1 = $this->createWorkshop();
         $workshop1->addCategory($category);
         $this->workshopRepository->add($workshop1);
-        
+
         $workshop2 = $this->createWorkshop();
         $this->workshopRepository->add($workshop2);
-        
+
         $this->persistenceManager->persistAll();
-        
+
         $proxy = $this->createProxy();
         $proxy->setCategories([$category]);
-        
+
         $workshops = $this->workshopRepository->findByProxy($proxy)->toArray();
         $this->assertTrue(count($workshops) == 1);
     }
-    
+
     /**
      * Test if findByProxy respects the "OR" category operator given.
      *
@@ -136,28 +134,28 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     {
         $category1 = $this->createCategory();
         $this->categoryRepository->add($category1);
-        
+
         $category2 = $this->createCategory();
         $this->categoryRepository->add($category2);
-        
+
         $workshop1 = $this->createWorkshop();
         $workshop1->addCategory($category1);
         $this->workshopRepository->add($workshop1);
-        
+
         $workshop2 = $this->createWorkshop();
         $workshop2->addCategory($category2);
         $this->workshopRepository->add($workshop2);
-        
+
         $this->persistenceManager->persistAll();
-        
+
         $proxy = $this->createProxy();
         $proxy->setCategories([$category1, $category2]);
         $proxy->setCategoryOperator('OR');
-        
+
         $workshops = $this->workshopRepository->findByProxy($proxy)->toArray();
         $this->assertTrue(count($workshops) == 2);
     }
-    
+
     /**
      * Test if findByProxy respects the "AND" category operator given.
      *
@@ -167,33 +165,33 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     {
         $category1 = $this->createCategory();
         $this->categoryRepository->add($category1);
-        
+
         $category2 = $this->createCategory();
         $this->categoryRepository->add($category2);
-        
+
         $workshop1 = $this->createWorkshop();
         $workshop1->addCategory($category1);
         $this->workshopRepository->add($workshop1);
-        
+
         $workshop2 = $this->createWorkshop();
         $workshop2->addCategory($category2);
         $this->workshopRepository->add($workshop2);
-        
+
         $workshop3 = $this->createWorkshop();
         $workshop3->addCategory($category1);
         $workshop3->addCategory($category2);
         $this->workshopRepository->add($workshop3);
-        
+
         $this->persistenceManager->persistAll();
-        
+
         $proxy = $this->createProxy();
         $proxy->setCategories([$category1, $category2]);
         $proxy->setCategoryOperator('AND');
-        
+
         $workshops = $this->workshopRepository->findByProxy($proxy)->toArray();
         $this->assertTrue(count($workshops) == 1);
     }
-    
+
     /**
      * Test if findByProxy respects hiding workshops without upcoming date option.
      *
@@ -203,24 +201,24 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     {
         $workshop1 = $this->createWorkshop();
         $this->workshopRepository->add($workshop1);
-        
+
         $workshop2 = $this->createWorkshop();
         $date1 = $this->createDate();
         $date1->setBeginAt(time() + 3600);
         $workshop2->addDate($date1);
         $this->workshopRepository->add($workshop2);
-        
+
         $workshop3 = $this->createWorkshop();
         $date2 = $this->createDate();
         $date2->setBeginAt(time() - 3600);
         $workshop3->addDate($date2);
         $this->workshopRepository->add($workshop3);
-        
+
         $this->persistenceManager->persistAll();
-        
+
         $proxy = $this->createProxy();
         $proxy->setHideWorkshopsWithoutUpcomingDates(true);
-        
+
         $workshops = $this->workshopRepository->findByProxy($proxy)->toArray();
         $this->assertTrue(count($workshops) == 1);
     }
@@ -264,5 +262,4 @@ class WorkshopRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     {
         return $this->objectManager->get(Date::class);
     }
-
 }

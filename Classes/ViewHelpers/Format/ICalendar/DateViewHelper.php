@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\ViewHelpers\Format\ICalendar;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -31,6 +31,4 @@ class DateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
     {
         return strftime('%Y%m%dT%H%M%S', (int)$this->renderChildren());
     }
-
 }
-

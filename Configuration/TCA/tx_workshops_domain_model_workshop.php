@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,33 +18,33 @@ $lFile = 'LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:';
 $lll = $lFile . 'model.workshop.';
 
 $TCA['tx_workshops_domain_model_workshop'] = [
-	'ctrl' => [
-		'title' => $lFile . 'model.workshop',
-		'label' => 'name',
-		'dividers2tabs' => true,
-		'enablecolumns' => [
-			'disabled' => 'hidden',
+    'ctrl' => [
+        'title' => $lFile . 'model.workshop',
+        'label' => 'name',
+        'dividers2tabs' => true,
+        'enablecolumns' => [
+            'disabled' => 'hidden',
         ],
-		'requestUpdate' => 'type',
-		'sortby' => 'sorting',
-		'searchFields' => 'name, identifier, abstract, description',
-		'type' => 'type',
+        'requestUpdate' => 'type',
+        'sortby' => 'sorting',
+        'searchFields' => 'name, identifier, abstract, description',
+        'type' => 'type',
         'crdate' => 'crdate',
         'cruser_id' => 'cruser_id',
         'languageField' => 'sys_language_uid',
         'transOrigPointerField' => 'l10n_parent',
         'transOrigDiffSourceField' => 'l10n_diffsource',
-		'iconfile' => 'EXT:workshops/Resources/Public/Icons/Date.png'
+        'iconfile' => 'EXT:workshops/Resources/Public/Icons/Date.png'
     ],
-	'interface' => [
-		'showRecordFieldList' => 'hidden, identifier, name'
+    'interface' => [
+        'showRecordFieldList' => 'hidden, identifier, name'
     ],
-	'columns' => [
-		'hidden' => [
-			'label' => 'LLL:EXT:cms/locallang_tca.xlf:pages.nav_hide_checkbox_1_formlabel',
-			'config' => [
-				'type' => 'check',
-				'default' => 0
+    'columns' => [
+        'hidden' => [
+            'label' => 'LLL:EXT:cms/locallang_tca.xlf:pages.nav_hide_checkbox_1_formlabel',
+            'config' => [
+                'type' => 'check',
+                'default' => 0
             ],
         ],
         'sys_language_uid' => [
@@ -85,186 +85,186 @@ $TCA['tx_workshops_domain_model_workshop'] = [
                 'default' => ''
             ]
         ],
-		'type' => [
-			'label' => $lll . 'property.type',
-			'config' => [
-				'type' => 'select',
-				'renderType' => 'selectSingle',
-				'items' => [
-					[$lll . 'property.type.default', Workshop::TYPE_DEFAULT],
-					[$lll . 'property.type.external', Workshop::TYPE_EXTERNAL],
+        'type' => [
+            'label' => $lll . 'property.type',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectSingle',
+                'items' => [
+                    [$lll . 'property.type.default', Workshop::TYPE_DEFAULT],
+                    [$lll . 'property.type.external', Workshop::TYPE_EXTERNAL],
                 ],
             ],
         ],
-		'internal_url' => [
-			'label' => $lll . 'property.internalUrl',
-			'config' => [
-				'type' => 'group',
-				'internal_type' => 'db',
-				'allowed' => 'pages',
-				'size' => 1,
-				'maxitems' => 1,
-				'minitems' => 0,
-				'show_thumbs' => 1,
-				'softref' => 'typolink',
-				'wizards' => [
-					'suggest' => [
-						'type' => 'suggest',
+        'internal_url' => [
+            'label' => $lll . 'property.internalUrl',
+            'config' => [
+                'type' => 'group',
+                'internal_type' => 'db',
+                'allowed' => 'pages',
+                'size' => 1,
+                'maxitems' => 1,
+                'minitems' => 0,
+                'show_thumbs' => 1,
+                'softref' => 'typolink',
+                'wizards' => [
+                    'suggest' => [
+                        'type' => 'suggest',
                     ],
                 ],
             ],
         ],
-		'external_url' => [
-			'label' => $lll . 'property.externalUrl',
-			'displayCond' => 'FIELD:type:=:' . Workshop::TYPE_EXTERNAL,
-			'config' => [
-				'type' => 'input',
-				'eval' => 'required',
-				'softref' => 'typolink',
-				'wizards' => [
-					'link' => [
-						'type' => 'popup',
-						'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
-						'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
+        'external_url' => [
+            'label' => $lll . 'property.externalUrl',
+            'displayCond' => 'FIELD:type:=:' . Workshop::TYPE_EXTERNAL,
+            'config' => [
+                'type' => 'input',
+                'eval' => 'required',
+                'softref' => 'typolink',
+                'wizards' => [
+                    'link' => [
+                        'type' => 'popup',
+                        'title' => 'LLL:EXT:cms/locallang_ttc.xml:header_link_formlabel',
+                        'icon' => 'EXT:backend/Resources/Public/Images/FormFieldWizard/wizard_link.gif',
                         'module' => [
-                        	'name' => 'wizard_element_browser',
-                        	'urlParameters' => [
-                        		'mode' => 'wizard',
-                        		'act' => 'page'
+                            'name' => 'wizard_element_browser',
+                            'urlParameters' => [
+                                'mode' => 'wizard',
+                                'act' => 'page'
                             ],
                         ],
-						'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1',
+                        'JSopenParams' => 'height=300,width=500,status=0,menubar=0,scrollbars=1',
                     ],
                 ],
             ],
         ],
-		'identifier' => [
-			'label' => $lll . 'property.identifier',
-			'config' => [
-				'type' => 'input',
-				'max'  => 255,
-				'eval' => 'trim'
+        'identifier' => [
+            'label' => $lll . 'property.identifier',
+            'config' => [
+                'type' => 'input',
+                'max'  => 255,
+                'eval' => 'trim'
             ],
         ],
-		'name' => [
-			'label' => $lll . 'property.name',
-			'config' => [
-				'type' => 'input',
-				'max'  => 255,
-				'eval' => 'trim,required'
+        'name' => [
+            'label' => $lll . 'property.name',
+            'config' => [
+                'type' => 'input',
+                'max'  => 255,
+                'eval' => 'trim,required'
             ],
         ],
-		'abstract' => [
-			'label' => $lll . 'property.abstract',
-			'config' => [
-				'type' => 'text',
-				'eval' => 'trim',
-				'rows' => 3
+        'abstract' => [
+            'label' => $lll . 'property.abstract',
+            'config' => [
+                'type' => 'text',
+                'eval' => 'trim',
+                'rows' => 3
             ],
         ],
-		'description' => [
-			'label' => $lll . 'property.description',
+        'description' => [
+            'label' => $lll . 'property.description',
             'defaultExtras' => 'richtext:rte_transform[mode=ts_css]',
-			'config' => [
-				'type' => 'text',
-				'eval' => 'trim',
-				'rows' => 10,
-				'wizards' => [
-					'_PADDING' => 2,
-					'RTE' => [
-						'notNewRecords' => 1,
-						'RTEonly' => 1,
-						'type' => 'script',
-						'title' => 'Full screen Rich Text Editing',
-						'icon' => 'wizard_rte2.gif',
-						'module' => [
-							'name' => 'wizard_rte',
+            'config' => [
+                'type' => 'text',
+                'eval' => 'trim',
+                'rows' => 10,
+                'wizards' => [
+                    '_PADDING' => 2,
+                    'RTE' => [
+                        'notNewRecords' => 1,
+                        'RTEonly' => 1,
+                        'type' => 'script',
+                        'title' => 'Full screen Rich Text Editing',
+                        'icon' => 'wizard_rte2.gif',
+                        'module' => [
+                            'name' => 'wizard_rte',
                         ],
                     ],
                 ],
             ],
         ],
-		'dates' => [
-			'label' => $lll . 'property.dates',
-			'displayCond' => 'FIELD:type:=:' . Workshop::TYPE_DEFAULT,
-			'config' => [
-				'type' => 'inline',
-				'foreign_table' => 'tx_workshops_domain_model_date',
-				'foreign_field' => 'workshop',
-				'appearance' => [
-					'collapseAll' => 1,
-					'expandSingle' => 1
+        'dates' => [
+            'label' => $lll . 'property.dates',
+            'displayCond' => 'FIELD:type:=:' . Workshop::TYPE_DEFAULT,
+            'config' => [
+                'type' => 'inline',
+                'foreign_table' => 'tx_workshops_domain_model_date',
+                'foreign_field' => 'workshop',
+                'appearance' => [
+                    'collapseAll' => 1,
+                    'expandSingle' => 1
                 ],
             ],
         ],
-		'categories' => [
-			'label' => $lll . 'property.categories',
-			'l10n_mode' => 'mergeIfNotBlank',
-			'config' => [
-				'type' => 'select',
-				'renderType' => 'selectTree',
-				'treeConfig' => [
-					'parentField' => 'parent',
-					'appearance' => [
-						'showHeader' => true,
-						'allowRecursiveMode' => true,
-						'expandAll' => true,
-						'maxLevels' => 99,
+        'categories' => [
+            'label' => $lll . 'property.categories',
+            'l10n_mode' => 'mergeIfNotBlank',
+            'config' => [
+                'type' => 'select',
+                'renderType' => 'selectTree',
+                'treeConfig' => [
+                    'parentField' => 'parent',
+                    'appearance' => [
+                        'showHeader' => true,
+                        'allowRecursiveMode' => true,
+                        'expandAll' => true,
+                        'maxLevels' => 99,
                     ],
                 ],
-				'MM' => 'sys_category_record_mm',
-				'MM_match_fields' => [
-					'fieldname' => 'categories',
-					'tablenames' => 'tx_workshops_domain_model_workshop',
+                'MM' => 'sys_category_record_mm',
+                'MM_match_fields' => [
+                    'fieldname' => 'categories',
+                    'tablenames' => 'tx_workshops_domain_model_workshop',
                 ],
-				'MM_opposite_field' => 'items',
-				'foreign_table' => 'sys_category',
-				'foreign_table_where' => ' AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting',
-				'size' => 10,
-				'autoSizeMax' => 20,
-				'minitems' => 0,
-				'maxitems' => 20,
+                'MM_opposite_field' => 'items',
+                'foreign_table' => 'sys_category',
+                'foreign_table_where' => ' AND (sys_category.sys_language_uid = 0 OR sys_category.l10n_parent = 0) ORDER BY sys_category.sorting',
+                'size' => 10,
+                'autoSizeMax' => 20,
+                'minitems' => 0,
+                'maxitems' => 20,
             ],
         ],
-		'related_workshops' => [
-			'label' => $lll . 'property.relatedWorkshops',
-			'config' => [
-				'type' => 'group',
-				'internal_type' => 'db',
-				'allowed' => 'tx_workshops_domain_model_workshop',
-				'foreign_table' => 'tx_workshops_domain_model_workshop',
-				'foreign_sortby' => 'sorting',
-				'MM_opposite_field' => 'uid',
-				'size' => 5,
-				'minitems' => 0,
-				'maxitems' => 100,
-				'MM' => 'tx_workshops_domain_model_related_workshop',
-				'wizards' => [
-					'suggest' => [
-						'type' => 'suggest',
+        'related_workshops' => [
+            'label' => $lll . 'property.relatedWorkshops',
+            'config' => [
+                'type' => 'group',
+                'internal_type' => 'db',
+                'allowed' => 'tx_workshops_domain_model_workshop',
+                'foreign_table' => 'tx_workshops_domain_model_workshop',
+                'foreign_sortby' => 'sorting',
+                'MM_opposite_field' => 'uid',
+                'size' => 5,
+                'minitems' => 0,
+                'maxitems' => 100,
+                'MM' => 'tx_workshops_domain_model_related_workshop',
+                'wizards' => [
+                    'suggest' => [
+                        'type' => 'suggest',
                     ],
                 ],
             ],
         ],
-		'images' => [
-			'label' => $lll . 'property.images',
-			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-				'images', 
-				[]
+        'images' => [
+            'label' => $lll . 'property.images',
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+                'images',
+                []
             ),
         ],
-		'files' => [
-			'label' => $lll . 'property.files',
-			'displayCond' => 'FIELD:type:>=:' . Workshop::TYPE_DEFAULT,
-			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-				'files', 
-				[]
+        'files' => [
+            'label' => $lll . 'property.files',
+            'displayCond' => 'FIELD:type:>=:' . Workshop::TYPE_DEFAULT,
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+                'files',
+                []
             ),
         ],
     ],
-	'types' => [
-		Workshop::TYPE_DEFAULT => [
-			'showitem' => '
+    'types' => [
+        Workshop::TYPE_DEFAULT => [
+            'showitem' => '
 				--div--;' . $lll . 'div.general,
 				hidden, sys_language_uid, l10n_parent,
                 type, identifier, name, internal_url, abstract, description,
@@ -274,8 +274,8 @@ $TCA['tx_workshops_domain_model_workshop'] = [
 				dates
 			',
         ],
-		Workshop::TYPE_EXTERNAL => [
-			'showitem' => '
+        Workshop::TYPE_EXTERNAL => [
+            'showitem' => '
 				--div--;' . $lll . 'div.general,
 				hidden, sys_language_uid, l10n_parent,
                 type, identifier, name, abstract,

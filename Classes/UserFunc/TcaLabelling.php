@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\UserFunc;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -14,15 +14,15 @@ namespace NIMIUS\Workshops\UserFunc;
  * The TYPO3 project - inspiring people to share!
  */
 
+use NIMIUS\Workshops\Domain\Model\Date;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
-use NIMIUS\Workshops\Domain\Model\Date;
 
 /**
  * TCA labelling user func.
  *
- * Provides user functions for labelling TCA records 
+ * Provides user functions for labelling TCA records
  * where label and label_alt are not sufficient.
  */
 class TcaLabelling
@@ -30,8 +30,8 @@ class TcaLabelling
 
     /**
      * Labelling for Date records.
-     * 
-     * The fields 'begin_at' and 'end_at' for Date::TYPE_MULTIPLE records are 
+     *
+     * The fields 'begin_at' and 'end_at' for Date::TYPE_MULTIPLE records are
      * set from its child records through DataMapperHook.
      *
      * @param array &$params
@@ -46,7 +46,7 @@ class TcaLabelling
             $age = 0;
             $dateUids = GeneralUtility::intExplode(',', $params['row']['dates']);
             $datesCount = count($dateUids);
-            foreach($dateUids as $uid) {
+            foreach ($dateUids as $uid) {
                 $subRecord = BackendUtility::getRecord($params['table'], $uid);
                 $age += $subRecord['end_at'] - $subRecord['begin_at'];
             }
@@ -64,8 +64,8 @@ class TcaLabelling
     /**
      * Generate a date string.
      *
-     * @param integer $begin
-     * @param integer $end
+     * @param int $begin
+     * @param int $end
      * @param array $age Different values than $begin and $end for age calculation
      * @return string
      */
@@ -83,5 +83,4 @@ class TcaLabelling
         $str .= ')';
         return $str;
     }
-
 }

@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\ViewHelpers\Be;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -14,7 +14,7 @@ namespace NIMIUS\Workshops\ViewHelpers\Be;
  * The TYPO3 project - inspiring people to share!
  */
 
-use \NIMIUS\Workshops\Domain\Model\Date;
+use NIMIUS\Workshops\Domain\Model\Date;
 
 /**
  * Date record classes view helper.
@@ -36,11 +36,11 @@ class DateRecordClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstr
             'current' => 'attendance-block-notice',
             'maximum' => 'attendance-block-notice'
         ];
-        
+
         if ($date->getRegistrations()->count() == 0) {
             $classes['current'] = 'attendance-block-warning';
         }
-        
+
         if ($date->getMinimumAttendanceEnabled()) {
             if ($date->getAttendeesNeededForRequiredMinimum() == 0) {
                 $classes['current'] = 'attendance-block-success';
@@ -48,14 +48,13 @@ class DateRecordClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\Abstr
                 $classes['minimum'] = $classes['current'] = 'attendance-block-warning';
             }
         }
-        
+
         if ($date->getMaximumAttendanceEnabled()) {
             if ($date->getAttendeesNeededForPossibleMaximum() == 0) {
                 $classes['maximum'] ='attendance-block-warning';
             }
         }
-        
+
         return $classes;
     }
-
 }

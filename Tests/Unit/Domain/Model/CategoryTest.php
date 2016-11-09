@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Test\Unit\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -31,7 +31,6 @@ class CategoryTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
      */
     protected $subject;
 
-
     /**
      * Test getter/setter for properties.
      *
@@ -43,7 +42,6 @@ class CategoryTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
         $this->_testGetterAndSetterForProperty('workshopsImages', (new ObjectStorage));
     }
 
-
     /**
      * Set up the test case.
      */
@@ -51,5 +49,4 @@ class CategoryTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
     {
         $this->subject = new Category;
     }
-
 }

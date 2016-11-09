@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Test\Unit\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -17,15 +17,8 @@ namespace NIMIUS\Workshops\Test\Unit\Domain\Model;
 // Manually requiring custom class as it is not autoloaded in the bootstrap process.
 require_once __DIR__ . '/../../../AbstractUnitTestCase.php';
 
-use NIMIUS\Workshops\Domain\Model\Date;
-use NIMIUS\Workshops\Domain\Model\Instructor;
 use NIMIUS\Workshops\Domain\Model\Location;
-use NIMIUS\Workshops\Domain\Model\Registration;
-use NIMIUS\Workshops\Domain\Model\Workshop;
-
 use SJBR\StaticInfoTables\Domain\Model\Country;
-
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Unit test case for Location model.
@@ -37,7 +30,6 @@ class LocationTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
      * @var \NIMIUS\Workshops\Domain\Model\Location
      */
     protected $subject;
-
 
     /**
      * Test getter/setter for properties.
@@ -76,5 +68,4 @@ class LocationTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
     {
         $this->subject = new Location;
     }
-
 }

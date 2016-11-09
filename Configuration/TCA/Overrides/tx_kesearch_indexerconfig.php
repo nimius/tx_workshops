@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,7 +11,6 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 $tableName = 'tx_kesearch_indexerconfig';
 
 // Add targetpid plugin column to indexerconfig TCA.
@@ -34,8 +33,8 @@ $tableName = 'tx_kesearch_indexerconfig';
 
 // Add field to type.
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-	$tableName,
-	'tx_workshops_targetpid_plugin',
+    $tableName,
+    'tx_workshops_targetpid_plugin',
     '',
     'after:type'
 );

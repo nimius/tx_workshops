@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Service;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -15,11 +15,10 @@ namespace NIMIUS\Workshops\Service;
  */
 
 use NIMIUS\Workshops\Domain\Model\Workshop;
-use NIMIUS\Workshops\Utility\ConfigurationUtility;
 
 /**
  * Workshop URL service class.
- * 
+ *
  * Builds URLs to workshops.
  */
 class WorkshopUrlService extends AbstractUrlService
@@ -31,7 +30,6 @@ class WorkshopUrlService extends AbstractUrlService
     protected $defaultSettings = [
         'targetPlugin' => 'tx_workshops_workshops'
     ];
-
 
     public function modifyTypolinkConfiguration()
     {
