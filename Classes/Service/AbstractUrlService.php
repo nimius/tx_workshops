@@ -113,9 +113,6 @@ abstract class AbstractUrlService
      * Renders a link to the given object.
      *
      * @api
-     * @param mixed $object
-     * @param array $settings
-     * @param array $typolinkConfiguration
      * @return string
      */
     public function render()
@@ -143,11 +140,13 @@ abstract class AbstractUrlService
     /**
      * Initialize settings.
      *
-     * @param array $localSettings
-     * @return array
+     * @return void
      */
     protected function initializeSettings()
     {
+        $typoscriptSettings = ConfigurationUtility::getTyposcriptConfiguration();
+        $this->settings = array_replace_recursive($typoscriptSettings, $this->settings);
+
         /*
          * If no targetPid is given, set the current page as a default value.
          * This allows overriding the target page in e.g. BE context.
@@ -164,9 +163,6 @@ abstract class AbstractUrlService
         if (empty($this->settings['targetPlugin']) && !empty($this->defaultSettings['targetPlugin'])) {
             $this->settings['targetPlugin'] = $this->defaultSettings['targetPlugin'];
         }
-
-        $typoscriptSettings = ConfigurationUtility::getTyposcriptConfiguration();
-        return array_merge($typoscriptSettings, $localSettings);
     }
 
 }

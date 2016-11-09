@@ -38,9 +38,10 @@ class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
             return;
         }
 
+        /** @var WorkshopUrlService $urlService */
         $urlService = $this->objectManager->get(WorkshopUrlService::class);
         $urlService->setObject($workshop);
-        $urlService->setSettings(ConfigurationUtility::getTyposcriptConfiguration());
+        $urlService->setSettings($settings);
         $urlService->setTypolinkConfiguration($typolinkConfiguration);
         $url = $urlService->render();
 
