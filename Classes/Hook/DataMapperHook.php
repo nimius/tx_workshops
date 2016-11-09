@@ -81,13 +81,17 @@ class DataMapperHook
         if (!ExtensionManagementUtility::isLoaded('geocoding')) {
             return;
         }
+        // geocoding should only be executed, if the user a) updated the address and b) the coordinates were not manually changed by the user.
+        if (!$this->isAddressUpdate($fieldArray) || $this->isManualCoordinateUpdate($fieldArray)) {
+            return;
+        }
 
         if (!is_int($uid)) {
             $uid = $dataHandler->substNEWwithIDs[$uid];
         }
 
         $record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
-            'name, address, zip, city, country, latitude, longitude',
+            '*',
             $table,
             'uid = ' . (int)$uid
         );
@@ -203,6 +207,32 @@ class DataMapperHook
         if ($record['end_at'] > $datamap['end_at'] || (int)$datamap['end_at'] == 0) {
             $datamap['end_at'] = $record['end_at'];
         }
+    }
+
+    /**
+     * Returns true if the given fieldArray of a tx_workshops_domain_model_location record contains address updates.
+     * Geocoding is only necessary, if the address has been updated
+     *
+     * @param array $fieldArr
+     * @return bool
+     */
+    protected function isAddressUpdate(&$fieldArr) {
+        return  array_key_exists('address', $fieldArr) ||
+                array_key_exists('zip', $fieldArr) ||
+                array_key_exists('city', $fieldArr) ||
+                array_key_exists('country', $fieldArr);
+    }
+
+    /**
+     * Returns true, if the given fieldArray of a tx_workshops_domain_model_location record contains manual geo coordinate
+     * updates. Geocoding will not be used, if the user manually specified coordinates.
+     *
+     * @param array $fieldArr
+     * @return bool
+     */
+    protected function isManualCoordinateUpdate(&$fieldArr) {
+        return  array_key_exists('longitude', $fieldArr) ||
+                array_key_exists('latitude', $fieldArr);
     }
 
 }
