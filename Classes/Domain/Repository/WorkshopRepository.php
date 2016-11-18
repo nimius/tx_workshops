@@ -16,7 +16,9 @@ namespace NIMIUS\Workshops\Domain\Repository;
 
 use NIMIUS\Workshops\Domain\Proxy\WorkshopRepositoryProxy;
 use NIMIUS\Workshops\Persistence\Repository;
+use NIMIUS\Workshops\Utility\ObjectUtility;
 use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * Workshop repository.
@@ -58,5 +60,30 @@ class WorkshopRepository extends Repository
 
         $query->setOrderings([$proxy->getSortingField() => $proxy->getSortingType()]);
         return $query->execute();
+    }
+
+    /**
+     * Returns the uids of workshops that are available in the given languages
+     * @param int[] $languages
+     * @return int[]
+     */
+    public function getWorkshopUidsMatchingLanguages($languages) {
+        // TODO use prepared statement
+        /** @var ContentObjectRenderer $cObj */
+        $cObj = ObjectUtility::getConfigurationManager()->getContentObject();
+        $enableFields = $cObj->enableFields('tx_workshops_domain_model_workshop');
+        $query = '
+         SELECT DISTINCT
+            CASE
+                WHEN l10n_parent != 0 THEN l10n_parent
+                ELSE uid
+            END as uid
+         FROM tx_workshops_domain_model_workshop 
+         WHERE sys_language_uid IN ( '. implode(',', $languages) .' )' . $enableFields;
+
+        $result = $this->createQuery()->statement($query)->execute(TRUE);
+        return array_map(function($a) {
+            return (int)$a['uid'];
+        }, $result);
     }
 }

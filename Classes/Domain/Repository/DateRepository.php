@@ -26,6 +26,12 @@ class DateRepository extends Repository
 {
 
     /**
+     * @var \NIMIUS\Workshops\Domain\Repository\WorkshopRepository
+     * @inject
+     */
+    protected $workshopRepository;
+
+    /**
      * @var array Setting for default ORDER BY when fetching records.
      */
     protected $defaultOrderings = [
@@ -45,7 +51,8 @@ class DateRepository extends Repository
         parent::initializeQuery($query, $proxy, $constraints);
 
         if (count($proxy->getLanguages()) > 0) {
-            $constraints[] = $query->in('workshop.sys_language_uid', $proxy->getLanguages());
+            $uids = $this->workshopRepository->getWorkshopUidsMatchingLanguages($proxy->getLanguages());
+            $constraints[] = $query->in('workshop', $uids);
         }
 
         $beginOfToday = strtotime('today midnight');
