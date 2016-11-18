@@ -74,11 +74,16 @@ class WorkshopsController extends AbstractController
             $proxy = $this->objectManager->get(DateRepositoryProxy::class);
             $proxy->initializeFromSettings($this->settings);
             $proxy->setWorkshop($workshop);
+
+            // Ignore languages for resolution of dates relation since dates are not localized.
+            $proxy->setLanguages(null);
+
             $this->view->assignMultiple([
                 'workshop' => $workshop,
                 'upcomingDates' => $this->dateRepository->findByProxy($proxy)
             ]);
         }
+
         $this->view->assign('frontendUser', $this->currentFrontendUser());
     }
 }

@@ -195,6 +195,9 @@ $TCA['tx_workshops_domain_model_workshop'] = [
                     'collapseAll' => 1,
                     'expandSingle' => 1
                 ],
+                'behaviour' => [
+                    'localizationMode' => 'keep'
+                ]
             ],
         ],
         'categories' => [

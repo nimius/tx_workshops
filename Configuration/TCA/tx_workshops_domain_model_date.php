@@ -117,6 +117,9 @@ $TCA['tx_workshops_domain_model_date'] = [
                 'foreign_field' => 'parent',
                 'appearance' => [
                     'expandSingle' => 1
+                ],
+                'behaviour' => [
+                    'localizationMode' => 'keep'
                 ]
             ]
         ],
