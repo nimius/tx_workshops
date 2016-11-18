@@ -91,3 +91,7 @@ if (!defined('TYPO3_MODE')) {
 
 // Register extbase command controllers for delivering notifications.
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \NIMIUS\Workshops\Command\NotificationCommandController::class;
+
+// custom evaluators
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][\NIMIUS\Workshops\Evaluation\LongitudeEvaluation::class] = '';
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][\NIMIUS\Workshops\Evaluation\LatitudeEvaluation::class] = '';

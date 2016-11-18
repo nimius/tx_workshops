@@ -76,7 +76,7 @@ $TCA['tx_workshops_domain_model_location'] = [
             'config' => [
                 'type' => 'input',
                 'max'  => 12,
-                'eval' => 'trim'
+                'eval' => \NIMIUS\Workshops\Evaluation\LatitudeEvaluation::class
             ],
         ],
         'longitude' => [
@@ -84,7 +84,7 @@ $TCA['tx_workshops_domain_model_location'] = [
             'config' => [
                 'type' => 'input',
                 'max'  => 12,
-                'eval' => 'trim'
+                'eval' => \NIMIUS\Workshops\Evaluation\LongitudeEvaluation::class
             ],
         ],
         'sys_language_uid' => [
