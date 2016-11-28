@@ -98,11 +98,10 @@ abstract class AbstractRepositoryProxy
      *
      * Settings are coming from e.g. TypoScript or FlexForm.
      *
-     * @todo test coverage
      * @param array $settings
      * @return void
      */
-    public function initializeFromSettings($settings)
+    public function initializeFromSettings(array $settings)
     {
         if (!empty($settings['categories'])) {
             $categoriesUids = explode(',', $settings['categories']);
