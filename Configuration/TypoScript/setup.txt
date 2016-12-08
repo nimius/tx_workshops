@@ -57,6 +57,19 @@ plugin.tx_workshops {
 				productName = Product Name
 			}
 		}
+
+		openGraph = 1
+		openGraph {
+			twitterCards = 1
+			twitterCards {
+				username = {$plugin.tx_workshops.settings.openGraph.twitterCards.username}
+			}
+
+			facebook = 1
+			facebook {
+				appId = {$plugin.tx_workshops.settings.openGraph.facebook.appId}
+			}
+		}
 	}
 }
 

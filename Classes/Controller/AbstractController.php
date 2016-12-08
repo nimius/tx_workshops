@@ -24,6 +24,11 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
 {
 
     /**
+     * @var \TYPO3\CMS\Extbase\Mvc\Web\Response
+     */
+    protected $response;
+
+    /**
      * @var \NIMIUS\Workshops\Domain\Repository\FrontendUserRepository
      * @inject
      */

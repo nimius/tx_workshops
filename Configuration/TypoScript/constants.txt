@@ -13,7 +13,18 @@ plugin.tx_workshops {
 	persistence {
 		# cat=workshops/persistence; type=integer; label=Storage PID of records
 		storagePid =
-	}	
+	}
+
+	settings {
+		openGraph {
+
+			# cat=workshops/settings; type=string; label=Twitter username used for twitter cards
+			twitterCards.username =
+
+			# cat=workshops/settings; type=string; label=Facebook appId used for openGraph tags
+			facebook.appId =
+		}
+	}
 }
 
 
