@@ -42,16 +42,17 @@ class DateRepository extends Repository
      * Find all dates matching the given proxy.
      *
      * @param \NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy $proxy
+     * @param ContentObjectRenderer $cObj
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResult
      */
-    public function findByProxy(DateRepositoryProxy $proxy)
+    public function findByProxy(DateRepositoryProxy $proxy, $cObj = NULL)
     {
         $query = $this->createQuery();
         $constraints = [];
         parent::initializeQuery($query, $proxy, $constraints);
 
         if (count($proxy->getLanguages()) > 0) {
-            $uids = $this->workshopRepository->getWorkshopUidsMatchingLanguages($proxy->getLanguages());
+            $uids = $this->workshopRepository->getWorkshopUidsMatchingLanguages($proxy->getLanguages(), $cObj);
             $constraints[] = $query->in('workshop', $uids);
         }
 

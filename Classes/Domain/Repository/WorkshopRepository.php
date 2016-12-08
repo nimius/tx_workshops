@@ -63,15 +63,21 @@ class WorkshopRepository extends Repository
     }
 
     /**
-     * Returns the uids of workshops that are available in the given languages
+     * Returns the uids of workshops that are available in the given languages.
+     * The second argument is the instance of ContentObjectRenderer that should be used.
+     * This argument is only used for easier stubbing in tests and can be ignored for regular use.
+     *
      * @param int[] $languages
+     * @param ContentObjectRenderer $cObj
      * @return int[]
      */
-    public function getWorkshopUidsMatchingLanguages($languages) {
-        // TODO use prepared statement
-        /** @var ContentObjectRenderer $cObj */
-        $cObj = ObjectUtility::getConfigurationManager()->getContentObject();
+    public function getWorkshopUidsMatchingLanguages($languages, $cObj = NULL) {
+        if ($cObj === NULL) {
+            $cObj = ObjectUtility::getConfigurationManager()->getContentObject();
+        }
+
         $enableFields = $cObj->enableFields('tx_workshops_domain_model_workshop');
+
         $query = '
          SELECT DISTINCT
             CASE

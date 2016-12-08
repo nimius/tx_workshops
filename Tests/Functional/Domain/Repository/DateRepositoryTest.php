@@ -19,8 +19,11 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
 use NIMIUS\Workshops\Domain\Repository\DateRepository;
 use NIMIUS\Workshops\Domain\Repository\WorkshopRepository;
+use NIMIUS\Workshops\Utility\ObjectUtility;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
 
 /**
  * Date repository tests.
@@ -59,6 +62,12 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     protected $workshop;
 
     /**
+     * Stub of ContentObjectRenderer that returns the correct enablefields for the workshops table
+     * @var ContentObjectRenderer
+     */
+    protected $cObjStub;
+
+    /**
      * Test case constructor / initializer.
      *
      * @return void
@@ -70,6 +79,10 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $this->persistenceManager = $this->objectManager->get(PersistenceManager::class);
         $this->workshopRepository = $this->objectManager->get(WorkshopRepository::class);
         $this->dateRepository = $this->objectManager->get(DateRepository::class);
+
+
+        $this->cObjStub = $this->getMock(ContentObjectRenderer::class);
+        $this->cObjStub->method('enableFields')->willReturn(' AND tx_workshops_domain_model_workshop.hidden=0');
     }
 
     /**
@@ -90,7 +103,7 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $proxy->setHidePastDates(false);
         $proxy->setLanguages([]);
 
-        $dates = $this->dateRepository->findByProxy($proxy);
+        $dates = $this->dateRepository->findByProxy($proxy, $this->cObjStub);
         $this->assertTrue(count($dates) == 1);
     }
 
@@ -111,11 +124,11 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $proxy->setLanguages([]);
 
         $proxy->setHidePastDates(true);
-        $dates = $this->dateRepository->findByProxy($proxy);
+        $dates = $this->dateRepository->findByProxy($proxy, $this->cObjStub);
         $this->assertTrue(count($dates) == 0);
 
         $proxy->setHidePastDates(false);
-        $dates = $this->dateRepository->findByProxy($proxy);
+        $dates = $this->dateRepository->findByProxy($proxy, $this->cObjStub);
         $this->assertTrue(count($dates) == 1);
     }
 
@@ -136,11 +149,11 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $proxy->setLanguages([]);
 
         $proxy->setHideAlreadyStartedDates(true);
-        $dates = $this->dateRepository->findByProxy($proxy);
+        $dates = $this->dateRepository->findByProxy($proxy, $this->cObjStub);
         $this->assertTrue(count($dates) == 0);
 
         $proxy->setHideAlreadyStartedDates(false);
-        $dates = $this->dateRepository->findByProxy($proxy);
+        $dates = $this->dateRepository->findByProxy($proxy, $this->cObjStub);
         $this->assertTrue(count($dates) == 1);
     }
 
@@ -168,11 +181,11 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
 
         $proxy = $this->createProxy();
         $proxy->setLanguages([]);
-        $dates = $this->dateRepository->findByProxy($proxy);
+        $dates = $this->dateRepository->findByProxy($proxy, $this->cObjStub);
         $this->assertTrue(count($dates) == 2);
 
         $proxy->setLanguages([0, -1]);
-        $dates = $this->dateRepository->findByProxy($proxy);
+        $dates = $this->dateRepository->findByProxy($proxy, $this->cObjStub);
         $this->assertTrue(count($dates) == 2);
     }
 
@@ -204,11 +217,11 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $proxy->setLanguages([]);
 
         $proxy->setWithinDaysFromNow(4);
-        $dates = $this->dateRepository->findByProxy($proxy);
+        $dates = $this->dateRepository->findByProxy($proxy, $this->cObjStub);
         $this->assertTrue(count($dates) == 1);
 
         $proxy->setWithinDaysFromNow(null);
-        $dates = $this->dateRepository->findByProxy($proxy);
+        $dates = $this->dateRepository->findByProxy($proxy, $this->cObjStub);
         $this->assertTrue(count($dates) == 3);
     }
 
