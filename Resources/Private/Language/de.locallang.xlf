@@ -190,6 +190,9 @@
 			<trans-unit id="model.location.property.city">
 				<target>Ort</target>
 			</trans-unit>
+			<trans-unit id="model.location.property.country">
+				<target>Land</target>
+			</trans-unit>
 			<trans-unit id="model.location.property.latitude">
 				<target>Längengrad</target>
 			</trans-unit>

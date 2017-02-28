@@ -300,6 +300,9 @@
 			<trans-unit id="model.location.property.city">
 				<source>City</source>
 			</trans-unit>
+			<trans-unit id="model.location.property.country">
+				<source>Country</source>
+			</trans-unit>
 			<trans-unit id="model.location.property.latitude">
 				<source>Latitude</source>
 			</trans-unit>
