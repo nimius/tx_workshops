@@ -32,6 +32,7 @@ class OpenGraphUtility
      */
     public static function extractOpenGraphInformationFromWorkshop(Workshop $workshop, $upcoming)
     {
+        // TODO REFACTOR configuration utility...
         $ts = $GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_workshops.']['settings.'];
         if (!$ts['openGraph']) {
             return [];

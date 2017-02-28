@@ -80,6 +80,7 @@ if (TYPO3_MODE == 'BE') {
         [
             'Backend\\Workshops' => 'index, show',
             'Backend\\Registrations' => 'index, show',
+            'Backend\\Exports' => 'create',
         ],
         [
             'access' => 'user,group',

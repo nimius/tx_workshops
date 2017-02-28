@@ -431,4 +431,25 @@ class Registration extends AbstractEntity
     {
         $this->crdate = $value;
     }
+
+    /**
+     * Returns an array representing the current object.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'firstName' => $this->getFirstName(),
+            'lastName' => $this->getLastName(),
+            'address' => $this->getAddress(),
+            'zip' => $this->getZip(),
+            'city' => $this->getCity(),
+            'country' => $this->getCountry(),
+            'company' => $this->getCompany(),
+            'email' => $this->getEmail(),
+            'telephone' => $this->getTelephone(),
+            'additionalFields' => $this->getAdditionalFields()
+        ];
+    }
 }
