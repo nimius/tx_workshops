@@ -40,7 +40,7 @@ class InstructorTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
         $this->_testGetterAndSetterForProperty('name', 'Name test');
         $this->_testGetterAndSetterForProperty('abstract', 'Abstract test');
         $this->_testGetterAndSetterForProperty('email', 'Email test');
-        $this->_testGetterAndSetterForProperty('detailPid', 6);
+        $this->_testGetterAndSetterForProperty('profilePid', 6);
         $this->_testGetterAndSetterForProperty('images', (new ObjectStorage));
     }
 
