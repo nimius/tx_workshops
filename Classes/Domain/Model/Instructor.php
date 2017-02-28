@@ -39,7 +39,7 @@ class Instructor extends AbstractEntity
     /**
      * @var int
      */
-    protected $detailPid;
+    protected $profilePid;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
@@ -100,18 +100,18 @@ class Instructor extends AbstractEntity
     /**
      * @return int
      */
-    public function getDetailPid()
+    public function getProfilePid()
     {
-        return $this->detailPid;
+        return $this->profilePid;
     }
 
     /**
      * @param int $pid
      * @return void
      */
-    public function setDetailPid($pid)
+    public function setProfilePid($pid)
     {
-        $this->detailPid = $pid;
+        $this->profilePid = $pid;
     }
 
     /**
