@@ -21,7 +21,6 @@ namespace NIMIUS\Workshops\Domain\Proxy;
  */
 abstract class AbstractRepositoryProxy
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Repository\CategoryRepository
      * @inject

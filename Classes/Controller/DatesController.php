@@ -23,7 +23,6 @@ use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
  */
 class DatesController extends AbstractController
 {
-
     /**
      * Index action.
      *

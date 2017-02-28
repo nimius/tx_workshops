@@ -25,7 +25,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class InstructorTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Instructor
      */

@@ -21,7 +21,6 @@ namespace NIMIUS\Workshops\Command;
  */
 class NotificationCommandController extends AbstractCommandController
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Repository\WorkshopRepository
      * @inject

@@ -26,7 +26,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class RegistrationsController extends AbstractController
 {
-
     /**
      * @var \NIMIUS\Workshops\Persistence\Session
      * @inject

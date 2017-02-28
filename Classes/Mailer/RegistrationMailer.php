@@ -25,7 +25,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class RegistrationMailer extends AbstractMailer
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Repository\RegistrationRepository
      * @inject

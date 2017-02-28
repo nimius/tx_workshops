@@ -19,7 +19,6 @@ namespace NIMIUS\Workshops\Utility;
  */
 class TCAUtility
 {
-
     /**
      * Prepares an 'eval' value string for the given TCA field,
      * which is evaluated based on the user's TypoScript configuration.

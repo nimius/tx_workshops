@@ -21,7 +21,6 @@ use NIMIUS\Workshops\Domain\Model\Date;
  */
 class DateRecordClassesViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-
     /**
      * This helper renders utilized classes per each date record
      * to keep the view clean and simple.

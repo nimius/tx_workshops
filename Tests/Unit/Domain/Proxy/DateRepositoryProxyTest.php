@@ -26,7 +26,6 @@ use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
  */
 class DateRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy
      */

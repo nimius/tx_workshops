@@ -25,7 +25,6 @@ use NIMIUS\Workshops\Service\AbstractUrlService;
  */
 class AbstractUrlServiceTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
-
     /**
      * @var \object Mock of AbstractUrlService.
      */

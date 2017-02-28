@@ -15,6 +15,8 @@ namespace NIMIUS\Workshops\Evaluation;
  */
 
 /**
+ * Longitude evaluation.
+ *
  * Formats longitude values for storage in a DECIMAL(11,8) field
  */
 class LongitudeEvaluation extends BoundedDecimalFieldEvaluation
@@ -28,5 +30,4 @@ class LongitudeEvaluation extends BoundedDecimalFieldEvaluation
      * @var int
      */
     protected $decimals = 8;
-
 }

@@ -24,7 +24,6 @@ use NIMIUS\Workshops\Domain\Model\Language;
  */
 class LanguageTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Language
      */

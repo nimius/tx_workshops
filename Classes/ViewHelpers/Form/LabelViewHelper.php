@@ -23,7 +23,6 @@ use NIMIUS\Workshops\Utility\ConfigurationUtility;
  */
 class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
-
     /**
      * @var array
      */

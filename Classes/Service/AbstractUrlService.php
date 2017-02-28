@@ -23,7 +23,6 @@ use NIMIUS\Workshops\Utility\ConfigurationUtility;
  */
 abstract class AbstractUrlService
 {
-
     /**
      * @var mixed The object to link to.
      */

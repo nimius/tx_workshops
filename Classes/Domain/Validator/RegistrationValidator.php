@@ -22,7 +22,6 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  */
 class RegistrationValidator extends AbstractObjectValidator
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Registration
      */

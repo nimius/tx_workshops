@@ -21,7 +21,6 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  */
 class ConfigurationUtility
 {
-
     /**
      * @var string
      */

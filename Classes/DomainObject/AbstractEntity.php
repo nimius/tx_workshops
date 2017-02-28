@@ -19,7 +19,6 @@ namespace NIMIUS\Workshops\DomainObject;
  */
 abstract class AbstractEntity extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 {
-
     /**
      * @return int
      */

@@ -11,13 +11,12 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+
 if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
 
-/**
- * Configure 'Workshops' plugin.
- */
+// Configure 'Workshops' plugin.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'NIMIUS.' . $_EXTKEY,
     'Workshops',
@@ -32,9 +31,7 @@ if (!defined('TYPO3_MODE')) {
     ]
 );
 
-/**
- * Configure 'WorkshopsSingleView' plugin.
- */
+// Configure 'Workshops Single View' plugin.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'NIMIUS.' . $_EXTKEY,
     'WorkshopsSingleView',
@@ -49,9 +46,7 @@ if (!defined('TYPO3_MODE')) {
     ]
 );
 
-/**
- * Configure 'Dates' plugin.
- */
+// Configure 'Dates' plugin.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'NIMIUS.' . $_EXTKEY,
     'Dates',
@@ -63,9 +58,7 @@ if (!defined('TYPO3_MODE')) {
     ]
 );
 
-/**
- * Configure 'UpcomingDatesTeaser' plugin.
- */
+// Configure 'Upcoming Dates Teaser' plugin.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'NIMIUS.' . $_EXTKEY,
     'UpcomingDatesTeaser',
@@ -77,9 +70,7 @@ if (!defined('TYPO3_MODE')) {
     ]
 );
 
-/**
- * Configure 'Exports' plugin.
- */
+// Configure 'Exports' plugin.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
     'NIMIUS.' . $_EXTKEY,
     'Exports',
@@ -92,6 +83,6 @@ if (!defined('TYPO3_MODE')) {
 // Register extbase command controllers for delivering notifications.
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['extbase']['commandControllers'][] = \NIMIUS\Workshops\Command\NotificationCommandController::class;
 
-// custom evaluators
+// Custom TCE form evaluators.
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][\NIMIUS\Workshops\Evaluation\LongitudeEvaluation::class] = '';
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['tce']['formevals'][\NIMIUS\Workshops\Evaluation\LatitudeEvaluation::class] = '';

@@ -26,7 +26,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class WorkshopsIndexer extends AbstractIndexer
 {
-
     /**
      * @var string Indexer type.
      */

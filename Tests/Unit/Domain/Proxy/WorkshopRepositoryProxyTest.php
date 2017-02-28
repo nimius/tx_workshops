@@ -25,7 +25,6 @@ use NIMIUS\Workshops\Domain\Proxy\WorkshopRepositoryProxy;
  */
 class WorkshopRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Proxy\WorkshopRepositoryProxy
      */

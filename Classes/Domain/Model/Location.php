@@ -22,7 +22,6 @@ use SJBR\StaticInfoTables\Domain\Model\Country;
  */
 class Location extends AbstractEntity
 {
-
     /**
      * @var string
      */

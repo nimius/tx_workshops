@@ -22,7 +22,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Workshop extends AbstractEntity
 {
-
     /**
      * @var int Default workshop
      */

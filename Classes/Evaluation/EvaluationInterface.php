@@ -14,14 +14,13 @@ namespace NIMIUS\Workshops\Evaluation;
  * The TYPO3 project - inspiring people to share!
  */
 
-
 /**
- * TYPO3 Form validation interface
+ * Form validation interface.
+ *
  * @see https://docs.typo3.org/typo3cms/TCAReference/Reference/Columns/Input/Index.html#eval
  */
 interface EvaluationInterface
 {
-
     /**
      * JavaScript code for client side validation/evaluation
      *
@@ -46,5 +45,4 @@ interface EvaluationInterface
      * @return string Evaluated field value
      */
     public function deevaluateFieldValue(array $parameters);
-
 }

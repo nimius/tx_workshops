@@ -29,7 +29,6 @@ use TYPO3\CMS\Extbase\Service\FlexFormService;
  */
 class PageLayoutViewDrawItemHook implements \TYPO3\CMS\Backend\View\PageLayoutViewDrawItemHookInterface
 {
-
     /**
      * @var array FlexForms settings.
      */

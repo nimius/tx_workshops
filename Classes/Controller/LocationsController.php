@@ -21,7 +21,6 @@ use NIMIUS\Workshops\Domain\Model\Location;
  */
 class LocationsController extends AbstractController
 {
-
     /**
      * Show action
      *

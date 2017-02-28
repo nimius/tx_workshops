@@ -21,7 +21,6 @@ namespace NIMIUS\Workshops\Persistence;
  */
 class Repository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Repository\CategoryRepository
      * @inject

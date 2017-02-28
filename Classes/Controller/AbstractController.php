@@ -22,7 +22,6 @@ namespace NIMIUS\Workshops\Controller;
  */
 abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
-
     /**
      * @var \TYPO3\CMS\Extbase\Mvc\Web\Response
      */

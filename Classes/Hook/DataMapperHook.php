@@ -27,7 +27,6 @@ use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
  */
 class DataMapperHook
 {
-
     /**
      * Hook to post-process data.
      *

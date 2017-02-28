@@ -25,7 +25,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 abstract class AbstractController extends \NIMIUS\Workshops\Controller\AbstractController
 {
-
     /**
      * @var int Current page uid
      */

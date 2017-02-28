@@ -11,6 +11,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Workshops system',
     'description' => 'Flexible workshop and courses management.',

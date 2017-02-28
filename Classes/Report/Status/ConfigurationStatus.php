@@ -24,7 +24,6 @@ use TYPO3\CMS\Reports\Status;
  */
 class ConfigurationStatus implements \TYPO3\CMS\Reports\StatusProviderInterface
 {
-
     /**
      * Main method.
      *

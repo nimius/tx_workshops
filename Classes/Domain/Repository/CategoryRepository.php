@@ -22,7 +22,6 @@ use NIMIUS\Workshops\Persistence\Repository;
  */
 class CategoryRepository extends Repository
 {
-
     /**
      * Find all categories matching the given proxy.
      *

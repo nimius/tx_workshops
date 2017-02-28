@@ -25,7 +25,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Date extends AbstractEntity
 {
-
     /**
      * @var int Single date entry (One day)
      */

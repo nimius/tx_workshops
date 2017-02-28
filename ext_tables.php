@@ -11,6 +11,7 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
+
 if (!defined('TYPO3_MODE')) {
     die('Access denied.');
 }
@@ -19,9 +20,7 @@ $emConf = \NIMIUS\Workshops\Utility\ConfigurationUtility::getExtensionConfigurat
 $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
 $languagePath = 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang.xlf:';
 
-/**
- * Register 'Workshops' plugin.
- */
+// Register 'Workshops' plugin.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NIMIUS.' . $_EXTKEY,
     'Workshops',
@@ -33,9 +32,7 @@ $pluginSignature = strtolower($extensionName) . '_workshops';
     'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/Workshops.xml'
 );
 
-/**
- * Register 'WorkshopsSingleView' plugin.
- */
+// Register 'WorkshopsSingleView' plugin.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NIMIUS.' . $_EXTKEY,
     'WorkshopsSingleView',
@@ -47,9 +44,7 @@ $pluginSignature = strtolower($extensionName) . '_workshopssingleview';
     'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/WorkshopsSingleView.xml'
 );
 
-/**
- * Register 'Dates' plugin.
- */
+// Register 'Dates' plugin.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NIMIUS.' . $_EXTKEY,
     'Dates',
@@ -61,9 +56,7 @@ $pluginSignature = strtolower($extensionName) . '_dates';
     'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/Dates.xml'
 );
 
-/**
- * Register 'UpcomingDatesTeaser' plugin.
- */
+// Register 'UpcomingDatesTeaser' plugin.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NIMIUS.' . $_EXTKEY,
     'UpcomingDatesTeaser',
@@ -75,7 +68,7 @@ $pluginSignature = strtolower($extensionName) . '_upcomingdatesteaser';
     'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/UpcomingDatesTeaser.xml'
 );
 
-/**
+/*
  * Register backend module.
  */
 if (TYPO3_MODE == 'BE') {

@@ -21,7 +21,6 @@ namespace NIMIUS\Workshops\ViewHelpers\Format\ICalendar;
  */
 class StringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-
     /**
      * Escapes given input to match specification.
      *

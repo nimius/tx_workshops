@@ -24,7 +24,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class DateRepository extends Repository
 {
-
     /**
      * @var array Setting for default ORDER BY when fetching records.
      */

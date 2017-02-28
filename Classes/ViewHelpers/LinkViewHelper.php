@@ -22,7 +22,6 @@ use NIMIUS\Workshops\Service\WorkshopUrlService;
  */
 class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
 {
-
     /**
      * Renders a detail / more link to the given workshop.
      *

@@ -24,7 +24,6 @@ use NIMIUS\Workshops\Domain\Proxy\WorkshopRepositoryProxy;
  */
 class WorkshopsController extends AbstractController
 {
-
     /**
      * Index action.
      *

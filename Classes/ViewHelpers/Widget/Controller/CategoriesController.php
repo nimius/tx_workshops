@@ -23,7 +23,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class CategoriesController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetController
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Repository\CategoryRepository
      * @inject

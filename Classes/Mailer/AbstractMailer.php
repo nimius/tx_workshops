@@ -28,7 +28,6 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
  */
 abstract class AbstractMailer
 {
-
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
      * @inject

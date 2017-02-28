@@ -21,7 +21,6 @@ use NIMIUS\Workshops\DomainObject\AbstractEntity;
  */
 class Instructor extends AbstractEntity
 {
-
     /**
      * @var string
      */

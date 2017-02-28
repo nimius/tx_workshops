@@ -21,7 +21,6 @@ namespace NIMIUS\Workshops\Domain\Proxy;
  */
 class WorkshopRepositoryProxy extends AbstractRepositoryProxy
 {
-
     /**
      * @var bool Hide workshops not having an upcoming date.
      */

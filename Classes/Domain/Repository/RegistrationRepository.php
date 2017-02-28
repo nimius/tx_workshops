@@ -22,7 +22,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class RegistrationRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
-
     /**
      * Repository object initializer.
      *

@@ -19,7 +19,6 @@ namespace NIMIUS\Workshops\Domain\Model;
  */
 class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
 {
-
     /**
      * @return string
      */

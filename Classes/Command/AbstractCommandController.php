@@ -22,7 +22,6 @@ namespace NIMIUS\Workshops\Command;
  */
 abstract class AbstractCommandController extends \TYPO3\CMS\Extbase\Mvc\Controller\CommandController
 {
-
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager
      * @inject

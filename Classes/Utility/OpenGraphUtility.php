@@ -16,12 +16,11 @@ namespace NIMIUS\Workshops\Utility;
 use NIMIUS\Workshops\Domain\Model\Date;
 use NIMIUS\Workshops\Domain\Model\Location;
 use NIMIUS\Workshops\Domain\Model\Workshop;
+use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Persistence\QueryResult;
-use \TYPO3\CMS\Extbase\Domain\Model\FileReference;
 
 class OpenGraphUtility
 {
-
     /**
      * Extracts the OpenGraph tags that should be added to the page for the given workshop
      *
@@ -82,7 +81,9 @@ class OpenGraphUtility
     {
         $metaTags = [];
         foreach ($tags as $property => $content) {
-            if (!$content) { continue; }
+            if (!$content) {
+                continue;
+            }
             $metaTags[] = '<meta property="' . $property . '" content="' . htmlentities($content) . '" />';
         }
         return implode("\n", $metaTags);
@@ -92,7 +93,8 @@ class OpenGraphUtility
      * Returns an array of base open graph configuration that is the same for every displayed item
      * @return array
      */
-    private static function getBaseOpenGraphInformation() {
+    private static function getBaseOpenGraphInformation()
+    {
         $openGraphTags = [
             'og:url' => ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . '/' . $_SERVER['REQUEST_URI']
         ];
@@ -118,17 +120,21 @@ class OpenGraphUtility
      * @param QueryResult $upcoming
      * @return string|null
      */
-    private static function extractImageFromWorkshop(Workshop $workshop, $upcoming) {
+    private static function extractImageFromWorkshop(Workshop $workshop, $upcoming)
+    {
 
         // first: check images
         foreach ($workshop->getImages() as $imageFileReference) {
             /** @var FileReference $imageFileReference */
-
             $original = $imageFileReference->getOriginalResource();
-            if (!$original) { continue; }
+            if (!$original) {
+                continue;
+            }
 
             $url = $original->getPublicUrl();
-            if (!$url) { continue; }
+            if (!$url) {
+                continue;
+            }
 
             return ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . '/' . $url;
         }
@@ -137,7 +143,7 @@ class OpenGraphUtility
         $location = self::extractLocationFromUpcoming($upcoming);
         if ($location) {
             return 'https://maps.googleapis.com/maps/api/staticmap?size=300x300&zoom=7'
-            . '&center=' .  $location->getLatitude() . ',' . $location->getLongitude()
+            . '&center=' . $location->getLatitude() . ',' . $location->getLongitude()
             . '&markers=' . $location->getLatitude() . ',' . $location->getLongitude();
         }
 
@@ -150,10 +156,10 @@ class OpenGraphUtility
      * @param QueryResult $upcoming
      * @return Location|null
      */
-    private static function extractLocationFromUpcoming($upcoming) {
+    private static function extractLocationFromUpcoming($upcoming)
+    {
         foreach ($upcoming as $date) {
             /** @var Date $date */
-
             $location = $date->getLocation();
             if ($location) {
                 return $location;
@@ -161,5 +167,4 @@ class OpenGraphUtility
         }
         return null;
     }
-
 }

@@ -24,7 +24,6 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
  */
 class DateRepositoryProxy extends AbstractRepositoryProxy
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Workshop|null Workshop to filter dates for.
      */

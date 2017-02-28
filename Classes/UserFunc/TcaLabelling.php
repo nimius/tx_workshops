@@ -27,7 +27,6 @@ use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
  */
 class TcaLabelling
 {
-
     /**
      * Labelling for Date records.
      *

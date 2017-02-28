@@ -19,7 +19,6 @@ namespace NIMIUS\Workshops\Domain\Repository;
  */
 class LanguageRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
-
     /**
      * Find currently used language by given uid.
      *

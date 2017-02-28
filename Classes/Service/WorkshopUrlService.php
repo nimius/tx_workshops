@@ -23,7 +23,6 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
  */
 class WorkshopUrlService extends AbstractUrlService
 {
-
     /**
      * @var array Default settings, used when preparing settings.
      */

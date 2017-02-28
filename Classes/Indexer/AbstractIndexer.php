@@ -23,7 +23,6 @@ use TYPO3\CMS\Extbase\Object\ObjectManager;
  */
 abstract class AbstractIndexer
 {
-
     /**
      * @var \TYPO3\CMS\Extbase\Object\ObjectManagerInterface
      * @inject

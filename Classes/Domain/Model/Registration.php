@@ -23,7 +23,6 @@ use NIMIUS\Workshops\DomainObject\AbstractEntity;
  */
 class Registration extends AbstractEntity
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Model\FrontendUser|null
      * @lazy

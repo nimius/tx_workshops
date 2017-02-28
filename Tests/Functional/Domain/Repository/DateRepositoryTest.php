@@ -27,7 +27,6 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
  */
 class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
 {
-
     /**
      * @var array Required extensions for this test suite
      */

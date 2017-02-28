@@ -21,7 +21,6 @@ namespace NIMIUS\Workshops\ViewHelpers\Format\ICalendar;
  */
 class DateViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-
     /**
      * Brings a given timestamp into the specified format.
      *

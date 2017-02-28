@@ -23,7 +23,6 @@ use NIMIUS\Workshops\DomainObject\AbstractEntity;
  */
 class Language extends AbstractEntity
 {
-
     /**
      * @var string 2 char ISO code.
      */

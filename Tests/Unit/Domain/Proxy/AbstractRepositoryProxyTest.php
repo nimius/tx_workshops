@@ -25,7 +25,6 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class AbstractRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
-
     /**
      * @var \object Mock of AbstractRepositoryProxy
      */

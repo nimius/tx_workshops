@@ -25,7 +25,6 @@ use SJBR\StaticInfoTables\Domain\Model\Country;
  */
 class LocationTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Location
      */

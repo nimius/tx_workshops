@@ -21,7 +21,6 @@ use NIMIUS\Workshops\Domain\Model\Date;
  */
 class RegistrationsController extends AbstractController
 {
-
     /**
      * Index action
      *

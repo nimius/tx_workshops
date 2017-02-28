@@ -24,7 +24,6 @@ use NIMIUS\Workshops\Domain\Model\FrontendUser;
  */
 class FrontendUserTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Model\FrontendUser
      */

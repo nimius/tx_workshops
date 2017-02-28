@@ -21,7 +21,6 @@ namespace NIMIUS\Workshops\Domain\Proxy;
  */
 class CategoryRepositoryProxy extends AbstractRepositoryProxy
 {
-
     /**
      * @var array Record uids.
      */

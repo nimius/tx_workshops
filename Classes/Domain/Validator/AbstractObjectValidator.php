@@ -24,7 +24,6 @@ use TYPO3\CMS\Extbase\Validation\Error;
  */
 abstract class AbstractObjectValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
 {
-
     /**
      * @var \TYPO3\CMS\Extbase\Object\ObjectManager
      * @inject

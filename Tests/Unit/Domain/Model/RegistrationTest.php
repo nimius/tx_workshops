@@ -26,7 +26,6 @@ use NIMIUS\Workshops\Domain\Model\Registration;
  */
 class RegistrationTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Registration
      */

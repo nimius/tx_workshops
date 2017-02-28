@@ -21,7 +21,6 @@ namespace NIMIUS\Workshops\Tests;
  */
 abstract class AbstractUnitTestCase extends \TYPO3\CMS\Core\Tests\UnitTestCase
 {
-
     /**
      * Helper to test a property getter and setter.
      *

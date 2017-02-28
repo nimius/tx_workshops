@@ -25,7 +25,6 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
  */
 class ExportsController extends AbstractController
 {
-
     /**
      * Export data as iCalendar.
      *

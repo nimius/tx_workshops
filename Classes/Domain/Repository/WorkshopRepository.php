@@ -23,7 +23,6 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class WorkshopRepository extends Repository
 {
-
     /**
      * @var array Setting for default ORDER BY when fetching records.
      */

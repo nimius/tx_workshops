@@ -15,11 +15,12 @@ namespace NIMIUS\Workshops\Evaluation;
  */
 
 /**
+ * Latitude evaluation.
+ *
  * Formats Latitude values for storage in a DECIMAL(10,8) Field
  */
 class LatitudeEvaluation extends BoundedDecimalFieldEvaluation
 {
-
     /**
      * @var int[]
      */
@@ -29,5 +30,4 @@ class LatitudeEvaluation extends BoundedDecimalFieldEvaluation
      * @var int
      */
     protected $decimals = 8;
-
 }
