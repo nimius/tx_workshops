@@ -45,7 +45,7 @@ class ExportsController extends AbstractController
             $headers[] = $this->translateModelProperty('registration', $field);
         }
 
-        $filename = $this->basicFileUtility->cleanFileName($date->getWorkshop()->getName());
+        $filename = $this->basicFileUtility->cleanFileName($date->getWorkshop()->getName()) . '.csv';
         header('Content-Type: application/octet-stream');
         header('Content-Disposition: attachment;filename=' . $filename);
         header('Content-Transfer-Encoding: binary');
