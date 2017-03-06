@@ -1,7 +1,8 @@
 # tx_workshops
 A TYPO3 extension to manage workshops (or events, seminars, ...).
 
-[![Build Status](https://travis-ci.org/nimius/tx_workshops.svg)](https://travis-ci.org/nimius/tx_workshops)
+[![Build Status](https://travis-ci.org/nimius/workshops.svg?branch=master)](https://travis-ci.org/nimius/workshops)
+[![StyleCI](https://styleci.io/repos/37909459/shield?branch=master)](https://styleci.io/repos/37909459)
 
 ## What does it do?
 tx_workshops provides functionality for managing and displaying workshops, and ships with signup functionality.
@@ -91,6 +92,18 @@ Email templates are freely configurable through fluid, you'll find them in Resou
 
 #### Email configuration
 Make sure that your TYPO3 instance is properly configured for email delivery. Check your install tool / `LocalConfiguration.php` for valid information in the `[MAIL]` section. There's also a report module checking for this. Alternatively, you can set required information for delivery through TypoScript. 
+
+### OpenGraph
+Workshop Detail views automatically add the correct openGraph meta tags to the `<head>` of the TYPO3 Page.
+This behaviour can be disabled by setting `plugin.tx_workshops.settings.openGraph = 0`.
+
+The twitter username and the facebook app ID can be set using the following TypoScript and / or Constants path:
+```
+plugin.tx_workshops.settings.openGraph {
+    twitter.username = @MyUsername
+    facebook.app_id = MyAppid
+}
+```
 
 ## Credits
 Developed and maintained by [NIMIUS](http://www.nimius.net)

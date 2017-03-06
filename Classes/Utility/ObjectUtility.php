@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Utility;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -25,7 +25,6 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class ObjectUtility
 {
-
     /**
      * Get object manager instance.
      *
@@ -45,7 +44,7 @@ class ObjectUtility
     {
         return self::getObjectManager()->get(\TYPO3\CMS\Extbase\Configuration\ConfigurationManager::class);
     }
-    
+
     /**
      * Get an instance of the given class.
      *
@@ -57,5 +56,4 @@ class ObjectUtility
     {
         return self::getObjectManager()->get($className);
     }
-
 }

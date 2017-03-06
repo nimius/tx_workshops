@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Test\Unit\Domain\Proxy;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -26,12 +26,10 @@ use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
  */
 class DateRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy
      */
     protected $subject;
-
 
     /**
      * Test getter/setter for properties.
@@ -49,7 +47,6 @@ class DateRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCa
         $this->_testGetterAndSetterForProperty('hideChildDates', false);
     }
 
-
     /**
      * Set up the test case.
      */
@@ -57,5 +54,4 @@ class DateRepositoryProxyTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCa
     {
         $this->subject = new DateRepositoryProxy;
     }
-
 }

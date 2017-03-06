@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Test\Unit\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -25,12 +25,10 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class InstructorTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Instructor
      */
     protected $subject;
-
 
     /**
      * Test getter/setter for properties.
@@ -42,10 +40,9 @@ class InstructorTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
         $this->_testGetterAndSetterForProperty('name', 'Name test');
         $this->_testGetterAndSetterForProperty('abstract', 'Abstract test');
         $this->_testGetterAndSetterForProperty('email', 'Email test');
-        $this->_testGetterAndSetterForProperty('detailPid', 6);
+        $this->_testGetterAndSetterForProperty('profilePid', 6);
         $this->_testGetterAndSetterForProperty('images', (new ObjectStorage));
     }
-
 
     /**
      * Set up the test case.
@@ -54,5 +51,4 @@ class InstructorTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
     {
         $this->subject = new Instructor;
     }
-
 }

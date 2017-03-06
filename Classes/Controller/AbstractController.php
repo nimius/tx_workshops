@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Controller;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -14,8 +14,6 @@ namespace NIMIUS\Workshops\Controller;
  * The TYPO3 project - inspiring people to share!
  */
 
-use NIMIUS\Workshops\Domain\Model\Date;
-
 /**
  * Abstract extension controller.
  *
@@ -24,6 +22,10 @@ use NIMIUS\Workshops\Domain\Model\Date;
  */
 abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 {
+    /**
+     * @var \TYPO3\CMS\Extbase\Mvc\Web\Response
+     */
+    protected $response;
 
     /**
      * @var \NIMIUS\Workshops\Domain\Repository\FrontendUserRepository
@@ -67,44 +69,44 @@ abstract class AbstractController extends \TYPO3\CMS\Extbase\Mvc\Controller\Acti
      */
     protected $signalSlotDispatcher;
 
-
     /**
      * Enforces presence of a logged in fe_user.
      *
      * If plugin.tx_workshops.settings.loginPid is given,
      * a redirect to the given login page is made. Otherwise,
      * a core "page not found" is yielded.
+     *
+     * @return void
      */
-    public function requireFrontendUser() 
+    public function requireFrontendUser()
     {
         if (!$this->currentFrontendUser()) {
             $loginPid = (int)$this->settings['loginPid'];
             if ($loginPid > 0) {
-                $this->redirect(NULL, NULL, NULL, NULL, $loginPid);
+                $this->redirect(null, null, null, null, $loginPid);
                 exit;
             } else {
                 $GLOBALS['TSFE']->pageNotFoundAndExit('Frontend user required to proceed.');
             }
         }
     }
-    
+
     /**
      * Get the currently logged in frontend user.
      *
-     * @return mixed A FrontendUser object or FALSE.
+     * @return mixed A FrontendUser object or false.
      */
     public function currentFrontendUser()
     {
         if (isset($this->currentFrontendUser)) {
             return $this->currentFrontendUser;
         }
-        
+
         if ($GLOBALS['TSFE']->fe_user->user) {
             $this->currentFrontendUser = $this->frontendUserRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
             return $this->currentFrontendUser;
         } else {
-            return FALSE;
+            return false;
         }
     }
-
 }

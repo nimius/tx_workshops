@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\ViewHelpers\Widget\Controller;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -26,7 +26,6 @@ class LocationsController extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetCon
      * @inject
      */
     protected $locationRepository;
-
 
     /**
      * Default action for this widget controller.

@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -21,7 +21,6 @@ use NIMIUS\Workshops\DomainObject\AbstractEntity;
  */
 class Instructor extends AbstractEntity
 {
-
     /**
      * @var string
      */
@@ -31,22 +30,21 @@ class Instructor extends AbstractEntity
      * @var string
      */
     protected $abstract;
-    
+
     /**
      * @var string
      */
     protected $email;
-    
+
     /**
-     * @var integer
+     * @var int
      */
-    protected $detailPid;
+    protected $profilePid;
 
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
     protected $images;
-
 
     /**
      * @return string
@@ -64,7 +62,7 @@ class Instructor extends AbstractEntity
     {
         $this->name = $name;
     }
-    
+
     /**
      * @return string
      */
@@ -81,7 +79,7 @@ class Instructor extends AbstractEntity
     {
         $this->abstract = $abstract;
     }
-    
+
     /**
      * @return string
      */
@@ -98,24 +96,24 @@ class Instructor extends AbstractEntity
     {
         $this->email = $email;
     }
-    
+
     /**
-     * @return integer
+     * @return int
      */
-    public function getDetailPid()
+    public function getProfilePid()
     {
-        return $this->detailPid;
+        return $this->profilePid;
     }
 
     /**
-     * @param integer $pid
+     * @param int $pid
      * @return void
      */
-    public function setDetailPid($pid)
+    public function setProfilePid($pid)
     {
-        $this->detailPid = $pid;
+        $this->profilePid = $pid;
     }
-    
+
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
      */
@@ -131,5 +129,4 @@ class Instructor extends AbstractEntity
     {
         $this->images = $images;
     }
-
 }

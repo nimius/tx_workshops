@@ -7,23 +7,23 @@
 		<workshops>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.sheets.workshops</sheetTitle>
+					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.sheets.workshops</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<settings.displayMode>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshopsSingleView.settings.displayMode</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.displayMode</label>
 							<onChange>reload</onChange>
 							<config>
 								<type>select</type>
 								<items>
 									<numIndex index="0" type="array">
-										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshopsSingleView.settings.displayMode.givenRecord</numIndex>
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.displayMode.givenRecord</numIndex>
 										<numIndex index="1">givenRecord</numIndex>
 									</numIndex>
 									<numIndex index="1" type="array">
-										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshopsSingleView.settings.displayMode.selectedRecord</numIndex>
+										<numIndex index="0">LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.displayMode.selectedRecord</numIndex>
 										<numIndex index="1">selectedRecord</numIndex>
 									</numIndex>
 								</items>
@@ -33,7 +33,7 @@
 					
 					<settings.workshop>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshopsSingleView.settings.workshop</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.workshop</label>
 							<displayCond>FIELD:settings.displayMode:=:selectedRecord</displayCond>
 							<config>
 								<type>select</type>
@@ -48,13 +48,13 @@
 		<dates>
 			<ROOT>
 				<TCEforms>
-					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.sheets.dates</sheetTitle>
+					<sheetTitle>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.sheets.dates</sheetTitle>
 				</TCEforms>
 				<type>array</type>
 				<el>
 					<settings.hideAlreadyStartedDates>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.hideAlreadyStartedDates</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.hideAlreadyStartedDates</label>
 							<config>
 								<type>check</type>
 							</config>
@@ -63,7 +63,7 @@
 
 					<settings.hidePastDates>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.hidePastDates</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.hidePastDates</label>
 							<config>
 								<type>check</type>
 							</config>
@@ -72,7 +72,7 @@
                     
 					<settings.upcomingDays>
 						<TCEforms>
-							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:plugin.workshops.settings.upcomingDays</label>
+							<label>LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:flexForm.settings.upcomingDays</label>
 							<config>
 								<type>input</type>
 								<eval>trim,num</eval>

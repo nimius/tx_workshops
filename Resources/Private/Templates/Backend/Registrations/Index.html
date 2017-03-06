@@ -16,6 +16,12 @@
 		class="btn btn-default btn-sm">
 		<c:icon identifier="actions-document-new" />
 	</w:be.tableLink>
+    
+    <f:if condition="{registrations}">
+        <f:link.action controller="Backend\Exports" action="create" arguments="{date: date}" class="btn btn-default btn-sm">
+		    <c:icon identifier="actions-document-export-csv" />
+        </f:link.action>
+    </f:if>
 </f:section>
 
 <f:section name="content">

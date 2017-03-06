@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -11,7 +11,6 @@
  *
  * The TYPO3 project - inspiring people to share!
  */
-
 $tableName = 'sys_category';
 $xlf = 'LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:';
 
@@ -41,11 +40,11 @@ $xlf = 'LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:';
                 ],
             ]
         ],
-		'tx_workshops_images' => [
-			'label' => $xlf . 'model.category.property.images',
-			'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
-				'tx_workshops_images', 
-				[]
+        'tx_workshops_images' => [
+            'label' => $xlf . 'model.category.property.images',
+            'config' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::getFileFieldTCAConfig(
+                'tx_workshops_images',
+                []
             ),
         ],
     ]
@@ -53,6 +52,6 @@ $xlf = 'LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:';
 
 // Add workshops palette to TCA types.
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes(
-	$tableName,
-	'--div--;Workshops, tx_workshops_images, tx_workshops_detail_pid'
+    $tableName,
+    '--div--;Workshops, tx_workshops_images, tx_workshops_detail_pid'
 );

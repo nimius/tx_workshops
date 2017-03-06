@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Controller;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -34,7 +34,7 @@ class DatesController extends AbstractController
      * @ignorevalidation $category
      * @return void
      */
-    public function indexAction(Location $location = NULL, Category $category = NULL)
+    public function indexAction(Location $location = null, Category $category = null)
     {
         $proxy = $this->objectManager->get(DateRepositoryProxy::class);
         $proxy->initializeFromSettings($this->settings);
@@ -58,7 +58,7 @@ class DatesController extends AbstractController
     {
         $proxy = $this->objectManager->get(DateRepositoryProxy::class);
         $proxy->initializeFromSettings($this->settings);
-        $proxy->setHidePastDates(TRUE);
+        $proxy->setHidePastDates(true);
         $this->view->assign('upcomingDates', $this->dateRepository->findByProxy($proxy));
     }
 }

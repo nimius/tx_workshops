@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Hook;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -15,27 +15,24 @@ namespace NIMIUS\Workshops\Hook;
  */
 
 use NIMIUS\Workshops\Domain\Model\Date;
+use NIMIUS\Workshops\Utility\ConfigurationUtility;
 use NIMIUS\Workshops\Utility\ObjectUtility;
 use TYPO3\CMS\Backend\Utility\BackendUtility;
-use TYPO3\CMS\Core\Log\LogManager;
 use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * DataMapper hook class.
- * 
+ *
  * Contains functionality to hook into backend data processing.
  */
 class DataMapperHook
 {
-
     /**
-     * Hook to post-process data. 
+     * Hook to post-process data.
      *
      * @param string $status
      * @param string $table
-     * @param integer $id
+     * @param int $id
      * @param array &$fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler &$dataHandler
      * @return void
@@ -47,13 +44,13 @@ class DataMapperHook
             $this->processDateRecords($status, $table, $uid, $fieldArray, $dataHandler, $dateDataMap);
         }
     }
-    
+
     /**
      * Hook to update data after all database operations.
      *
      * @param string $status
      * @param string $table
-     * @param integer $id
+     * @param int $id
      * @param array &$fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler &$dataHandler
      * @return void
@@ -68,65 +65,71 @@ class DataMapperHook
     /**
      * Get latitude/longitude from given data and update record.
      *
-     * Updates the database entry by adding the correct geocoded values. If the extension 'geocoding'
-     * by Benjamin Mack is not installed, this function does nothing.
+     * Updates the database entry by adding latitude/longitude values.
      *
      * @param string $status
      * @param string $table
-     * @param integer $id
+     * @param int $id
      * @param array &$fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler &$dataHandler
      * @return void
      */
     protected function geocodeRecord($status, $table, $uid, &$fieldArray, &$dataHandler)
     {
-        $logManager = GeneralUtility::makeInstance(LogManager::class);
-        if (!ExtensionManagementUtility::isLoaded('geocoding'))  {
-            /** @var LogManager $logManager */
-            $logManager->getLogger(__CLASS__)->warning('EXT:geocoding is not installed');
+        if (!ExtensionManagementUtility::isLoaded('geocoding')) {
+            return;
+        }
+        // geocoding should only be executed, if the user a) updated the address and b) the coordinates were not manually changed by the user.
+        if (!$this->isAddressUpdate($fieldArray) || $this->isManualCoordinateUpdate($fieldArray)) {
             return;
         }
 
-        // if the record is new, it has no uid yet (uid is set to "NEW12345")
         if (!is_int($uid)) {
             $uid = $dataHandler->substNEWwithIDs[$uid];
         }
 
-        // fetching the important information from the database
-        $record = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('name, address, zip, city, country', $table, 'uid = ' . (int)$uid);
-        if (count($record) === 0) {
-            $logManager->getLogger(__CLASS__)->warning('Cannot geocode: record ' . $uid . ' does not exist in table ' . $table);
-            error_log('Cannot geocode: record ' . $uid . ' does not exist in table ' . $table);
+        $record = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
+            '*',
+            $table,
+            'uid = ' . (int)$uid
+        );
+        if (!$record) {
             return;
         }
-        $record = $record[0];
 
-
-        // getting the name of the country
-        $countryRecords = $GLOBALS['TYPO3_DB']->exec_SELECTgetRows('cn_official_name_en', 'static_countries', 'uid = ' . (int)$record['country']);
-        if (count($countryRecords) === 0) {
-            $logManager->getLogger(__CLASS__)->warning('Cannot geocode: country ' . (int)$record['country'] . ' does not exist');
-            error_log('Cannot geocode: country ' . (int)$record['country'] . ' does not exist');
+        $extensionConfiguation = ConfigurationUtility::getExtensionConfiguration();
+        if (
+            (float)$record['latitude'] != 0.0
+            && (float)$record['longitude'] != 0.0
+            && !(bool)$extensionConfiguation['locations.']['alwaysGeocode']
+        ) {
+            exit;
+            // Only geocode address if either latitude/longitude is missing, or alwaysGeocode is set to enforce value updates.
             return;
         }
-        $country = $countryRecords[0]['cn_official_name_en'];
 
-        // using a string here in case the class is not defined. (if the extension is not installed).
-        // trying to initialize a non-existing class with objectManager will return null, but using Foo:class
-        // if the class is non-existent will yield a PHP fatal error
+        $countryRecord = $GLOBALS['TYPO3_DB']->exec_SELECTgetSingleRow(
+            'cn_short_en',
+            'static_countries',
+            'uid = ' . (int)$record['country']
+        );
+        if (!$countryRecord) {
+            return;
+        }
+
+        // Using a fully qualified class name as string to instantiate here in case the class is not defined.
         $geoService = ObjectUtility::getObjectManager()->get('B13\\Geocoding\\Service\\GeoService');
-        $street = $record['address'];
+        $address = $record['address'];
         if (!empty($record['name'])) {
-            $street = $record['name'] . ', ' . $street;
+            $address = $record['name'] . ', ' . $address;
         }
         $coordinates = $geoService->getCoordinatesForAddress(
-            $street,
+            $address,
             $record['zip'],
             $record['city'],
-            $country
+            $countryRecord['cn_short_en']
         );
 
-        // setting the coordinates
         if (array_key_exists('latitude', $coordinates) && array_key_exists('longitude', $coordinates)) {
             $GLOBALS['TYPO3_DB']->exec_UPDATEquery(
                 $table,
@@ -144,7 +147,7 @@ class DataMapperHook
      *
      * @param string $status
      * @param string $table
-     * @param integer $id
+     * @param int $id
      * @param array &$fieldArray
      * @param \TYPO3\CMS\Core\DataHandling\DataHandler &$dataHandler
      * @return void
@@ -182,7 +185,7 @@ class DataMapperHook
                 $this->updateDateDatamap($record, $properties);
             }
         }
-        
+
         $fieldArray['begin_at'] = $properties['begin_at'];
         $fieldArray['end_at'] = $properties['end_at'];
     }
@@ -204,4 +207,31 @@ class DataMapperHook
         }
     }
 
+    /**
+     * Returns true if the given fieldArray of a tx_workshops_domain_model_location record contains address updates.
+     * Geocoding is only necessary, if the address has been updated
+     *
+     * @param array $fieldArr
+     * @return bool
+     */
+    protected function isAddressUpdate(&$fieldArr)
+    {
+        return  array_key_exists('address', $fieldArr) ||
+                array_key_exists('zip', $fieldArr) ||
+                array_key_exists('city', $fieldArr) ||
+                array_key_exists('country', $fieldArr);
+    }
+
+    /**
+     * Returns true, if the given fieldArray of a tx_workshops_domain_model_location record contains manual geo coordinate
+     * updates. Geocoding will not be used, if the user manually specified coordinates.
+     *
+     * @param array $fieldArr
+     * @return bool
+     */
+    protected function isManualCoordinateUpdate(&$fieldArr)
+    {
+        return  array_key_exists('longitude', $fieldArr) ||
+                array_key_exists('latitude', $fieldArr);
+    }
 }

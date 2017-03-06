@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -24,14 +24,12 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
  */
 class DateRepository extends Repository
 {
-
     /**
      * @var array Setting for default ORDER BY when fetching records.
      */
     protected $defaultOrderings = [
         'beginAt' => QueryInterface::ORDER_ASCENDING,
     ];
-
 
     /**
      * Find all dates matching the given proxy.
@@ -42,9 +40,13 @@ class DateRepository extends Repository
     public function findByProxy(DateRepositoryProxy $proxy)
     {
         $query = $this->createQuery();
-        parent::initializeQuery($query, $proxy);
-
         $constraints = [];
+        parent::initializeQuery($query, $proxy, $constraints);
+
+        if (count($proxy->getLanguages()) > 0) {
+            $constraints[] = $query->in('workshop.sys_language_uid', $proxy->getLanguages());
+        }
+
         $beginOfToday = strtotime('today midnight');
 
         if ($proxy->getHidePastDates()) {
@@ -62,18 +64,6 @@ class DateRepository extends Repository
         }
         if ($proxy->getLocation()) {
             $constraints[] = $query->equals('location', $proxy->getLocation());
-        }
-        if ($proxy->getCategories()) {
-            $categoriesConstraints = [];
-            foreach($proxy->getCategories() as $category) {
-                $categoriesConstraints[] = $query->contains('workshop.categories', $category);
-            }
-            if ($proxy->getCategoryOperator() == 'AND') {
-                $constraints[] = $query->logicalAnd($categoriesConstraints);
-            } else {
-                $constraints[] = $query->logicalOr($categoriesConstraints);
-            }
-            unset($categoriesConstraints);
         }
         if ($proxy->getHideChildDates()) {
             // Child dates obviously have a parent set.
@@ -97,13 +87,13 @@ class DateRepository extends Repository
      * Gets the next upcoming dates for a given workshop.
      *
      * @param \NIMIUS\Workshops\Domain\Model\Workshop $workshop
-     * @param integer $tstamp
+     * @param int $tstamp
      * @return mixed
      */
     public function findNextUpcomingForWorkshop(Workshop $workshop)
     {
         $query = $this->createQuery();
-        $query->getQuerySettings()->setRespectStoragePage(FALSE);
+        $query->getQuerySettings()->setRespectStoragePage(false);
         return $query->matching(
             $query->logicalAnd(
                 $query->greaterThanOrEqual('beginAt', time()),
@@ -111,5 +101,4 @@ class DateRepository extends Repository
             )
         )->setLimit(1)->execute()->getFirst();
     }
-
 }

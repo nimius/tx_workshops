@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\ViewHelpers\Widget;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -27,7 +27,6 @@ class CategoriesViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetVi
      */
     protected $controller;
 
-
     /**
      * Main method of this view helper.
      *
@@ -35,7 +34,7 @@ class CategoriesViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetVi
      * @param string $controllerName The controller name
      * @return string
      */
-    public function render($pluginName = 'Workshops', $controllerName = NULL)
+    public function render($pluginName = 'Workshops', $controllerName = null)
     {
         return $this->initiateSubRequest();
     }

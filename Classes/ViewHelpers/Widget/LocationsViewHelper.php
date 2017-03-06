@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\ViewHelpers\Widget;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -27,7 +27,6 @@ class LocationsViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetVie
      */
     protected $controller;
 
-
     /**
      * Main method of this view helper.
      *
@@ -35,7 +34,7 @@ class LocationsViewHelper extends \TYPO3\CMS\Fluid\Core\Widget\AbstractWidgetVie
      * @param string $controllerName The controller name
      * @return string
      */
-    public function render($pluginName = 'Dates', $controllerName = NULL)
+    public function render($pluginName = 'Dates', $controllerName = null)
     {
         return $this->initiateSubRequest();
     }

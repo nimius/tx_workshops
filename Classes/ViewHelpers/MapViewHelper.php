@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\ViewHelpers;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -15,8 +15,6 @@ namespace NIMIUS\Workshops\ViewHelpers;
  */
 
 use NIMIUS\Workshops\Domain\Model\Location;
-use NIMIUS\Workshops\Utility\ConfigurationUtility;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 
 /**
  * Map view helper.
@@ -32,7 +30,6 @@ class MapViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVie
      */
     protected $tagName = 'iframe';
 
-
     /**
      * Arguments initialization.
      *
@@ -41,9 +38,9 @@ class MapViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVie
     public function initializeArguments()
     {
         $this->registerUniversalTagAttributes();
-        $this->registerTagAttribute('width', 'integer', 'Iframe width', FALSE, 300);
-        $this->registerTagAttribute('height', 'integer', 'Iframe height', FALSE, 200);
-        $this->registerTagAttribute('zoom', 'integer', 'Zoom level', FALSE, 16);
+        $this->registerTagAttribute('width', 'integer', 'Iframe width', false, 300);
+        $this->registerTagAttribute('height', 'integer', 'Iframe height', false, 200);
+        $this->registerTagAttribute('zoom', 'integer', 'Zoom level', false, 16);
     }
 
     /**
@@ -53,13 +50,13 @@ class MapViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedVie
      * @return string
      */
     public function render(Location $location)
-    {   
-        $query = 'http://maps.google.com/maps?q='
+    {
+        $query = 'https://maps.google.com/maps?q='
             . $location->getLatitude() . ',' . $location->getLongitude()
             . '&z=' . $this->arguments['zoom']
             . '&output=embed';
-        
-        $this->tag->forceClosingTag(TRUE);
+
+        $this->tag->forceClosingTag(true);
         $this->tag->addAttribute('src', $query);
         return $this->tag->render();
     }

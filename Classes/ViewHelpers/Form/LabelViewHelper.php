@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\ViewHelpers\Form;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -14,7 +14,6 @@ namespace NIMIUS\Workshops\ViewHelpers\Form;
  * The TYPO3 project - inspiring people to share!
  */
 
-use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Utility\ConfigurationUtility;
 
 /**
@@ -24,7 +23,6 @@ use NIMIUS\Workshops\Utility\ConfigurationUtility;
  */
 class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper
 {
-
     /**
      * @var array
      */
@@ -39,7 +37,6 @@ class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
      * @var string
      */
     protected $append = '';
-
 
     /**
      * Class initializer.
@@ -66,7 +63,7 @@ class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
     public function initializeArguments()
     {
         $this->registerUniversalTagAttributes();
-        $this->registerTagAttribute('for', 'string', 'Id of the form element this label belongs to.', FALSE);
+        $this->registerTagAttribute('for', 'string', 'Id of the form element this label belongs to.', false);
     }
 
     /**
@@ -81,7 +78,7 @@ class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
     public function render($property)
     {
         $content = $this->renderChildren();
-        if (strpos($property, '.') !== FALSE) {
+        if (strpos($property, '.') !== false) {
             $property = sscanf($property, 'additionalFields.%s')[0];
             $validationSettings = $this->settings['registration.']['validation.']['additionalFields.'][$property . '.'];
         } else {
@@ -93,5 +90,4 @@ class LabelViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedV
         $this->tag->setContent($content);
         return $this->tag->render();
     }
-
 }

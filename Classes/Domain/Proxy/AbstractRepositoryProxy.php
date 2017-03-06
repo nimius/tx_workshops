@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Proxy;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -14,9 +14,6 @@ namespace NIMIUS\Workshops\Domain\Proxy;
  * The TYPO3 project - inspiring people to share!
  */
 
-use NIMIUS\Workshops\Domain\Model\Date;
-use NIMIUS\Workshops\Domain\Model\Workshop;
-
 /**
  * Abstract repository proxy class.
  *
@@ -24,7 +21,6 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
  */
 abstract class AbstractRepositoryProxy
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Repository\CategoryRepository
      * @inject
@@ -37,9 +33,14 @@ abstract class AbstractRepositoryProxy
     protected $pids = [];
 
     /**
+     * @var array Language uids.
+     */
+    protected $languages = [];
+
+    /**
      * @var bool Set to ignore storage pid constraints.
      */
-    protected $ignoreStoragePid = FALSE;
+    protected $ignoreStoragePid = false;
 
     /**
      * @var mixed A traversable object containing \NIMIUS\Workshops\Domain\Model\Category records.
@@ -52,6 +53,11 @@ abstract class AbstractRepositoryProxy
     protected $categoryOperator;
 
     /**
+     * @var bool If set, child categories are also included in queries.
+     */
+    protected $recursiveCategorySelection = false;
+
+    /**
      * @var string Sorting field.
      */
     protected $sortingField = 'sorting';
@@ -62,7 +68,7 @@ abstract class AbstractRepositoryProxy
     protected $sortingType = 'ASC';
 
     /**
-     * @var integer Restrict dates to be within the following amount of days from now
+     * @var int Restrict dates to be within the following amount of days from now
      */
     protected $withinDaysFromNow;
 
@@ -76,17 +82,25 @@ abstract class AbstractRepositoryProxy
      */
     protected $hideAlreadyStartedDates;
 
+    /**
+     * Constructor.
+     *
+     * Initializes class instance with default values.
+     */
+    public function __construct()
+    {
+        $this->languages = [-1, (int)$GLOBALS['TSFE']->sys_language_uid];
+    }
 
     /**
      * Initialize proxy properties by given settings.
      *
      * Settings are coming from e.g. TypoScript or FlexForm.
      *
-     * @todo test coverage
      * @param array $settings
      * @return void
      */
-    public function initializeFromSettings($settings)
+    public function initializeFromSettings(array $settings)
     {
         if (!empty($settings['categories'])) {
             $categoriesUids = explode(',', $settings['categories']);
@@ -99,10 +113,10 @@ abstract class AbstractRepositoryProxy
             $this->setWithinDaysFromNow((int)$settings['upcomingDays']);
         }
         if ((bool)$settings['hidePastDates']) {
-            $this->setHidePastDates(TRUE);
+            $this->setHidePastDates(true);
         }
         if ((bool)$settings['hideAlreadyStartedDates']) {
-            $this->setHideAlreadyStartedDates(TRUE);
+            $this->setHideAlreadyStartedDates(true);
         }
         // Unset already processed settings.
         unset(
@@ -110,7 +124,7 @@ abstract class AbstractRepositoryProxy
             $settings['hidePastDates'], $settings['hideAlreadyStartedDates']
         );
 
-        foreach($settings as $key => $value) {
+        foreach ($settings as $key => $value) {
             if (property_exists($this, $key)) {
                 $this->{$key} = $value;
             }
@@ -126,7 +140,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @param integer $pid
+     * @param int $pid
      * @return void
      */
     public function setPid($pid)
@@ -141,6 +155,23 @@ abstract class AbstractRepositoryProxy
     public function setPids($pids)
     {
         $this->pids = $pids;
+    }
+
+    /**
+     * @return array
+     */
+    public function getLanguages()
+    {
+        return $this->languages;
+    }
+
+    /**
+     * @param array $languages
+     * @return void
+     */
+    public function setLanguages($languages)
+    {
+        $this->languages = $languages;
     }
 
     /**
@@ -199,6 +230,23 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
+     * @param bool $recursiveCategorySelection
+     * @return void
+     */
+    public function setRecursiveCategorySelection($recursiveCategorySelection)
+    {
+        $this->recursiveCategorySelection = $recursiveCategorySelection;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getRecursiveCategorySelection()
+    {
+        return $this->recursiveCategorySelection;
+    }
+
+    /**
      * @return string|null
      */
     public function getSortingField()
@@ -241,7 +289,7 @@ abstract class AbstractRepositoryProxy
     }
 
     /**
-     * @param integer|null $withinDaysFromNow
+     * @param int|null $withinDaysFromNow
      * @return void
      */
     public function setWithinDaysFromNow($withinDaysFromNow)
@@ -299,5 +347,4 @@ abstract class AbstractRepositoryProxy
     {
         $this->ignoreStoragePid = (bool)$ignoreStoragePid;
     }
-
 }

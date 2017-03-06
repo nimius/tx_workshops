@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Tests\Functional\Domain\Repository;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,7 +19,6 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
 use NIMIUS\Workshops\Domain\Repository\DateRepository;
 use NIMIUS\Workshops\Domain\Repository\WorkshopRepository;
-
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 
@@ -28,7 +27,6 @@ use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
  */
 class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
 {
-
     /**
      * @var array Required extensions for this test suite
      */
@@ -59,7 +57,6 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
      */
     protected $workshop;
 
-
     /**
      * Test case constructor / initializer.
      *
@@ -86,11 +83,12 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $date->setPid(8);
         $this->dateRepository->add($date);
         $this->persistenceManager->persistAll();
-        
+
         $proxy = $this->createProxy();
         $proxy->setPid(8);
         $proxy->setHidePastDates(false);
-        
+        $proxy->setLanguages([]);
+
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 1);
     }
@@ -107,13 +105,15 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $date->setEndAt(strtotime('-2 days'));
         $this->dateRepository->add($date);
         $this->persistenceManager->persistAll();
-        
+
         $proxy = $this->createProxy();
-        $proxy->setHidePastDates(TRUE);
+        $proxy->setLanguages([]);
+
+        $proxy->setHidePastDates(true);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 0);
-        
-        $proxy->setHidePastDates(FALSE);
+
+        $proxy->setHidePastDates(false);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 1);
     }
@@ -130,15 +130,49 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $date->setBeginAt(strtotime('-2 days'));
         $this->dateRepository->add($date);
         $this->persistenceManager->persistAll();
-        
+
         $proxy = $this->createProxy();
-        $proxy->setHideAlreadyStartedDates(TRUE);
+        $proxy->setLanguages([]);
+
+        $proxy->setHideAlreadyStartedDates(true);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 0);
-        
-        $proxy->setHideAlreadyStartedDates(FALSE);
+
+        $proxy->setHideAlreadyStartedDates(false);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 1);
+    }
+
+    /**
+     * Test if findByProxy() respects workshop languages.
+     *
+     * @test
+     */
+    public function findByProxyRespectsWorkshopLanguages()
+    {
+        $date = $this->createDate();
+        $date->setWorkshop($this->createWorkshop());
+        $date->setBeginAt(strtotime('+2 days'));
+        $this->dateRepository->add($date);
+
+        $workshop = $this->createWorkshop();
+        $date = $this->createDate();
+        $date->setWorkshop($workshop);
+        $date->setBeginAt(strtotime('+2 days'));
+        $this->dateRepository->add($date);
+        $this->persistenceManager->persistAll();
+
+        // As sys_language_uid is overwritten on handling, the uid is set "manually".
+        $GLOBALS['TYPO3_DB']->exec_UPDATEquery('tx_workshops_domain_model_workshop', 'uid = ' . $workshop->getUid(), ['sys_language_uid' => -1]);
+
+        $proxy = $this->createProxy();
+        $proxy->setLanguages([]);
+        $dates = $this->dateRepository->findByProxy($proxy);
+        $this->assertTrue(count($dates) == 2);
+
+        $proxy->setLanguages([0, -1]);
+        $dates = $this->dateRepository->findByProxy($proxy);
+        $this->assertTrue(count($dates) == 2);
     }
 
     /**
@@ -152,7 +186,7 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $date->setWorkshop($this->createWorkshop());
         $date->setBeginAt(strtotime('+2 days'));
         $this->dateRepository->add($date);
-        
+
         $date = $this->createDate();
         $date->setWorkshop($this->createWorkshop());
         $date->setBeginAt(strtotime('+8 days'));
@@ -164,13 +198,15 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $this->dateRepository->add($date);
 
         $this->persistenceManager->persistAll();
-        
+
         $proxy = $this->createProxy();
+        $proxy->setLanguages([]);
+
         $proxy->setWithinDaysFromNow(4);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 1);
-        
-        $proxy->setWithinDaysFromNow(NULL);
+
+        $proxy->setWithinDaysFromNow(null);
         $dates = $this->dateRepository->findByProxy($proxy);
         $this->assertTrue(count($dates) == 3);
     }
@@ -193,7 +229,7 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     protected function createWorkshop()
     {
         $workshop = $this->objectManager->get(Workshop::class);
-        $workshop->setPid(2);
+        $workshop->setPid(0);
         $this->workshopRepository->add($workshop);
         $this->persistenceManager->persistAll();
         return $workshop;
@@ -208,5 +244,4 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
     {
         return $this->objectManager->get(Date::class);
     }
-
 }

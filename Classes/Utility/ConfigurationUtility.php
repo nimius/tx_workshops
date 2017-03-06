@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Utility;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -14,8 +14,6 @@ namespace NIMIUS\Workshops\Utility;
  * The TYPO3 project - inspiring people to share!
  */
 
-use NIMIUS\Workshops\Utility\ObjectUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 
 /**
@@ -23,12 +21,10 @@ use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
  */
 class ConfigurationUtility
 {
-
     /**
      * @var string
      */
     public static $extKey = 'workshops';
-
 
     /**
      * Get configuration from TYPO3 configuration variables.
@@ -43,7 +39,7 @@ class ConfigurationUtility
         }
         return $config;
     }
-    
+
     /**
      * Get framework typoscript configuration.
      *
@@ -70,7 +66,7 @@ class ConfigurationUtility
      * The CONFIGURATION_TYPE_FULL_TYPOSCRIPT type is used and the returned
      * result broken down as CONFIGURATION_TYPE_SETTINGS does not work
      * correctly for command controllers.
-     * 
+     *
      * Additionally, FlexForm settings from within the current plugin
      * are not merged into the settings automatically, which is also
      * done here.
@@ -83,18 +79,18 @@ class ConfigurationUtility
      * @param string $extKey
      * @return array
      */
-    public static function getTyposcriptConfiguration($extKey = NULL)
+    public static function getTyposcriptConfiguration($extKey = null)
     {
         if (!$extKey) {
             $extKey = self::$extKey;
         }
         $signature = 'tx_' . $extKey . '.';
-        
+
         $configuration = self::getFullTypoScript();
         $settings = (array)$configuration['plugin.'][$signature]['settings.'];
 
         // A cObj is only given in some cases, mostly in FE context.
-        $cObj = ObjectUtility::getConfigurationManager()->getContentObject();       
+        $cObj = ObjectUtility::getConfigurationManager()->getContentObject();
         if ($cObj) {
             $flexFormService = ObjectUtility::getObjectManager()->get('TYPO3\\CMS\\Extbase\\Service\\FlexFormService');
             $flexFormSettings = (array)$flexFormService->convertFlexFormContentToArray($cObj->data['pi_flexform']);
@@ -122,7 +118,7 @@ class ConfigurationUtility
      *
      * @return array
      */
-    public static function getModuleTyposcriptConfiguration($extKey = NULL)
+    public static function getModuleTyposcriptConfiguration($extKey = null)
     {
         if (!$extKey) {
             $extKey = self::$extKey;
@@ -134,5 +130,4 @@ class ConfigurationUtility
         );
         return (array)$configuration['module.'][$signature];
     }
-
 }

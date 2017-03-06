@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -23,13 +23,12 @@ use NIMIUS\Workshops\DomainObject\AbstractEntity;
  */
 class Registration extends AbstractEntity
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Model\FrontendUser|null
      * @lazy
      */
     protected $frontendUser;
-    
+
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Date
      * @lazy
@@ -41,7 +40,7 @@ class Registration extends AbstractEntity
      * @lazy
      */
     protected $language;
-    
+
     /**
      * @var string
      */
@@ -102,20 +101,18 @@ class Registration extends AbstractEntity
      * @var array
      */
     protected $additionalFields = [];
-    
+
     /**
-     * @var integer
+     * @var int
      */
     protected $confirmationSentAt;
-    
+
     /**
      * @todo refactor to "createdAt"
-     * @var integer
+     * @var int
      */
     protected $crdate;
-    
-    
-    
+
     /**
      * Populate this object's properties with values from the
      * assigned frontend user's properties.
@@ -129,11 +126,11 @@ class Registration extends AbstractEntity
         }
         $properties = $this->getFrontendUser()->_getProperties();
         unset($properties['uid'], $properties['pid'], $properties['password']);
-        foreach($properties as $property => $value) {
+        foreach ($properties as $property => $value) {
             $this->_setProperty($property, $value);
         }
     }
-    
+
     /**
      * @return string
      */
@@ -145,8 +142,7 @@ class Registration extends AbstractEntity
         ];
         return implode(' ', array_filter($parts, 'strlen'));
     }
-    
-    
+
     /**
      * @return \NIMIUS\Workshops\Domain\Model\FrontendUser|null
      */
@@ -154,7 +150,7 @@ class Registration extends AbstractEntity
     {
         return $this->frontendUser;
     }
-    
+
     /**
      * @param \NIMIUS\Workshops\Domain\Model\FrontendUser $frontendUser
      * @return void
@@ -163,7 +159,7 @@ class Registration extends AbstractEntity
     {
         $this->frontendUser = $frontendUser;
     }
-    
+
     /**
      * @return \NIMIUS\Workshops\Domain\Model\Date
      */
@@ -171,7 +167,7 @@ class Registration extends AbstractEntity
     {
         return $this->workshopDate;
     }
-    
+
     /**
      * @param \NIMIUS\Workshops\Domain\Model\Date $date
      * @return void
@@ -188,7 +184,7 @@ class Registration extends AbstractEntity
     {
         return $this->language;
     }
-    
+
     /**
      * @param \NIMIUS\Workshops\Domain\Model\Language $language
      * @return void
@@ -197,7 +193,7 @@ class Registration extends AbstractEntity
     {
         $this->language = $language;
     }
-    
+
     /**
      * @param string $firstName
      * @return void
@@ -403,7 +399,7 @@ class Registration extends AbstractEntity
     }
 
     /**
-     * @param integer|null $value
+     * @param int|null $value
      * @return void
      */
     public function setConfirmationSentAt($value = null)
@@ -412,7 +408,7 @@ class Registration extends AbstractEntity
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getConfirmationSentAt()
     {
@@ -420,7 +416,7 @@ class Registration extends AbstractEntity
     }
 
     /**
-     * @return integer|null
+     * @return int|null
      */
     public function getCreatedAt()
     {
@@ -428,12 +424,32 @@ class Registration extends AbstractEntity
     }
 
     /**
-     * @param integer|null $value
-     * @return integer|null
+     * @param int|null $value
+     * @return int|null
      */
     public function setCreatedAt($value)
     {
         $this->crdate = $value;
     }
 
+    /**
+     * Returns an array representing the current object.
+     *
+     * @return array
+     */
+    public function toArray()
+    {
+        return [
+            'firstName' => $this->getFirstName(),
+            'lastName' => $this->getLastName(),
+            'address' => $this->getAddress(),
+            'zip' => $this->getZip(),
+            'city' => $this->getCity(),
+            'country' => $this->getCountry(),
+            'company' => $this->getCompany(),
+            'email' => $this->getEmail(),
+            'telephone' => $this->getTelephone(),
+            'additionalFields' => $this->getAdditionalFields()
+        ];
+    }
 }

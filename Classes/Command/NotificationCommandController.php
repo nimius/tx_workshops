@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Command;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -14,9 +14,6 @@ namespace NIMIUS\Workshops\Command;
  * The TYPO3 project - inspiring people to share!
  */
 
-use NIMIUS\Workshops\Utility\ConfigurationUtility;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-
 /**
  * Notification command controller.
  *
@@ -24,47 +21,44 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class NotificationCommandController extends AbstractCommandController
 {
+    /**
+     * @var \NIMIUS\Workshops\Domain\Repository\WorkshopRepository
+     * @inject
+     */
+    protected $workshopRepository;
 
-	/**
-	 * @var \NIMIUS\Workshops\Domain\Repository\WorkshopRepository
-	 * @inject
-	 */
-	protected $workshopRepository;
-	
-	/**
-	 * @var \NIMIUS\Workshops\Domain\Repository\DateRepository
-	 * @inject
-	 */
-	protected $dateRepository;
-	
-	/**
-	 * @var \NIMIUS\Workshops\Domain\Repository\RegistrationRepository
-	 * @inject
-	 */
-	protected $registrationRepository;
+    /**
+     * @var \NIMIUS\Workshops\Domain\Repository\DateRepository
+     * @inject
+     */
+    protected $dateRepository;
 
-	/**
-	 * @var \NIMIUS\Workshops\Mailer\RegistrationMailer
-	 * @inject
-	 */
-	protected $registrationMailer;
+    /**
+     * @var \NIMIUS\Workshops\Domain\Repository\RegistrationRepository
+     * @inject
+     */
+    protected $registrationRepository;
 
-	
-	/**
-	 * Deliver registration confirmation mails.
-	 *
-	 * This delivers a registration confirmation to the attendee,
-	 * and optionally a notification to the workshop owner.
-	 *
-	 * @return boolean TRUE if task run was successful
-	 */
-	public function registrationConfirmationCommand()
-	{
-		$registrations = $this->registrationRepository->findAllWithoutSentConfirmation();
-		foreach($registrations as $registration) {
-			$this->registrationMailer->deliverRegistrationConfirmation($registration);
-		}
-		return TRUE;
-	}
+    /**
+     * @var \NIMIUS\Workshops\Mailer\RegistrationMailer
+     * @inject
+     */
+    protected $registrationMailer;
 
+    /**
+     * Deliver registration confirmation mails.
+     *
+     * This delivers a registration confirmation to the attendee,
+     * and optionally a notification to the workshop owner.
+     *
+     * @return bool true if task run was successful
+     */
+    public function registrationConfirmationCommand()
+    {
+        $registrations = $this->registrationRepository->findAllWithoutSentConfirmation();
+        foreach ($registrations as $registration) {
+            $this->registrationMailer->deliverRegistrationConfirmation($registration);
+        }
+        return true;
+    }
 }

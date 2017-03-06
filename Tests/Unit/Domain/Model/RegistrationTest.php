@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Test\Unit\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -20,21 +20,16 @@ require_once __DIR__ . '/../../../AbstractUnitTestCase.php';
 use NIMIUS\Workshops\Domain\Model\FrontendUser;
 use NIMIUS\Workshops\Domain\Model\Language;
 use NIMIUS\Workshops\Domain\Model\Registration;
-use NIMIUS\Workshops\Domain\Model\Workshop;
-
-use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
  * Unit test case for Registration model.
  */
 class RegistrationTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Registration
      */
     protected $registration;
-
 
     /**
      * Test getter/setter for properties.
@@ -73,7 +68,7 @@ class RegistrationTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
         $this->subject->setFirstName('First name');
         $this->subject->setLastName('Last name');
         $this->assertEquals('First name Last name', $this->subject->getFullName());
-        
+
         $this->subject->setLastName('');
         $this->assertEquals('First name', $this->subject->getFullName());
     }
@@ -111,5 +106,4 @@ class RegistrationTest extends \NIMIUS\Workshops\Tests\AbstractUnitTestCase
     {
         $this->subject = new Registration;
     }
-
 }

@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,7 +19,6 @@ namespace NIMIUS\Workshops\Domain\Model;
  */
 class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
 {
-
     /**
      * @return string
      */
@@ -36,5 +35,4 @@ class FrontendUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser
             return $this->name;
         }
     }
-
 }

@@ -1,5 +1,5 @@
 <?php
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -12,34 +12,31 @@
  * The TYPO3 project - inspiring people to share!
  */
 
-if (!defined ('TYPO3_MODE')) {
-    die ('Access denied.');
+if (!defined('TYPO3_MODE')) {
+    die('Access denied.');
 }
 
 $emConf = \NIMIUS\Workshops\Utility\ConfigurationUtility::getExtensionConfiguration();
 $extensionName = \TYPO3\CMS\Core\Utility\GeneralUtility::underscoredToUpperCamelCase($_EXTKEY);
+$languagePath = 'LLL:EXT:' . $_EXTKEY . '/Resources/Private/Language/locallang.xlf:';
 
-/**
- * Register 'Workshops' plugin.
- */
+// Register 'Workshops' plugin.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NIMIUS.' . $_EXTKEY,
     'Workshops',
-    'Workshops system - default plugin'
+    $languagePath . 'plugin.workshops'
 );
 $pluginSignature = strtolower($extensionName) . '_workshops';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
     $pluginSignature,
-    'FILE:EXT:' . $_EXTKEY.'/Configuration/FlexForm/Workshops.xml'
+    'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/Workshops.xml'
 );
 
-/**
- * Register 'WorkshopsSingleView' plugin.
- */
+// Register 'WorkshopsSingleView' plugin.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NIMIUS.' . $_EXTKEY,
     'WorkshopsSingleView',
-    'Workshops system - single view'
+    $languagePath . 'plugin.workshopssingleview'
 );
 $pluginSignature = strtolower($extensionName) . '_workshopssingleview';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
@@ -47,27 +44,23 @@ $pluginSignature = strtolower($extensionName) . '_workshopssingleview';
     'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/WorkshopsSingleView.xml'
 );
 
-/**
- * Register 'Dates' plugin.
- */
+// Register 'Dates' plugin.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NIMIUS.' . $_EXTKEY,
     'Dates',
-    'Workshops system - dates plugin'
+    $languagePath . 'plugin.dates'
 );
 $pluginSignature = strtolower($extensionName) . '_dates';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
     $pluginSignature,
-    'FILE:EXT:' . $_EXTKEY.'/Configuration/FlexForm/Dates.xml'
+    'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/Dates.xml'
 );
 
-/**
- * Register 'UpcomingDatesTeaser' plugin.
- */
+// Register 'UpcomingDatesTeaser' plugin.
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
     'NIMIUS.' . $_EXTKEY,
     'UpcomingDatesTeaser',
-    'Workshops system - upcoming dates teaser'
+    $languagePath . 'plugin.upcomingdatesteaser'
 );
 $pluginSignature = strtolower($extensionName) . '_upcomingdatesteaser';
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue(
@@ -75,7 +68,7 @@ $pluginSignature = strtolower($extensionName) . '_upcomingdatesteaser';
     'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/UpcomingDatesTeaser.xml'
 );
 
-/**
+/*
  * Register backend module.
  */
 if (TYPO3_MODE == 'BE') {
@@ -87,6 +80,7 @@ if (TYPO3_MODE == 'BE') {
         [
             'Backend\\Workshops' => 'index, show',
             'Backend\\Registrations' => 'index, show',
+            'Backend\\Exports' => 'create',
         ],
         [
             'access' => 'user,group',
@@ -129,6 +123,9 @@ if ((bool)$emConf['instructors.']['enable']) {
 
 // Add static extension TypoScript template.
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Default TypoScript');
+
+// Add DrawItem Hook to add information to content element previews.
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem'][$_EXTKEY] = \NIMIUS\Workshops\Hook\PageLayoutViewDrawItemHook::class;
 
 // Hook into datamapper for backend data processing.
 $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['t3lib/class.t3lib_tcemain.php']['processDatamapClass']['EXT:NIMIUS.' . $_EXTKEY] = \NIMIUS\Workshops\Hook\DataMapperHook::class;

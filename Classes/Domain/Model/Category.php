@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -19,9 +19,8 @@ namespace NIMIUS\Workshops\Domain\Model;
  */
 class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
 {
-
     /**
-     * @var integer
+     * @var int
      */
     protected $txWorkshopsDetailPid;
 
@@ -30,9 +29,8 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
      */
     protected $txWorkshopsImages;
 
-
     /**
-     * @return integer
+     * @return int
      */
     public function getWorkshopsDetailPid()
     {
@@ -40,7 +38,7 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
     }
 
     /**
-     * @param integer $pid
+     * @param int $pid
      * @return void
      */
     public function setWorkshopsDetailPid($pid)
@@ -64,5 +62,4 @@ class Category extends \TYPO3\CMS\Extbase\Domain\Model\Category
     {
         $this->txWorkshopsImages = $images;
     }
-
 }

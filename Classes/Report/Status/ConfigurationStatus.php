@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Report\Status;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -24,7 +24,6 @@ use TYPO3\CMS\Reports\Status;
  */
 class ConfigurationStatus implements \TYPO3\CMS\Reports\StatusProviderInterface
 {
-
     /**
      * Main method.
      *
@@ -32,7 +31,8 @@ class ConfigurationStatus implements \TYPO3\CMS\Reports\StatusProviderInterface
      *
      * @return array
      */
-    public function getStatus() {
+    public function getStatus()
+    {
         return [
             'RegistrationConfirmationMailerStatus' => $this->getRegistrationConfirmationMailerStatus()
         ];
@@ -54,7 +54,7 @@ class ConfigurationStatus implements \TYPO3\CMS\Reports\StatusProviderInterface
                 Status::class,
                 'Registration: Confirmation mailer',
                 'OK',
-                NULL,
+                null,
                 Status::OK
             );
         } else {
@@ -67,5 +67,4 @@ class ConfigurationStatus implements \TYPO3\CMS\Reports\StatusProviderInterface
             );
         }
     }
-
 }

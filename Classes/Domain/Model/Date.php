@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -15,12 +15,6 @@ namespace NIMIUS\Workshops\Domain\Model;
  */
 
 use NIMIUS\Workshops\DomainObject\AbstractEntity;
-use NIMIUS\Workshops\Domain\Model\Date;
-use NIMIUS\Workshops\Domain\Model\Registration;
-use NIMIUS\Workshops\Domain\Model\Instructor;
-use NIMIUS\Workshops\Domain\Model\Location;
-use NIMIUS\Workshops\Domain\Model\Workshop;
-
 use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
 
 /**
@@ -31,14 +25,13 @@ use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
  */
 class Date extends AbstractEntity
 {
-
     /**
-     * @var integer Single date entry (One day)
+     * @var int Single date entry (One day)
      */
     const TYPE_SINGLE = 0;
 
     /**
-     * @var integer Multiple date entries (Multiple days)
+     * @var int Multiple date entries (Multiple days)
      */
     const TYPE_MULTIPLE = 1;
 
@@ -58,22 +51,22 @@ class Date extends AbstractEntity
     const STATE_UPCOMING = 'upcoming';
 
     /**
-     * @var integer
+     * @var int
      */
     const PAYMENT_TYPE_FREE = 0;
 
     /**
-     * @var integer
+     * @var int
      */
     const PAYMENT_TYPE_PREPAY = 1;
 
     /**
-     * @var integer
+     * @var int
      */
     const PAYMENT_TYPE_BOX_OFFICE = 2;
 
     /**
-     * @var integer
+     * @var int
      */
     const PAYMENT_TYPE_EXTERNAL = 3;
 
@@ -87,7 +80,7 @@ class Date extends AbstractEntity
      * @lazy
      */
     protected $parent;
-    
+
     /**
      * @var \NIMIUS\Workshops\Domain\Model\Location|null
      */
@@ -97,7 +90,7 @@ class Date extends AbstractEntity
      * @var \NIMIUS\Workshops\Domain\Model\Instructor|null
      */
     protected $instructor;
-    
+
     /**
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Registration>
      * @lazy
@@ -111,42 +104,42 @@ class Date extends AbstractEntity
     protected $dates;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $type;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $beginAt;
-    
+
     /**
-     * @var integer
+     * @var int
      */
     protected $endAt;
-    
+
     /**
-     * @var boolean
+     * @var bool
      */
     protected $minimumAttendanceEnabled;
-    
+
     /**
-     * @var integer
+     * @var int
      */
     protected $minimumAttendance;
-    
+
     /**
-     * @var boolean
+     * @var bool
      */
     protected $maximumAttendanceEnabled;
-    
+
     /**
-     * @var integer
+     * @var int
      */
     protected $maximumAttendance;
-    
+
     /**
-     * @var integer
+     * @var int
      */
     protected $registrationDeadlineAt;
 
@@ -156,12 +149,12 @@ class Date extends AbstractEntity
     protected $notes;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $updatedAt;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $paymentType;
 
@@ -175,7 +168,6 @@ class Date extends AbstractEntity
      */
     protected $externalPaymentUrl;
 
-
     /**
      * Class constructor.
      */
@@ -184,9 +176,9 @@ class Date extends AbstractEntity
         $this->registrations = new ObjectStorage;
         $this->dates = new ObjectStorage;
     }
-    
+
     /**
-     * @return integer
+     * @return int
      */
     public function getType()
     {
@@ -194,7 +186,7 @@ class Date extends AbstractEntity
     }
 
     /**
-     * @param integer $type
+     * @param int $type
      * @return void
      */
     public function setType($type)
@@ -235,7 +227,7 @@ class Date extends AbstractEntity
     {
         $this->workshop = $workshop;
     }
-    
+
     /**
      * @return \NIMIUS\Workshops\Domain\Model\Location|null
      */
@@ -269,7 +261,7 @@ class Date extends AbstractEntity
     {
         $this->instructor = $instructor;
     }
-    
+
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Registration>
      */
@@ -277,7 +269,7 @@ class Date extends AbstractEntity
     {
         return $this->registrations;
     }
-    
+
     /**
      * @return \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\NIMIUS\Workshops\Domain\Model\Date>
      */
@@ -304,7 +296,7 @@ class Date extends AbstractEntity
     {
         $this->dates->attach($date);
     }
-    
+
     /**
      * @todo coverage
      * @param \NIMIUS\Workshops\Domain\Model\Registration
@@ -314,9 +306,9 @@ class Date extends AbstractEntity
     {
         $this->registrations->attach($registration);
     }
-    
+
     /**
-     * @return integer
+     * @return int
      */
     public function getBeginAt()
     {
@@ -324,16 +316,16 @@ class Date extends AbstractEntity
     }
 
     /**
-     * @param integer $beginAt
+     * @param int $beginAt
      * @return void
      */
     public function setBeginAt($beginAt)
     {
         $this->beginAt = $beginAt;
     }
-    
+
     /**
-     * @return integer
+     * @return int
      */
     public function getEndAt()
     {
@@ -341,7 +333,7 @@ class Date extends AbstractEntity
     }
 
     /**
-     * @param integer $endAt
+     * @param int $endAt
      */
     public function setEndAt($endAt)
     {
@@ -349,7 +341,7 @@ class Date extends AbstractEntity
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getUpdatedAt()
     {
@@ -357,7 +349,7 @@ class Date extends AbstractEntity
     }
 
     /**
-     * @param integer $updatedAt
+     * @param int $updatedAt
      * @return void
      */
     public function setUpdatedAt($updatedAt)
@@ -370,7 +362,7 @@ class Date extends AbstractEntity
      */
     public function getEndsOnSameDay()
     {
-        return (date('Ymd', $this->getBeginAt()) == date('Ymd', $this->getEndAt()));
+        return date('Ymd', $this->getBeginAt()) == date('Ymd', $this->getEndAt());
     }
 
     /**
@@ -389,48 +381,48 @@ class Date extends AbstractEntity
     {
         $this->notes = $notes;
     }
-    
+
     /**
-     * @return boolean
+     * @return bool
      */
     public function getMaximumAttendanceEnabled()
     {
         return $this->maximumAttendanceEnabled;
     }
-    
+
     /**
-     * @param boolean $value
+     * @param bool $value
      * @return void
      */
     public function setMaximumAttendanceEnabled($value)
     {
         $this->maximumAttendanceEnabled = $value;
     }
-    
+
     /**
-     * @return integer
+     * @return int
      */
     public function getMaximumAttendance()
     {
         return $this->maximumAttendance;
     }
-    
+
     /**
-     * @param integer $value
+     * @param int $value
      * @return void
      */
     public function setMaximumAttendance($value)
     {
         $this->maximumAttendance = $value;
     }
-    
+
     /**
-     * @return mixed An integer if seat restrictions are in place, TRUE otherwise.
+     * @return mixed An integer if seat restrictions are in place, true otherwise.
      */
     public function getSeatsAvailable()
     {
         if (!$this->maximumAttendanceEnabled) {
-            return TRUE;
+            return true;
         }
 
         $count = (int)($this->maximumAttendance - count($this->getRegistrations()));
@@ -440,50 +432,50 @@ class Date extends AbstractEntity
             return $count;
         }
     }
-    
+
     /**
-     * @return boolean
+     * @return bool
      */
     public function getMinimumAttendanceEnabled()
     {
         return $this->minimumAttendanceEnabled;
     }
-    
+
     /**
-     * @param boolean $value
+     * @param bool $value
      * @return void
      */
     public function setMinimumAttendanceEnabled($value)
     {
         $this->minimumAttendanceEnabled = $value;
     }
-    
+
     /**
-     * @return integer
+     * @return int
      */
     public function getMinimumAttendance()
     {
         return $this->minimumAttendance;
     }
-    
+
     /**
-     * @param integer $value
+     * @param int $value
      * @return void
      */
     public function setMinimumAttendance($value)
     {
         $this->minimumAttendance = $value;
     }
-    
+
     /**
-     * @return integer The amount of attendees / registrations required to meet the minimum required.
+     * @return int The amount of attendees / registrations required to meet the minimum required.
      */
     public function getAttendeesNeededForRequiredMinimum()
     {
         if (!$this->minimumAttendanceEnabled) {
             return 0;
         }
-        
+
         $count = (int)($this->minimumAttendance - count($this->getRegistrations()));
         if ($count <= 0) {
             return 0;
@@ -491,16 +483,16 @@ class Date extends AbstractEntity
             return $count;
         }
     }
-    
+
     /**
-     * @return integer The amount of attendees / registrations still possible until the maximum is met.
+     * @return int The amount of attendees / registrations still possible until the maximum is met.
      */
     public function getAttendeesNeededForPossibleMaximum()
     {
         if (!$this->maximumAttendanceEnabled) {
             return INF;
         }
-        
+
         $count = (int)($this->maximumAttendance - count($this->getRegistrations()));
         if ($count <= 0) {
             return INF;
@@ -508,33 +500,33 @@ class Date extends AbstractEntity
             return $count;
         }
     }
-    
+
     /**
-     * @return integer
+     * @return int
      */
     public function getRegistrationDeadlineAt()
     {
         return $this->registrationDeadlineAt;
     }
-    
+
     /**
-     * @param integer $value
+     * @param int $value
      * @return void
      */
     public function setRegistrationDeadlineAt($value)
     {
         $this->registrationDeadlineAt = $value;
     }
-    
+
     /**
      * @return bool
      */
     public function getRegistrationDeadlineReached()
     {
         if ((int)$this->registrationDeadlineAt == 0 || (int)$this->registrationDeadlineAt > time()) {
-            return FALSE;
+            return false;
         } else {
-            return TRUE;
+            return true;
         }
     }
 
@@ -543,7 +535,7 @@ class Date extends AbstractEntity
      */
     public function getHasMultipleDates()
     {
-        return $this->type == Date::TYPE_MULTIPLE;
+        return $this->type == self::TYPE_MULTIPLE;
     }
 
     /**
@@ -588,14 +580,14 @@ class Date extends AbstractEntity
     public function getDatesSorted()
     {
         $dates = $this->dates->toArray();
-        usort($dates, function($a, $b) {
+        usort($dates, function ($a, $b) {
             return $a->getEndAt() - $b->getEndAt();
         });
         return $dates;
     }
 
     /**
-     * @return integer
+     * @return int
      */
     public function getPaymentType()
     {
@@ -603,7 +595,7 @@ class Date extends AbstractEntity
     }
 
     /**
-     * @param integer $type
+     * @param int $type
      * @return void
      */
     public function setPaymentType($type)
@@ -616,8 +608,7 @@ class Date extends AbstractEntity
      */
     public function getPaymentTypeIsPrepay()
     {
-        return ($this->paymentType == self::PAYMENT_TYPE_PREPAY);
-        
+        return $this->paymentType == self::PAYMENT_TYPE_PREPAY;
     }
 
     /**
@@ -625,7 +616,7 @@ class Date extends AbstractEntity
      */
     public function getPaymentTypeIsBoxOffice()
     {
-        return ($this->paymentType == self::PAYMENT_TYPE_BOX_OFFICE);
+        return $this->paymentType == self::PAYMENT_TYPE_BOX_OFFICE;
     }
 
     /**
@@ -633,7 +624,7 @@ class Date extends AbstractEntity
      */
     public function getPaymentTypeIsExternal()
     {
-        return ($this->paymentType == self::PAYMENT_TYPE_EXTERNAL);
+        return $this->paymentType == self::PAYMENT_TYPE_EXTERNAL;
     }
 
     /**
@@ -669,5 +660,4 @@ class Date extends AbstractEntity
     {
         $this->externalPaymentUrl = $url;
     }
-
 }

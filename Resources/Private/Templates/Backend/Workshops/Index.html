@@ -58,7 +58,7 @@
 										</td>
 										<td>
 											<f:if condition="{data.nextDate}">
-												<f:link.action controller="Backend\Registrations" action="show" arguments="{date: data.nextDate.uid}">
+												<f:link.action controller="Backend\Registrations" action="index" arguments="{date: data.nextDate}">
 												<f:render partial="Backend/Date/Date" arguments="{date: data.nextDate}" />
 												</f:link.action>
 											</f:if>

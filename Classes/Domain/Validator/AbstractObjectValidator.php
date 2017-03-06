@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Validator;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -24,13 +24,12 @@ use TYPO3\CMS\Extbase\Validation\Error;
  */
 abstract class AbstractObjectValidator extends \TYPO3\CMS\Extbase\Validation\Validator\AbstractValidator
 {
-
     /**
      * @var \TYPO3\CMS\Extbase\Object\ObjectManager
      * @inject
      */
     protected $objectManager;
-    
+
     /**
      * Add an error message for the given property.
      *
@@ -56,9 +55,9 @@ abstract class AbstractObjectValidator extends \TYPO3\CMS\Extbase\Validation\Val
      * @param string $property
      * @return void
      */
-    protected function mergeErrorsFromValidator($validator, $property = NULL)
+    protected function mergeErrorsFromValidator($validator, $property = null)
     {
-        foreach($validator->getErrors() as $error) {
+        foreach ($validator->getErrors() as $error) {
             if ($property) {
                 $this->result->forProperty($property)->addError($error);
             } else {
@@ -66,5 +65,4 @@ abstract class AbstractObjectValidator extends \TYPO3\CMS\Extbase\Validation\Val
             }
         }
     }
-
 }

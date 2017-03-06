@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Proxy;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -21,17 +21,15 @@ namespace NIMIUS\Workshops\Domain\Proxy;
  */
 class WorkshopRepositoryProxy extends AbstractRepositoryProxy
 {
-
     /**
      * @var bool Hide workshops not having an upcoming date.
      */
-    protected $hideWorkshopsWithoutUpcomingDates = FALSE;
+    protected $hideWorkshopsWithoutUpcomingDates = false;
 
     /**
      * @var array|null Workshop types to filter for.
      */
     protected $types = [];
-
 
     /**
      * @return bool
@@ -66,5 +64,4 @@ class WorkshopRepositoryProxy extends AbstractRepositoryProxy
     {
         return $this->types;
     }
-
 }

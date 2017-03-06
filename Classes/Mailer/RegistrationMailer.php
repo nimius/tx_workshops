@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Mailer;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -18,7 +18,6 @@ use NIMIUS\Workshops\Domain\Model\Registration;
 use NIMIUS\Workshops\Utility\ConfigurationUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 
-
 /**
  * Registration mailer.
  *
@@ -26,13 +25,11 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
  */
 class RegistrationMailer extends AbstractMailer
 {
-
     /**
      * @var \NIMIUS\Workshops\Domain\Repository\RegistrationRepository
      * @inject
      */
     protected $registrationRepository;
-
 
     /**
      * Delivers registration confirmation mails.
@@ -45,7 +42,16 @@ class RegistrationMailer extends AbstractMailer
         $settings = ConfigurationUtility::getTyposcriptConfiguration()['registration.']['confirmationEmail.'];
         $this->prepareMailConfiguration($settings);
         if (!$this->mailConfigurationAllowsSendingEmails($settings)) {
-            return FALSE;
+            return false;
+        }
+
+        /*
+         * TODO FIXME: Currently, all three get the mail in the same language as defined in the
+         * given registration's language, as switching language is not easily possible.
+         * At least the backoffice address should get emails in their preferred language.
+         */
+        if ($registration->getLanguage()) {
+            $this->setLanguage($registration->getLanguage()->getLanguageIsoCode());
         }
 
         if ((int)$settings['attendee']) {
@@ -70,11 +76,11 @@ class RegistrationMailer extends AbstractMailer
                     $registration->setConfirmationSentAt(time());
                     $this->registrationRepository->update($registration);
                 }
-            } catch(\Swift_TransportException $e) {
+            } catch (\Swift_TransportException $e) {
                 // Mail could not be sent.
             }
         }
-        
+
         if ((int)$settings['instructor']) {
             try {
                 $instructor = $registration->getWorkshopDate()->getInstructor();
@@ -96,12 +102,12 @@ class RegistrationMailer extends AbstractMailer
                     $mail->setBody($body, 'text/html');
                     $mail->send();
                 }
-            } catch(\Swift_TransportException $e) {
+            } catch (\Swift_TransportException $e) {
                 // Mail could not be sent.
             }
-        }        
-        
-        if ((int)$settings['backOffice']) {    
+        }
+
+        if ((int)$settings['backOffice']) {
             try {
                 $body = $this->renderEmailTemplate(
                     'Registration/Confirmation/BackOffice.html',
@@ -117,18 +123,18 @@ class RegistrationMailer extends AbstractMailer
                 }
                 $mail->setSubject($this->getLanguageLabel('mailer.registration.deliverRegistrationConfirmation.backOffice.subject'));
                 $mail->setBody($body, 'text/html');
-                
+
                 $recipients = GeneralUtility::trimExplode(',', $settings['backOffice.']['recipients']);
                 foreach ($recipients as $emailAddress) {
                     $mail->setTo($emailAddress);
                     $mail->send();
                 }
-            } catch(\Swift_TransportException $e) {
+            } catch (\Swift_TransportException $e) {
                 // Mail could not be sent.
             }
         }
     }
-    
+
     /**
      * Helper method to check if the given configuration allows
      * sending emails.
@@ -141,7 +147,7 @@ class RegistrationMailer extends AbstractMailer
     {
         return !empty($configuration['mailFromAddress']);
     }
-    
+
     /**
      * Prepare mail configuration by setting defaults from either
      * install tool or typoscript.
@@ -172,5 +178,4 @@ class RegistrationMailer extends AbstractMailer
             }
         }
     }
-
 }

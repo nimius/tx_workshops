@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\Domain\Model;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -22,7 +22,6 @@ use SJBR\StaticInfoTables\Domain\Model\Country;
  */
 class Location extends AbstractEntity
 {
-
     /**
      * @var string
      */
@@ -59,7 +58,6 @@ class Location extends AbstractEntity
      */
     protected $longitude = 0.000000;
 
-
     /**
      * @return string
      */
@@ -76,7 +74,7 @@ class Location extends AbstractEntity
     {
         $this->name = $name;
     }
-    
+
     /**
      * @return string
      */
@@ -105,7 +103,7 @@ class Location extends AbstractEntity
         ];
         return implode(', ', $values);
     }
-    
+
     /**
      * @return string
      */
@@ -122,7 +120,7 @@ class Location extends AbstractEntity
     {
         $this->zip = $zip;
     }
-    
+
     /**
      * @return string
      */
@@ -173,7 +171,7 @@ class Location extends AbstractEntity
     {
         $this->latitude = $latitude;
     }
-    
+
     /**
      * @return float
      */
@@ -190,5 +188,4 @@ class Location extends AbstractEntity
     {
         $this->longitude = $longitude;
     }
-
 }

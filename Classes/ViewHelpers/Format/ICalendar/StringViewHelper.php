@@ -1,7 +1,7 @@
 <?php
 namespace NIMIUS\Workshops\ViewHelpers\Format\ICalendar;
 
-/**
+/*
  * This file is part of the TYPO3 CMS project.
  *
  * It is free software; you can redistribute it and/or modify it under
@@ -21,7 +21,6 @@ namespace NIMIUS\Workshops\ViewHelpers\Format\ICalendar;
  */
 class StringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelper
 {
-
     /**
      * Escapes given input to match specification.
      *
@@ -34,6 +33,4 @@ class StringViewHelper extends \TYPO3\CMS\Fluid\Core\ViewHelper\AbstractViewHelp
     {
         return preg_replace('/[,;]/m', '^\0', $this->renderChildren());
     }
-
 }
-
