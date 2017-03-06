@@ -16,12 +16,18 @@ namespace NIMIUS\Workshops\ViewHelpers;
 
 use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Service\WorkshopUrlService;
+use TYPO3\CMS\Fluid\Core\ViewHelper\AbstractTagBasedViewHelper;
 
 /**
  * View helper for rendering links based on the workshop type and settings.
  */
-class LinkViewHelper extends \TYPO3\CMS\Fluid\ViewHelpers\Link\PageViewHelper
+class LinkViewHelper extends AbstractTagBasedViewHelper
 {
+    /**
+     * @var string
+     */
+    protected $tagName = 'a';
+
     /**
      * Renders a detail / more link to the given workshop.
      *
