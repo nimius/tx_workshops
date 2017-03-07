@@ -3,9 +3,17 @@
  */
 plugin.tx_workshops {
 	view {
-		templateRootPath = {$plugin.tx_workshops.view.templateRootPath}
-		partialRootPath = {$plugin.tx_workshops.view.partialRootPath}
-		layoutRootPath = {$plugin.tx_workshops.view.layoutRootPath}
+		layoutRootPath {
+            0 = {$plugin.tx_workshops.view.defaultLayoutRootPath}
+        }
+        
+		partialRootPaths {
+            0 = {$plugin.tx_workshops.view.defaultPartialRootPath}
+        }
+        
+		templateRootPaths {
+            0 = {$plugin.tx_workshops.view.defaultTemplateRootPath}
+        }
 	}
 
 	persistence {
