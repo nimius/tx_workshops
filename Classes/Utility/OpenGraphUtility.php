@@ -16,6 +16,7 @@ namespace NIMIUS\Workshops\Utility;
 use NIMIUS\Workshops\Domain\Model\Date;
 use NIMIUS\Workshops\Domain\Model\Location;
 use NIMIUS\Workshops\Domain\Model\Workshop;
+use NIMIUS\Workshops\Utility\ConfigurationUtility;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Persistence\QueryResult;
 
@@ -37,9 +38,8 @@ class OpenGraphUtility
      */
     public static function extractOpenGraphInformationFromWorkshop(Workshop $workshop, $upcoming)
     {
-        // TODO REFACTOR configuration utility...
-        $ts = $GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_workshops.']['settings.'];
-        if (!$ts['openGraph']) {
+        $settings = ConfigurationUtility::getTyposcriptConfiguration();
+        if (!(int)$settings['openGraph']) {
             return [];
         }
 
@@ -66,7 +66,7 @@ class OpenGraphUtility
         $openGraphTags['place:location:latitude'] = $location->getLatitude();
         $openGraphTags['place:location:longitude'] = $location->getLongitude();
 
-        if ($ts['openGraph.']['twitterCards']) {
+        if ($settings['openGraph.']['twitterCards']) {
             $openGraphTags['twitter:card'] = 'summary_large_image';
             $openGraphTags['twitter:title'] = $name;
             $openGraphTags['twitter:description'] = $description;
@@ -106,17 +106,18 @@ class OpenGraphUtility
         $openGraphTags = [
             'og:url' => ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . '/' . $_SERVER['REQUEST_URI']
         ];
-        $ts = $GLOBALS['TSFE']->tmpl->setup['plugin.']['tx_workshops.']['settings.'];
-
-        // add twitter username if available
-        if ($ts['openGraph.']['twitterCards'] && !empty($ts['openGraph.']['twitterCards.']['username'])) {
-            $openGraphTags['twitter:site'] = $ts['openGraph.']['twitterCards.']['username'];
-            $openGraphTags['twitter:author'] = $ts['openGraph.']['twitterCards.']['username'];
+        
+        $settings = ConfigurationUtility::getTyposcriptConfiguration()['openGraph.'];
+        
+        // Add twitter username if available.
+        if ($settings['twitterCards'] && !empty($settings['twitterCards.']['username'])) {
+            $openGraphTags['twitter:site'] = $settings['twitterCards.']['username'];
+            $openGraphTags['twitter:author'] = $settings['twitterCards.']['username'];
         }
 
-        // add facebook app id if available
-        if ($ts['openGraph.']['facebook'] && !empty($ts['openGraph.']['facebook.']['appId'])) {
-            $openGraphTags['fb:app_id'] = $ts['openGraph.']['facebook.']['appId'];
+        // Add facebook app id if available.
+        if ($settings['facebook'] && !empty($settings['facebook.']['appId'])) {
+            $openGraphTags['fb:app_id'] = $settings['facebook.']['appId'];
         }
 
         return $openGraphTags;
