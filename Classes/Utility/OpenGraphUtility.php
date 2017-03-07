@@ -19,12 +19,17 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Persistence\QueryResult;
 
+/**
+ * OpenGraph utility.
+ *
+ * Provides functionality for building open graph information.
+ */
 class OpenGraphUtility
 {
     /**
-     * Extracts the OpenGraph tags that should be added to the page for the given workshop
+     * Extracts the OpenGraph tags that should be added to the page for the given workshop.
      *
-     * Returns an array with a property -> content mapping for metatags
+     * Returns an array with a property -> content mapping for meta tags.
      *
      * @param Workshop $workshop
      * @param QueryResult $upcoming
@@ -43,7 +48,7 @@ class OpenGraphUtility
         $image = self::extractImageFromWorkshop($workshop, $upcoming);
         $location = self::extractLocationFromUpcoming($upcoming);
 
-        // use description, if abstract was empty
+        // Use description if abstract is empty.
         if (empty($description)) {
             $cutToLength = 150;
             $addDots = strlen($description) > $cutToLength;
@@ -72,8 +77,9 @@ class OpenGraphUtility
     }
 
     /**
-     * gets meta tags from an array.
-     * The key -> value pairs will be mapped to property & content
+     * Get meta tags from an array.
+     *
+     * The key -> value pairs will be mapped to property and content.
      *
      * @param array $tags
      * @return string
@@ -91,7 +97,8 @@ class OpenGraphUtility
     }
 
     /**
-     * Returns an array of base open graph configuration that is the same for every displayed item
+     * Returns an array of base open graph configuration that is the same for every displayed item.
+     *
      * @return array
      */
     private static function getBaseOpenGraphInformation()
@@ -116,15 +123,15 @@ class OpenGraphUtility
     }
 
     /**
-     * Returns the image url that is to be used for the given workshop or null if no image has been found
+     * Returns the image url that is to be used for the given workshop or null if no image has been found.
+     *
      * @param Workshop $workshop
      * @param QueryResult $upcoming
      * @return string|null
      */
     private static function extractImageFromWorkshop(Workshop $workshop, $upcoming)
     {
-
-        // first: check images
+        // Try to define an image based on workshop images.
         foreach ($workshop->getImages() as $imageFileReference) {
             /** @var FileReference $imageFileReference */
             $original = $imageFileReference->getOriginalResource();
@@ -140,7 +147,7 @@ class OpenGraphUtility
             return ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . '/' . $url;
         }
 
-        // then: check upcoming dates for locations
+        // If no image has been set, assign a static google maps image from the next upcoming location.
         $location = self::extractLocationFromUpcoming($upcoming);
         if ($location) {
             return 'https://maps.googleapis.com/maps/api/staticmap?size=300x300&zoom=7'
@@ -148,12 +155,12 @@ class OpenGraphUtility
             . '&markers=' . $location->getLatitude() . ',' . $location->getLongitude();
         }
 
-        // return null, if nothing else returned an image
         return null;
     }
 
     /**
-     * Gets the first location in the upcoming dates or returns null, if none found
+     * Gets the first location in the upcoming dates, or returns null if none found.
+     *
      * @param QueryResult $upcoming
      * @return Location|null
      */
