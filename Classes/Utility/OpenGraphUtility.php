@@ -46,7 +46,6 @@ class OpenGraphUtility
         $name = $workshop->getName();
         $description = $workshop->getAbstract();
         $image = self::extractImageFromWorkshop($workshop, $upcoming);
-        $location = self::extractLocationFromUpcoming($upcoming);
 
         // Use description if abstract is empty.
         if (empty($description)) {
@@ -63,8 +62,12 @@ class OpenGraphUtility
         $openGraphTags['og:title'] = $name;
         $openGraphTags['og:description'] = $description;
         $openGraphTags['og:image'] = $image;
-        $openGraphTags['place:location:latitude'] = $location->getLatitude();
-        $openGraphTags['place:location:longitude'] = $location->getLongitude();
+        
+        $location = self::extractLocationFromUpcoming($upcoming);
+        if ($location) {
+            $openGraphTags['place:location:latitude'] = $location->getLatitude();
+            $openGraphTags['place:location:longitude'] = $location->getLongitude();
+        }
 
         if ($settings['openGraph.']['twitterCards']) {
             $openGraphTags['twitter:card'] = 'summary_large_image';
