@@ -25,6 +25,12 @@ use TYPO3\CMS\Extbase\Persistence\QueryInterface;
 class DateRepository extends Repository
 {
     /**
+     * @var \NIMIUS\Workshops\Domain\Repository\WorkshopRepository
+     * @inject
+     */
+    protected $workshopRepository;
+
+    /**
      * @var array Setting for default ORDER BY when fetching records.
      */
     protected $defaultOrderings = [
@@ -35,16 +41,18 @@ class DateRepository extends Repository
      * Find all dates matching the given proxy.
      *
      * @param \NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy $proxy
+     * @param ContentObjectRenderer $cObj
      * @return \TYPO3\CMS\Extbase\Persistence\QueryResult
      */
-    public function findByProxy(DateRepositoryProxy $proxy)
+    public function findByProxy(DateRepositoryProxy $proxy, $cObj = NULL)
     {
         $query = $this->createQuery();
         $constraints = [];
         parent::initializeQuery($query, $proxy, $constraints);
 
         if (count($proxy->getLanguages()) > 0) {
-            $constraints[] = $query->in('workshop.sys_language_uid', $proxy->getLanguages());
+            $uids = $this->workshopRepository->getWorkshopUidsMatchingLanguages($proxy->getLanguages(), $cObj);
+            $constraints[] = $query->in('workshop', $uids);
         }
 
         $beginOfToday = strtotime('today midnight');
