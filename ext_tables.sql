@@ -82,8 +82,8 @@ CREATE TABLE tx_workshops_domain_model_location (
     zip varchar(10) default NULL,
     city varchar(255) default NULL,
     country int(11) unsigned default '0' NOT NULL,
-    latitude decimal(10,8) signed NULL default NULL,
-    longitude decimal(11,8) signed NULL default NULL,
+    latitude DECIMAL(10,8) DEFAULT NULL,
+    longitude DECIMAL(11,8) DEFAULT NULL,
 
     sys_language_uid int(11) DEFAULT '0' NOT NULL,
     l10n_parent int(11) DEFAULT '0' NOT NULL,
@@ -91,7 +91,7 @@ CREATE TABLE tx_workshops_domain_model_location (
 
     PRIMARY KEY (uid),
     KEY parent (pid),
-	KEY language (sys_language_uid,l10n_parent)
+    KEY language (sys_language_uid,l10n_parent)
 );
 
 CREATE TABLE tx_workshops_domain_model_instructor (
