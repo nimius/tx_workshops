@@ -17,7 +17,7 @@ use NIMIUS\Workshops\Domain\Model\Workshop;
 $lFile = 'LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:';
 $lll = $lFile . 'model.workshop.';
 
-$TCA['tx_workshops_domain_model_workshop'] = [
+return [
     'ctrl' => [
         'title' => $lFile . 'model.workshop',
         'label' => 'name',

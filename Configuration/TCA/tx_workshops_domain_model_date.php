@@ -18,7 +18,7 @@ $lFile = 'LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:';
 $lll = $lFile . 'model.date.';
 $emConf = NIMIUS\Workshops\Utility\ConfigurationUtility::getExtensionConfiguration();
 
-$TCA['tx_workshops_domain_model_date'] = [
+return [
     'ctrl' => [
         'title' => $lFile . 'model.date',
         'label' => 'begin_at',

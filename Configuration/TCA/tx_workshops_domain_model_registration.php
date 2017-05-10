@@ -17,7 +17,7 @@ use NIMIUS\Workshops\Utility\TCAUtility;
 $lFile = 'LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:';
 $lll = $lFile . 'model.registration.property.';
 
-$TCA['tx_workshops_domain_model_registration'] = [
+return [
     'ctrl' => [
         'title' => $lFile . 'model.registration',
         'label' => 'attendee',

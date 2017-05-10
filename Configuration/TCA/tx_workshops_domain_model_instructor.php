@@ -14,7 +14,7 @@
 $lFile = 'LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:';
 $lll = $lFile . 'model.instructor.';
 
-$TCA['tx_workshops_domain_model_instructor'] = [
+return [
     'ctrl' => [
         'title' => $lFile . 'model.instructor',
         'label' => 'name',

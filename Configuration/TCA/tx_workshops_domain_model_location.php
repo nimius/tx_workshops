@@ -14,7 +14,7 @@
 $lFile = 'LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:';
 $lll = $lFile . 'model.location.';
 
-$TCA['tx_workshops_domain_model_location'] = [
+return [
     'ctrl' => [
         'title' => $lFile . 'model.location',
         'label' => 'name',

@@ -90,37 +90,6 @@ if (TYPO3_MODE == 'BE') {
     );
 }
 
-$tcaConfigurationPath = \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/tx_workshops_domain_model_';
-
-// Register workshops table.
-$TCA['tx_workshops_domain_model_workshop']['ctrl'] = [
-    'dynamicConfigFile' => $tcaConfigurationPath . 'workshop.php'
-];
-
-// Register date table.
-$TCA['tx_workshops_domain_model_date']['ctrl'] = [
-    'dynamicConfigFile' => $tcaConfigurationPath . 'date.php'
-];
-
-// Register registration table.
-$TCA['tx_workshops_domain_model_registration']['ctrl'] = [
-    'dynamicConfigFile' => $tcaConfigurationPath . 'registration.php'
-];
-
-// Register location table if feature is enabled.
-if ((bool)$emConf['locations.']['enable']) {
-    $TCA['tx_workshops_domain_model_location']['ctrl'] = [
-        'dynamicConfigFile' => $tcaConfigurationPath . 'location.php'
-    ];
-}
-
-// Register instructor table if feature is enabled.
-if ((bool)$emConf['instructors.']['enable']) {
-    $TCA['tx_workshops_domain_model_instructor']['ctrl'] = [
-        'dynamicConfigFile' => $tcaConfigurationPath . 'instructor.php'
-    ];
-}
-
 // Add static extension TypoScript template.
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'Default TypoScript');
 
