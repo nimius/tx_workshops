@@ -47,6 +47,7 @@ class WorkshopUrlService extends AbstractUrlService
      */
     protected function configureForDefaultType()
     {
+        $this->typolinkConfiguration['useCacheHash'] = true;
         // If the workshops has its own internal URL, link to it.
         if ($this->object->getInternalUrl()) {
             $this->typolinkConfiguration['parameter'] = $this->object->getInternalUrl();
