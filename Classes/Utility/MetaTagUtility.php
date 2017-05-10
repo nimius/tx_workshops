@@ -20,24 +20,30 @@ use NIMIUS\Workshops\Utility\ConfigurationUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Persistence\QueryResult;
+use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
 
 /**
  * OpenGraph utility.
  *
  * Provides functionality for building open graph information.
  */
-class OpenGraphUtility
+class MetaTagUtility
 {
     /**
-     * Extracts the OpenGraph tags that should be added to the page for the given workshop.
+     * Extracts the meta tags that should be added to the page for the given workshop.
+     * Currently Facebook OpenGraph Tags and Twitter Cards information is being generated.
      *
-     * Returns an array with a property -> content mapping for meta tags.
+     * Returns an array with a property -> content mapping for meta tags that can be rendered
+     * into full HTML <meta> tags using MetaTagUtility::renderTags().
      *
+     * @see MetaTagUtility::renderTags()
+     * @see https://dev.twitter.com/cards/getting-started
+     * @see http://ogp.me/
      * @param Workshop $workshop
      * @param QueryResult $upcoming
      * @return array
      */
-    public static function extractOpenGraphInformationFromWorkshop(Workshop $workshop, $upcoming)
+    public static function extractInformationFromWorkshop(Workshop $workshop, $upcoming)
     {
         $settings = ConfigurationUtility::getTyposcriptConfiguration();
         if (!(int)$settings['openGraph']) {
@@ -58,7 +64,7 @@ class OpenGraphUtility
             }
         }
 
-        $openGraphTags = self::getBaseOpenGraphInformation();
+        $openGraphTags = self::getBaseMetaInformation();
         $openGraphTags['og:type'] = 'place';
         $openGraphTags['og:title'] = $name;
         $openGraphTags['og:description'] = $description;
@@ -88,7 +94,7 @@ class OpenGraphUtility
      * @param array $tags
      * @return string
      */
-    public static function getOpenGraphMetaTags(array $tags)
+    public static function renderTags(array $tags)
     {
         $metaTags = [];
         foreach ($tags as $property => $content) {
@@ -101,11 +107,11 @@ class OpenGraphUtility
     }
 
     /**
-     * Returns an array of base open graph configuration that is the same for every displayed item.
+     * Returns an array of base meta information that is the same for every displayed item.
      *
      * @return array
      */
-    private static function getBaseOpenGraphInformation()
+    private static function getBaseMetaInformation()
     {
         $openGraphTags = [
             'og:url' => GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL')

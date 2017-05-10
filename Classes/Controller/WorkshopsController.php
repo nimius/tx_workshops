@@ -18,7 +18,7 @@ use NIMIUS\Workshops\Domain\Model\Category;
 use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
 use NIMIUS\Workshops\Domain\Proxy\WorkshopRepositoryProxy;
-use NIMIUS\Workshops\Utility\OpenGraphUtility;
+use NIMIUS\Workshops\Utility\MetaTagUtility;
 
 /**
  * Controller for displaying workshop data.
@@ -81,7 +81,7 @@ class WorkshopsController extends AbstractController
 
             $upcoming = $this->dateRepository->findByProxy($proxy);
 
-            $metaTags = OpenGraphUtility::getOpenGraphMetaTags(OpenGraphUtility::extractOpenGraphInformationFromWorkshop($workshop, $upcoming));
+            $metaTags = MetaTagUtility::renderTags(MetaTagUtility::extractInformationFromWorkshop($workshop, $upcoming));
             $this->response->addAdditionalHeaderData($metaTags);
 
             $this->view->assignMultiple([
