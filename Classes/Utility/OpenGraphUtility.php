@@ -17,6 +17,7 @@ use NIMIUS\Workshops\Domain\Model\Date;
 use NIMIUS\Workshops\Domain\Model\Location;
 use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Utility\ConfigurationUtility;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
 use TYPO3\CMS\Extbase\Persistence\QueryResult;
 
@@ -107,7 +108,7 @@ class OpenGraphUtility
     private static function getBaseOpenGraphInformation()
     {
         $openGraphTags = [
-            'og:url' => ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . '/' . $_SERVER['REQUEST_URI']
+            'og:url' => GeneralUtility::getIndpEnv('TYPO3_REQUEST_URL')
         ];
         
         $settings = ConfigurationUtility::getTyposcriptConfiguration()['openGraph.'];
@@ -148,7 +149,7 @@ class OpenGraphUtility
                 continue;
             }
 
-            return ($_SERVER['HTTPS'] ? 'https://' : 'http://') . $_SERVER['HTTP_HOST'] . '/' . $url;
+            return GeneralUtility::getIndpEnv('TYPO3_SITE_URL') . '/' . $url;
         }
 
         // If no image has been set, assign a static google maps image from the next upcoming location.
