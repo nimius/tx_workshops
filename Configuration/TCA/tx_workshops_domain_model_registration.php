@@ -89,35 +89,35 @@ return [
             'label' => $lll . 'address',
             'config' => [
                 'type' => 'input',
-                TCAUtility::registrationValidationEvalValue('address'),
+                'eval' => TCAUtility::registrationValidationEvalValue('address'),
             ],
         ],
         'zip' => [
             'label' => $lll . 'zip',
             'config' => [
                 'type' => 'input',
-                TCAUtility::registrationValidationEvalValue('zip'),
+                'eval' => TCAUtility::registrationValidationEvalValue('zip'),
             ],
         ],
         'city' => [
             'label' => $lll . 'city',
             'config' => [
                 'type' => 'input',
-                TCAUtility::registrationValidationEvalValue('city'),
+                'eval' => TCAUtility::registrationValidationEvalValue('city'),
             ],
         ],
         'country' => [
             'label' => $lll . 'country',
             'config' => [
                 'type' => 'input',
-                TCAUtility::registrationValidationEvalValue('country'),
+                'eval' => TCAUtility::registrationValidationEvalValue('country'),
             ],
         ],
         'telephone' => [
             'label' => $lll . 'telephone',
             'config' => [
                 'type' => 'input',
-                TCAUtility::registrationValidationEvalValue('telephone'),
+                'eval' => TCAUtility::registrationValidationEvalValue('telephone'),
             ],
         ],
         'email' => [
