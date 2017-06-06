@@ -18,7 +18,7 @@ $lFile = 'LLL:EXT:workshops/Resources/Private/Language/locallang.xlf:';
 $lll = $lFile . 'model.date.';
 $emConf = NIMIUS\Workshops\Utility\ConfigurationUtility::getExtensionConfiguration();
 
-return [
+$tx_workshops_domain_model_date = [
     'ctrl' => [
         'title' => $lFile . 'model.date',
         'label' => 'begin_at',
@@ -221,7 +221,7 @@ return [
 ];
 
 if ((bool)$emConf['locations.']['enable']) {
-    $TCA['tx_workshops_domain_model_date']['columns'] += [
+    $tx_workshops_domain_model_date['columns'] += [
         'location' => [
             'label' => $lFile . 'model.location',
             'displayCond' => 'FIELD:parent:=:0',
@@ -239,7 +239,7 @@ if ((bool)$emConf['locations.']['enable']) {
 }
 
 if ((bool)$emConf['instructors.']['enable']) {
-    $TCA['tx_workshops_domain_model_date']['columns'] += [
+    $tx_workshops_domain_model_date['columns'] += [
         'instructor' => [
             'label' => $lFile . 'model.instructor',
             'displayCond' => 'FIELD:parent:=:0',
@@ -264,7 +264,7 @@ if ((bool)$emConf['instructors.']['enable']) {
 if ((bool)$emConf['attendees.']['maximumAttendance.']['enable']) {
     $defaultValue = $emConf['attendees.']['maximumAttendance.']['defaultValue'];
 
-    $TCA['tx_workshops_domain_model_date']['columns'] += [
+    $tx_workshops_domain_model_date['columns'] += [
         'maximum_attendance_enabled' => [
             'label' => $lll . 'property.maximumAttendanceEnabled',
             'config' => [
@@ -286,7 +286,7 @@ if ((bool)$emConf['attendees.']['maximumAttendance.']['enable']) {
 if ((bool)$emConf['attendees.']['minimumAttendance.']['enable']) {
     $defaultValue = $emConf['attendees.']['minimumAttendance.']['defaultValue'];
 
-    $TCA['tx_workshops_domain_model_date']['columns'] += [
+    $tx_workshops_domain_model_date['columns'] += [
         'minimum_attendance_enabled' => [
             'label' => $lll . 'property.minimumAttendanceEnabled',
             'config' => [
@@ -306,7 +306,7 @@ if ((bool)$emConf['attendees.']['minimumAttendance.']['enable']) {
 }
 
 if ((bool)$emConf['attendees.']['registrationDeadline.']['enable']) {
-    $TCA['tx_workshops_domain_model_date']['columns'] += [
+    $tx_workshops_domain_model_date['columns'] += [
         'registration_deadline_at' => [
             'label' => $lll . 'property.registrationDeadlineAt',
             'config' => [
@@ -319,3 +319,5 @@ if ((bool)$emConf['attendees.']['registrationDeadline.']['enable']) {
         ],
     ];
 }
+
+return $tx_workshops_domain_model_date;
