@@ -29,6 +29,18 @@ class LinkViewHelper extends AbstractTagBasedViewHelper
     protected $tagName = 'a';
 
     /**
+     * Initialize all arguments. You need to override this method and call
+     * $this->registerArgument(...) inside this method, to register all your arguments.
+     *
+     * @return void
+     */
+    public function initializeArguments()
+    {
+        $this->registerUniversalTagAttributes();
+    }
+
+
+    /**
      * Renders a detail / more link to the given workshop.
      *
      * @param \NIMIUS\Workshops\Domain\Model\Workshop $workshop
