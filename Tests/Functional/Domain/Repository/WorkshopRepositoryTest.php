@@ -14,6 +14,9 @@ namespace NIMIUS\Workshops\Tests\Functional\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+// Manually requiring custom class as it is not autoloaded in the bootstrap process.
+require_once __DIR__ . '/../../../AbstractFunctionalTestCase.php';
+
 use NIMIUS\Workshops\Domain\Model\Category;
 use NIMIUS\Workshops\Domain\Model\Date;
 use NIMIUS\Workshops\Domain\Model\Workshop;

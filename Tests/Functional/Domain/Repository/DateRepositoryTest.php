@@ -14,13 +14,14 @@ namespace NIMIUS\Workshops\Tests\Functional\Domain\Repository;
  * The TYPO3 project - inspiring people to share!
  */
 
+// Manually requiring custom class as it is not autoloaded in the bootstrap process.
+require_once __DIR__ . '/../../../AbstractFunctionalTestCase.php';
+
 use NIMIUS\Workshops\Domain\Model\Date;
 use NIMIUS\Workshops\Domain\Model\Workshop;
 use NIMIUS\Workshops\Domain\Proxy\DateRepositoryProxy;
 use NIMIUS\Workshops\Domain\Repository\DateRepository;
 use NIMIUS\Workshops\Domain\Repository\WorkshopRepository;
-use NIMIUS\Workshops\Utility\ObjectUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
 use TYPO3\CMS\Frontend\ContentObject\ContentObjectRenderer;
@@ -78,7 +79,6 @@ class DateRepositoryTest extends \TYPO3\CMS\Core\Tests\FunctionalTestCase
         $this->persistenceManager = $this->objectManager->get(PersistenceManager::class);
         $this->workshopRepository = $this->objectManager->get(WorkshopRepository::class);
         $this->dateRepository = $this->objectManager->get(DateRepository::class);
-
 
         $this->cObjStub = $this->getMock(ContentObjectRenderer::class);
         $this->cObjStub->method('enableFields')->willReturn(' AND tx_workshops_domain_model_workshop.hidden=0');
