@@ -115,6 +115,7 @@ $tx_workshops_domain_model_date = [
                 'type' => 'inline',
                 'foreign_table' => 'tx_workshops_domain_model_date',
                 'foreign_field' => 'parent',
+                'foreign_sortby' => 'begin_at',
                 'appearance' => [
                     'expandSingle' => 1
                 ],
