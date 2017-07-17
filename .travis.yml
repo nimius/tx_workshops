@@ -8,6 +8,12 @@ matrix:
     
     - php: 7.0
       env: TYPO3_VERSION=^7.6.0
+    
+    - php: 7.0
+      env: TYPO3_VERSION=^8.7.0
+    
+    - php: 7.1
+      env: TYPO3_VERSION=^8.7.0
 
 addons:
   apt:
@@ -36,7 +42,7 @@ script:
   - >
     echo;
     echo "Running unit tests";
-    .Build/bin/phpunit -c .Build/vendor/typo3/cms/typo3/sysext/core/Build/UnitTests.xml Tests/Unit/
+    ./.Build/bin/phpunit -c .Build/vendor/nimut/testing-framework/res/Configuration/UnitTests.xml Tests/Unit/
 
   - >
     echo;

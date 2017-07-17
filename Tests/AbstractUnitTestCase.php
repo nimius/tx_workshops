@@ -14,12 +14,14 @@ namespace NIMIUS\Workshops\Tests;
  * The TYPO3 project - inspiring people to share!
  */
 
+use Nimut\TestingFramework\TestCase\UnitTestCase;
+
 /**
  * Abstract unit test case.
  *
  * Includes shared methods to aid in unit testing.
  */
-abstract class AbstractUnitTestCase extends \TYPO3\CMS\Core\Tests\UnitTestCase
+abstract class AbstractUnitTestCase extends UnitTestCase
 {
     /**
      * Helper to test a property getter and setter.
