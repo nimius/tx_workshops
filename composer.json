@@ -21,7 +21,7 @@
 	],
 	"license": "GPL-2.0+",
 	"require": {
-		"typo3/cms-core": ">=7.6.0,>=8.7.0",
+		"typo3/cms-core": ">=7.6.0",
 		"typo3-ter/static-info-tables": "^6.3.0 || ^6.4.0"
 	},
 	"require-dev": {
