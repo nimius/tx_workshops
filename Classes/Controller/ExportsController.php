@@ -52,8 +52,12 @@ class ExportsController extends AbstractController
             'settings' => $this->settings,
             'prodid' => $this->buildProdidProperty()
         ]);
+
         // Remove whitespace chars and blank lines for the sake of compliance.
         $output = preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $view->render());
+
+        $this->response->setHeader('Content-Type', 'text/x-vcard');
+        $this->response->setHeader('Content-Disposition', 'attachment;filename="events.ics"');
         return trim($output);
     }
 
