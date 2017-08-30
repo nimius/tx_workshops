@@ -60,8 +60,16 @@ class WorkshopUrlService extends AbstractUrlService
          * Drop controller and action parameters, as the page must
          * contain the single view plugin.
          */
-        if ((int)$this->settings['detailPage']) {
-            $this->typolinkConfiguration['parameter'] = (int)$this->settings['detailPage'];
+        if ($this->settings['detailPage']) {
+            // Since 8.3, links are moving to a new syntax; This is a fix to keep compatibility in a simple way.
+            list($uid) = sscanf($this->settings['detailPage'], 't3://page?uid=%d');
+
+            if ($uid) {
+                $this->typolinkConfiguration['parameter'] = (int)$uid;
+            } else {
+                $this->typolinkConfiguration['parameter'] = (int)$this->settings['detailPage'];
+            }
+
             $this->typolinkConfiguration['additionalParams'] .= '&tx_workshops_workshopssingleview[workshop]=' . $this->object->getUid();
             return;
         }
