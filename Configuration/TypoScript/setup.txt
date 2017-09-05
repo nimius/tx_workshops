@@ -3,14 +3,14 @@
  */
 plugin.tx_workshops {
 	view {
-		layoutRootPath {
+		layoutRootPaths {
             0 = {$plugin.tx_workshops.view.defaultLayoutRootPath}
         }
-        
+
 		partialRootPaths {
             0 = {$plugin.tx_workshops.view.defaultPartialRootPath}
         }
-        
+
 		templateRootPaths {
             0 = {$plugin.tx_workshops.view.defaultTemplateRootPath}
         }
@@ -19,35 +19,35 @@ plugin.tx_workshops {
 	persistence {
 		storagePid = {$plugin.tx_workshops.persistence.storagePid}
 	}
-	
+
 	features.rewrittenPropertyManager = 1
-	
+
 	settings {
 		loginPid =
 		singnupPid =
 		dateTimeFormat = d-m-Y h:i
-		
+
 		registration {
 			useScheduler = 0
-			
+
 			mailFromName =
 			mailFromAddress =
-			
+
 			confirmationEmail {
 				attendee = 1
-				attendee.subject = 
-				
+				attendee.subject =
+
 				instructor = 0
-				instructor.subject = 
-                
+				instructor.subject =
+
                 backOffice = 0
                 backOffice {
-                    recipients = 
+                    recipients =
                 }
 			}
-			
+
 			validation {
-				// As various functions rely on a valid email address (e.g. delivering a 
+				// As various functions rely on a valid email address (e.g. delivering a
 				// confirmation email), the email address must be present and valid.
 				// You should know what you do if you drop this.
 				email {
@@ -56,9 +56,9 @@ plugin.tx_workshops {
 				}
 			}
 		}
-		
-		form.appendToLabelIfRequiredField = 
-		
+
+		form.appendToLabelIfRequiredField =
+
 		export {
 			iCalendar {
 				businessName = Business Name
@@ -91,7 +91,7 @@ module.tx_workshops {
 		templateRootPath = {$module.tx_workshops.view.templateRootPath}
 		partialRootPath =  {$module.tx_workshops.view.partialRootPath}
 		layoutRootPath =   {$module.tx_workshops.view.layoutRootPath}
-		
+
 		// Separating the mailer templates for integrators to have BE module templates untouched
 		mailerRootPath = {$module.tx_workshops.view.mailerRootPath}
 	}
