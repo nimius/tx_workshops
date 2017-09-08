@@ -52,6 +52,7 @@ abstract class AbstractMailer
     /**
      * Renders a fluid standalone view.
      *
+     * @todo this needs support for multiple mailer root paths
      * @param string $template Path to template, including filename
      * @param array $locals Array of variables to assign to the template
      * @return string The rendered view
@@ -59,14 +60,15 @@ abstract class AbstractMailer
     protected function renderEmailTemplate($template, $locals = [])
     {
         $config = ConfigurationUtility::getModuleTyposcriptConfiguration();
-        $view = $this->objectManager->get(StandaloneView::class);
-        $basePath = GeneralUtility::getFileAbsFileName($config['view.']['mailerRootPath']);
+        $basePath = $config['view.']['mailerRootPath'];
         if (!substr($basePath, -1, 1) == '/') {
             $basePath .= '/';
         }
+
+        $view = GeneralUtility::makeInstance(StandaloneView::class);
+        $view->getRequest()->setControllerExtensionName('Workshops');
         $view->setTemplatePathAndFilename($basePath . $template);
         $view->setFormat('html');
-        $view->getRequest()->setControllerExtensionName(GeneralUtility::underscoredToUpperCamelCase('workshops'));
         $view->assignMultiple($locals);
         return trim($view->render());
     }
