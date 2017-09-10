@@ -1,7 +1,7 @@
 {
 	"name": "nimius/workshops",
 	"type": "typo3-cms-extension",
-	"description": "Flexible workshop and courses management",
+	"description": "Flexible workshop management",
 	"keywords": [
 		"TYPO3", "extension", "workshops", "courses", "seminars"
 	],
@@ -21,8 +21,7 @@
 	],
 	"license": "GPL-2.0+",
 	"require": {
-		"typo3/cms-core": ">=7.6.0",
-		"typo3-ter/static-info-tables": "^6.3.0 || ^6.4.0"
+		"typo3/cms-core": ">=8.7.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.8.0",
@@ -49,15 +48,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"NIMIUS\\Workshops\\Tests\\": "Tests",
-			"TYPO3\\CMS\\Core\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/core/Tests/",
-			"TYPO3\\CMS\\Fluid\\Tests\\": ".Build/vendor/typo3/cms/typo3/sysext/fluid/Tests/"
+			"NIMIUS\\Workshops\\Tests\\": "Tests"
 		}
-	},
-	"scripts": {
-		"post-autoload-dump": [
-			"mkdir -p .Build/Web/typo3conf/ext/",
-			"[ -L .Build/Web/typo3conf/ext/workshops ] || ln -snvf ../../../../. .Build/Web/typo3conf/ext/workshops"
-		]
 	}
 }

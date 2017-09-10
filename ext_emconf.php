@@ -14,20 +14,15 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Workshops system',
-    'description' => 'Flexible workshop and courses management.',
+    'description' => 'Flexible workshop management.',
     'category' => 'fe',
-    'version' => '1.3.0',
-    'state' => 'beta',
+    'version' => '2.0.0-dev',
+    'state' => 'alpha',
     'author' => 'NIMIUS',
     'author_email' => 'info@nimius.net',
     'constraints' => [
         'depends' => [
-            'static_info_tables' => '6.3.9-7.6.99',
-            'typo3' => '7.6.0-8.7.99',
-        ],
-        'suggests' => [
-            'geocoding' => '1.2.0-1.2.99',
-            'scheduler' => '7.6.0-8.7.99'
+            'typo3' => '8.7.0-8.7.99',
         ],
     ],
 ];
