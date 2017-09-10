@@ -1,4 +1,6 @@
 <?php
+namespace NIMIUS\Workshops\Support;
+
 /*
  * This file is part of the TYPO3 CMS project.
  *
@@ -12,8 +14,15 @@
  * The TYPO3 project - inspiring people to share!
  */
 
-// Define new workshops page type.
-$GLOBALS['PAGES_TYPES'][\NIMIUS\Workshops\Support\Constants::DOKTYPE] = [
-    'type' => 'web',
-    'allowedTables' => '*'
-];
+/**
+ * Constants class.
+ *
+ * Defines constants used extension-wide.
+ */
+class Constants
+{
+    /**
+     * @var int Page type for workshop pages, as used in the 'doktype' field.
+     */
+    const DOKTYPE = 976;
+}
