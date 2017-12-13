@@ -58,7 +58,7 @@ class MetaTagUtility
         if (empty($description)) {
             $cutToLength = 150;
             $addDots = strlen($description) > $cutToLength;
-            $description = substr($workshop->getDescription(), 0, $cutToLength);
+            $description = substr(strip_tags($workshop->getDescription()), 0, $cutToLength);
             if ($addDots) {
                 $description .= '...';
             }
