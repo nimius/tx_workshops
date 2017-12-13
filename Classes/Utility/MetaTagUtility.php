@@ -160,7 +160,7 @@ class MetaTagUtility
 
         // If no image has been set, assign a static google maps image from the next upcoming location.
         $location = self::extractLocationFromUpcoming($upcoming);
-        if ($location) {
+        if ($location && $location->getLatitude() && $location->getLongitude()) {
             return 'https://maps.googleapis.com/maps/api/staticmap?size=300x300&zoom=7'
             . '&center=' . $location->getLatitude() . ',' . $location->getLongitude()
             . '&markers=' . $location->getLatitude() . ',' . $location->getLongitude();
