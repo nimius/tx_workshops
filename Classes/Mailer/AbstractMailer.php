@@ -64,10 +64,11 @@ abstract class AbstractMailer
         if (!substr($basePath, -1, 1) == '/') {
             $basePath .= '/';
         }
+        $templatePath = GeneralUtility::getFileAbsFileName($basePath . $template);
 
         $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->getRequest()->setControllerExtensionName('Workshops');
-        $view->setTemplatePathAndFilename($basePath . $template);
+        $view->setTemplatePathAndFilename($templatePath);
         $view->setFormat('html');
         $view->assignMultiple($locals);
         return trim($view->render());
