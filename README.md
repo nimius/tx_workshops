@@ -1,6 +1,8 @@
 # tx_workshops
 A TYPO3 extension to manage workshops (or events, seminars, ...).
 
+**THIS EXTENSION IS NOT MAINTAINED ANYMORE!** We do not provide support for this code anymore. If you want to take over this project, feel free to fork or re-upload it under your own namespace.
+
 [![Build Status](https://travis-ci.org/nimius/workshops.svg?branch=master)](https://travis-ci.org/nimius/workshops)
 [![StyleCI](https://styleci.io/repos/37909459/shield?branch=master)](https://styleci.io/repos/37909459)
 
@@ -23,11 +25,11 @@ The only validation which is always run on registrations is extbase's `EmailAddr
 	plugin.tx_workshops.settings.registration.validation {
 		firstName {
 			10.validator = NotEmpty
-			
+
 			20.validator = StringLength
 			20.options.minimum = 5
 		}
-        
+
         additionalFields {
             membershipCode {
                 10.validator = NotEmpty
@@ -55,9 +57,9 @@ To provide an ICS file containing workshop dates, set up a separate PAGE TLO res
 			additionalHeaders = Content-Type:text/calendar;charset=utf-8
 			disablePrefixComment = 1
 		}
-		
+
 		typeNum = 1234
-		
+
 		10 = USER
 		10 {
 			userFunc = TYPO3\CMS\Extbase\Core\Bootstrap->run
@@ -74,7 +76,7 @@ Don't forget to have the following configuration parts set in your TypoScript te
 		businessName = Your business name
 		productName = Your product name
 	}
-	
+
 	// The 2-char language code is also required for a valid PRODID
 	config.language = en
 
@@ -91,7 +93,7 @@ In order to deliver confirmation emails, make sure to have a working scheduler, 
 Email templates are freely configurable through fluid, you'll find them in Resources/Private/Templates/Notifications.
 
 #### Email configuration
-Make sure that your TYPO3 instance is properly configured for email delivery. Check your install tool / `LocalConfiguration.php` for valid information in the `[MAIL]` section. There's also a report module checking for this. Alternatively, you can set required information for delivery through TypoScript. 
+Make sure that your TYPO3 instance is properly configured for email delivery. Check your install tool / `LocalConfiguration.php` for valid information in the `[MAIL]` section. There's also a report module checking for this. Alternatively, you can set required information for delivery through TypoScript.
 
 ### OpenGraph
 Workshop Detail views automatically add the correct openGraph meta tags to the `<head>` of the TYPO3 Page.
